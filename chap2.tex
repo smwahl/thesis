@@ -1,0 +1,143 @@
+\chapter{First-Principles simulation Methods}\label{chap2}
+
+\section{Density Functional Theory}
+
+\section{Thermodynamic Integration}
+
+
+%%%% From F-H Manuscript
+Compression of materials with modern experimental techniques can reach megabar
+pressures, however the pressure-temperature conditions near Jupiter's core ($>$4 TPa) remain
+inaccessible. Temperatures in shockwave experiments climb rapidly at high
+pressures in comparison with planetary adiabats, while diamond anvil cell
+experiments
+are best suited for low temperatures. As a result, simulations based on ab 
+initio theories are best suited for directly probing the conditions of gas 
+giant interiors.
+
+
+We performed density functional theory molecular dynamics (DFT-MD) simulations
+to determine the energetics of a dissolution reaction, in which solid iron
+dissolves in pure liquid hydrogen. We calculate a Gibbs free energy of
+solvation:
+\begin{equation}
+  \Delta G_{sol}\left(\mathrm{Fe}:256\mathrm{H}\right) = G\left(\mathrm{H}_{256}\mathrm{Fe}\right) -
+  \left[ G\left(\mathrm{H}_{256}\right) +
+    \frac{1}{32}G\left(\mathrm{Fe}_{32}\right) \right]\mathrm{,}
+\end{equation}
+where $G\left(\mathrm{H}_{256}\right)$ and $G\left(\mathrm{Fe}_{32}\right)$
+are the Gibbs free
+energies of a pure hydrogen liquid and solid or liquid iron.
+$G\left(\mathrm{H}_{256}\mathrm{Fe}\right)$ is the Gibbs free energy of 1:256 liquid solution of iron
+in hydrogen. We assume that analysis of a single low-concentration solution is
+sufficient to determine the onset of core erosion, since the reservoir of
+metallic hydrogen would be much larger than the core. This does not rule out
+non-ideal effects of higher concentrations that might exist in a narrow,
+poorly convecting layer at the top of a core. 
+
+\subsection{Computation of Gibbs Free Energies}
+
+Free energy calculations require the determination of a contribution from
+entropy, which is not determined from the standard DFT-MD formalism. To achieve
+this, we adopt a two step thermodynamic integration method, as 
+used in previous studies \citep{morales09,wilson10,wilson12a,wilson12b}. The method
+requires integration of the change in Helmholtz free energy over an
+unphysical, yet thermodynamically permissible, transformation between two
+systems governed by potentials $U_a\left(\mathbf{r_i}\right)$ and 
+$U_b\left(\mathbf{r_i}\right)$. We define a hybrid potential 
+$U_{\lambda}=\left(1-\lambda\right)U_a+\lambda U_b$, where $\lambda$ is the
+fraction of the potential $U_b\left(\mathbf{r_i}\right)$. The difference is
+Helmholtz free energy is then given by
+\begin{equation}
+  \Delta F_{b\to a}\equiv F_b - F_a = \int_{0}^{1}{d\lambda\,\langle U_b\left(\mathbf{r_i}\right) -
+  U_a\left(\mathbf{r_i}\right) \rangle_{\lambda}}
+\end{equation}
+where the averaging is over configurations generated
+during simulations of the system governed by the hybrid potential. 
+
+To increase the efficiency, we calculated the Helmholtz free energy in two steps 
+each involving an integral of the form of Eq. 2. We first find $\Delta
+F_{\mathrm{DFT}\to \mathrm{cl}}$,
+between the systems governed by DFT and classical pair potentials, which are
+fit via a force-matching method \citep{izvekov04}. In the second step $\Delta
+F_{\mathrm{cl}\to \mathrm{an}}$, between the pair potentials and a reference system with an
+analytic solution $F_{\mathrm{an}}$. The Helmholtz energy for the DFT systems,
+$F_{\mathrm{DFT}}=F_{\mathrm{\mathrm{an}}}+\Delta F_{\mathrm{DFT}\to \mathrm{cl}}+\Delta F_{\mathrm{cl} \to \mathrm{an}}$, may then be
+compared directly. The first step requires DFT-MD simulations for a small
+number of $\lambda$ values, while the second uses applies a much faster classical Monte Carlo
+approach at numerous values of $\lambda$ to ensure a smooth integration.
+
+Finding a suitable reference system is essential to the method, as it allows
+$\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ to be found with a small number of 
+number of integration steps, and prevents solids from melting or transforming to a new
+structure. For liquid systems, we integrate to a non-interacting
+ideal gas, using classical two-body pair potentials as the intermediate
+step. For solid iron, we integrate to an Einstein solid, a system of
+non-interacting, 3-d harmonic oscillators. For the intermediate classical
+solid system we use a 50-50
+'mixture' of two-body and one-body harmonic oscillator potentials. Spring
+constants for the Einstein terms are found from the mean-squared displacement 
+of atoms from their ideal lattice sites during a DFT-MD simulation. 
+
+
+%%%% Similar discussion from FeMgO paper
+
+The Gibbs free energy of a material includes a contribution from entropy of the system.
+Since entropy is not determined in the standard DFT-MD formalism, we adopt a two step
+thermodynamic integration method, used in previous studies
+\citep{Wilson2010,Wilson2012a,Wahl2013,Gonzalez2014}.  The thermodynamic integration technique
+considers the change in Helmholtz free energy for a transformation between two systems
+with governing potentials $U_a\left(\mathbf{r_i}\right)$ and
+$U_b\left(\mathbf{r_i}\right)$. We define a hybrid potential
+$U_{\lambda}=\left(1-\lambda\right)U_a+\lambda U_b$, where $\lambda$ is the fraction of
+the potential $U_b\left(\mathbf{r_i}\right)$. The difference in Helmholtz free energy is
+then given by
+\begin{equation} \label{eqn:td_int}
+  \Delta F_{a\to b}\equiv F_b - F_a = \int_{0}^{1}{d\lambda\,\langle U_b\left(\mathbf{r_i}\right) -
+  U_a\left(\mathbf{r_i}\right) \rangle_{\lambda}}
+\end{equation}
+where the bracketed expression represents the ensemble-average over configurations,
+$\mathbf{r_i}$, generated in simulations with the hybrid potential at constant volume and
+temperature. This technique allows for direct comparisons of the Helmholtz free energy of
+DFT phases, $F_{\rm DFT}$, by finding their differences from reference systems with a known
+analytic expression, $F_{\rm an}$. 
+
+In practice, it is more computationally efficient to perform the calculation $\Delta
+F_{\rm an\to DFT}$ in two steps, each involving an integral of the form of Eqn.
+\ref{eqn:td_int}. We introduce an intermediate system governed by classical pair
+potentials, $U_{\rm cl}$, found by fitting forces to the DFT trajectories
+\citep{Wilson2010,Izvekov2004}. For each pair of elements, find the average force in bins
+of radial separation and fit the shape of a potential using a cubic spline function. We
+constrain the potential to smoothly approach zero at large radii and use a linear
+extrapolation at small radii, where the molecular dynamics simulations provide
+insufficient statistics. Examples of these potentials are included in the online
+supplementary information. The full energetics of the system is then described as
+%$F_{\mathrm{DFT}}=F_{\mathrm{\mathrm{an}}}+\Delta F_{\mathrm{cl}\to \mathrm{DFT}}+\Delta F_{\mathrm{an} \to \mathrm{cl}}$,
+\begin{equation} \label{eqn:two_step}
+F_{\mathrm{DFT}}=F_{\mathrm{\mathrm{an}}}+\Delta
+F_{\mathrm{an} \to \mathrm{cl}}+\Delta F_{\mathrm{cl}\to \mathrm{DFT}}
+\end{equation}
+where $\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ requires a small number of DFT-md
+simulations, and $\Delta F_{\mathrm{an} \to \mathrm{cl}}$ numerous, but inexpensive
+classical Monte Carlo (CMC) simulations. The method depends on a smooth integration of
+$\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ and avoiding any first order phase transitions
+with $\lambda$.  We use five $\lambda$ points, for all $\Delta F_{\mathrm{cl}\to
+\mathrm{DFT}}$ integrations. For solid MgO we use a combination of classical pair and
+one-body harmonic oscillator potentials for $U_{\rm cl}$ \citep{Wilson2012a,Wahl2013}.
+Liquids we use only pair potentials. For solids the analytical reference system is an
+Einstein solid with atoms in harmonic potentials centered on a perfect lattice, while a
+gas of non-interacting particles is used for liquids. We found integrating over 5 lambda
+points to be sufficiently accurate, with an increase to 9 lambda points changing our
+results by $<0.003$ eV per formula unit. In the online supplementary information we
+include two additional tests of the thermodynamic integration method, demonstrating that
+our results are not sensitive use of different classical potentials or the integration
+path with respect to the interaction between different species in the multicomponent
+systems.
+
+All DFT simulations presented here were performed using the Vienna {\it ab initio}
+simulation package (VASP) \citep{Kresse1996}. VASP uses projector augmented wave
+pseudopotentials \citep{Blochl1994} and the exchange-correlation functional of Perdew,
+Burke and Ernzerhof \citep{Perdew1996}. Although the DFT formalism is based on a
+zero-temperature theory, DFT-MD simulations at high temperatures have been shown to agree
+with theory developed for warm dense matter \citep{Driver2012}. We use an iron
+

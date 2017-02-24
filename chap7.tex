@@ -1,0 +1,816 @@
+\chapter{Tidal Response of Jupiter and Saturn}\label{chap7}
+
+\section{Saturn's tidal response} \label{saturn}
+
+\subsection{Saturn interior models}
+
+\citet{lainey2016} present the first determination of the love number $k_2$ for a gas
+giant planet using a dataset of astrometric observations of Saturn's coorbital moons.
+Their observed value $k_2=0.390 \pm 0.024$ is much larger than the theoretical
+prediction of 0.341 by \citet{gavrilov1977}. Here we present calculations suggesting
+that the enhancement of Saturn's $k_2$ is the result of the influence of the planet's
+rapid rotation, rather than evidence for a non-static tidal response or some other
+breakdown of the hydrostatic theory.
+
+For the purposes of this calculation, we use two relatively simple models for
+Saturn's interior structure, fitted to physical parameters determined by the
+\textit{Voyager} and \textit{Cassini} spacecraft. Table \ref{tab:saturn_params}
+summarizes the physical parameters used in our models. We fit our models to minimize
+the difference in zonal harmonics from those determined from \textit{Cassini}
+\citep{Jacobson2006}.  We consider two different internal rotation rates based on
+magnetic field measurements from \textit{Voyager} \citep{desch1981} and
+\textit{Cassini} \citep{giampieri2006}, which lead to two different values of $q_{\rm
+rot}$. 
+
+In principle, the tidal response of a heterogeneous body will also be different for
+satellites with different sizes and orbital parameters. To address this, we also
+consider the effect of two major satellites, Tethys and Dione, with different values
+for $q_{\rm tid}$ and $R/a$ \citep{archinal2011}. These two satellites, along with
+their respective coorbital satellites, were used in the determination of $k_2$ by
+\citet{lainey2016}.
+
+For the interior density profile, our first model assumes a constant-density
+core surrounded by a polytropic envelope following Eqn. \eqref{eq:poly}. We
+constrain the radius of the core to be $a_{\rm core}/a=0.2$, leaving the mass
+$m_{\rm core}/M$ as a parameter which is adjusted to match the observed Saturn
+$J_2$.  The fitted model using the \textit{Voyager} rotation period matches
+both $J_2$ and $J_4$ to within the error bars, but with the \textit{Cassini}
+rotation period it matches only $J_2$.  In hydrostatic equilibrium, the two
+different rotation rates lead to differences in shape of equipotential surfaces
+and, therefore, also to different best fits to $m_{\rm core}/M$. The envelope
+polytrope is scaled in order to maintain $M$. Figure
+\ref{fig:density_structure} shows the density profile of one such model,
+compared to other density models. We consider a model with a total of 128
+layers, for which the CMS model has a discretization error \citep{wisdom2016}
+smaller than uncertainty in the observations of Saturn's $k_2$.
+
+Our second model has only four spheroids ($N=4$), also depicted in Figure
+\ref{fig:density_structure}, with densities and radii adjusted to yield agreement
+with both observed $J_2$ and observed $J_4$ as given in Table
+\ref{tab:saturn_params}. With a zero-density outermost layer, this leaves two free
+paramters, making it the simplest model that can match $J_2$ and $J_4$ exactly.
+
+
+Finally, we include a third model using a more realistic H-He equation of state
+based on DFT-MD simulations, following the preliminary Jupiter model of
+\citet{hubbard2016} with a Saturn adiabat.  This model has a density
+discontinuity (Fig. \ref{fig:density_structure}) at 0.76 Mbar where the Saturn
+adiabat crosses the H-He phase separation curve of \citet{Morales2009}. This
+allows the $J_2$ and $J_4$ values to be fitted exactly, by changing the
+metallicities above and below the discontinuity. While still schematic, it is
+the most realistic of our Saturn models.
+
+
+The two simple models, while not particularly realistic, capture the major features
+of Saturn's internal structure. It is well established that the details of Saturn's
+internal structure are largely degenerate, with a wide range of possible core sizes
+and densities adequately matching the few observational constraints
+\citep{kramm2011,helled2013,Nettelmann2013}.  The qualitative similarities between
+our single spheroid and polytrope simulations (Sections \ref{maclaurin} and
+\ref{polytrope}) indicate that the rotational enhancement of $k_2$ should be a robust
+prediction regardless of the particular details of the interior profile. A comparison
+between our polytrope plus core and four layer models provides another test of the
+sensitivity of $k_2$ to interior structure.  We do not consider here the influence of
+differential rotation \citep{hubbard1982,Kong2013,cao2015,wisdom2016}, which might
+have an influence on the gravitational response in comparison to the solid-body
+rotation considered here.  
+
+\subsection{Calculated $k_2$ for Saturn} \label{calc_k2}
+
+We take our baseline model to be the $N=128$ CMS core plus polytrope model with
+physical parameters fitted to \textit{Cassini} observations. Figure
+\ref{fig:saturn_zonal} shows the calculated zonal harmonics $J_n$ up to order
+$n=30$.  The even $J_n$ decrease smoothly in magnitude with increasing $n$,
+with the slope decreasing at higher $n$.  $J_n$ is negative when $n$ is
+divisible by 4, and positive otherwise.  The calculated $J_n$ are essentially
+indistinguishable from those calculated for the rotation only case with the
+same $q_{\rm rot}$, as is expected given $q_{\rm rot} \gg q_{\rm tid}$. We may
+estimate the maximum effect of differential rotation by considering the change
+of the calculated $k_2$ as we change the overall planetary rotation period from
+the Voyager value ($q_{\rm rot} = 0.155303$) to the Cassini value ($q_{\rm rot}
+= 0.151616$), a relative decrease in $q_{\rm rot} $ of about $2 \%$.  From
+Table 3, we see that this change increases $k_2$ by about $2 \%$ (holding $J_2$
+fixed).  The net effect of a deep-seated smooth variation of rotation rate from
+the Voyager value near the equator to the Cassini value near the pole would
+presumably be smaller, depending on how much mass is involved in the
+differential flow.  \citet{cao2015} have shown that the effect of
+realistic deep flow patterns on low order zonal harmonics is small, but a more
+quantitative evaluation of their effect on Saturn's $k_2$ remains to be done.
+
+Figure \ref{fig:saturn_tesseral} shows the magnitude of $C_{nm}$ for the core plus
+polytrope model with \textit{Cassini} rotation. Changing the number of layers,
+satellite parameters or the rotation rate to the \textit{Voyager} value leads to a
+shift in the values, but the relative magnitudes and signs of $C_{nm}$ remain
+approximately the same. In the same figure, we also compare the $C_{nm}$ for a
+non-rotating planet having the same density profile $\rho( \lambda_i)$. Here we see
+significant shifts in the $C_{nm}$ magnitudes, although the signs remain the same.
+For the rotating model, $C_{nm}$ is similar for most points where $n=m$, but with
+magnitudes significantly larger when $m<n$. The only exception to this trend is
+$C_{31}$ which is lower for the rotating model. These results are all broadly
+consistent with the splitting of $k_{nm}$ observed for the polytrope in Section
+\ref{polytrope}.
+
+Table \ref{tab:saturn_results} summarizes our calculated values for $k_2$ for several
+different models. The identifying labels ``Cassini'' and ``Voyager'' use the
+observed rotation rate from \citet{Jacobson2006}, and \citet{desch1981}
+respectively, while ``non-rotating'' is a model with $q_{\rm rot}=0$. The
+``non-rotating'' model uses the same ``Cassini'' density profile, meaning that
+its density-pressure profile has not been relaxed to be in equilibrium for zero
+rotation.  It does, however, allow us to quantify the effect of rotation on the
+tidal response by comparison with the ``Cassini'' model. ``Tethys'' and
+``Dione'' refer to models with the satellite parameters $q_{\rm tid}$ and $R/a$
+corresponding to those satellites, whereas ``no~tide'' is an analogous model
+with finite $q_{\rm rot}$ only. ``$N=128$'' uses the polytrope outer envelope
+with constant density inner core, whereas ``$N=4$'' is the model which
+independently adjusts layer densities to match the observed $J_2$ and $J_4$.
+The ``DFT-MD'' models use the H-He equation of state from
+\citet{hubbard2016} with $N=511$ layers.
+
+All of the rotating models yields a calculated $k_2$ value matching the observation
+of \citet{lainey2016} within their error bars. Our baseline model yields
+$k_2=0.4130$, while using the \textit{Voyager} observations yields a value
+$\sim$0.008 lower. We find that the difference between the $k_2$ values associated
+with the satellites Tethys and Dione is $\sim$0.0003, well below the current
+sensitivity limit. Using the $\sim$2.5\% higher ``Voyager'' rotation rate leads to a
+decrease of $\sim$0.01 in $k_2$. 
+
+In Table \ref{tab:saturn_results}, we also show the calculated $J_2$, $J_4$ and $J_6$
+following the convergence of the gravitational field in response to the tidal
+perturbation. For the core plus polytrope model, the rotation rate from
+\textit{Voyager} is more consistent with the $J_4$ and $J_6$ from
+\citet{Jacobson2006}. This doesn't necessarily mean that the \textit{Voyager}
+rotation rate is more correct, just that it allows a better fit for our simplified
+density model. Nonetheless, our fitted gravitational moments are much closer to each
+other than to those from the pre-\textit{Cassini} model of \citet{gavrilov1977}.
+
+In comparison to the other models, the outlier is the non-rotating model, which
+underestimates the $k_2$ by $\sim9.4$\% compared to a rotating body with the same
+density distribution.  This calculated enhancement accounts for most of the
+difference between the observation of $k_2=0.390 \pm .024$ \citep{lainey2016} and the
+classical theory result of 0.341 \citep{gavrilov1977}. We attribute our non-rotating
+model's larger $k_2$ to our different interior model which matches more recent
+constraints on Saturn's zonal gravitational moments $J_2$--$J_6$.
+
+We note that the later theoretical prediction of 0.386 by \citet{vorontsov1984} is
+also compatible with the observed $k_2$. Their method considers the effect of
+free-oscillations on the tidal response of giant planets. While our rotating models
+yield higher values of $k_2$ than \citet{vorontsov1984} our ``non-rotating'' model
+produces a $k_2$ smaller than theirs by $\sim$0.02. In principle, it is difficult to
+make precise comparisons between models, because of different assumptions about the
+interior structure. While consideration of dynamic tidal effects is beyond the scope
+of this paper, both effects are likely to influence the tidal response of a real
+planet.
+
+In addition to the difference in $k_2$, the non-rotating model also predicts slightly
+different tidal components of the zonal gravitational moments. Finding the difference
+in values between the ``no tide'' model and the analogous tidal model yields
+$J_{2,{\rm tid}}=1.7254\times10^{-10}$, $J_{4,{\rm tid}}=-2.732\times10^{-11}$ and
+$J_{6,{\rm tid}}=4.14\times10^{-12}$, which are different than calculated zonal
+moments for the ``non-rotating'' model.
+
+It may be initially surprising that the four-layer model and the semi-realistic
+DFT-MD based models  yield a $k_2$ value only slightly different than the
+polytrope model. The three models represent very different density structures
+even though they lead to similar low-order zonal harmonics. The fact these
+models are indistinguishable by their $k_2$ suggests that the tidal response of
+Saturn is only a weak function of the detailed density structure within the
+interior of the planet. Indeed, the two models matching $J_4$ are closer to
+each other than to the polytrope model that does not match $J_4$. This behavior
+can be understood by referring to Eqn.  \eqref{eq:k2_lambda2}, which shows that
+to lowest order, $k_2$ and $\Lambda_2$ contain the same information about
+interior structure.  This statement is not true when we include a nonlinear
+response to rotation and tides.  Thus, future high-precision measurements of
+the $k_{nm}$ of Jovian planets, say to better than $0.1\%$, will be useful for
+constraining basic parameters such as the interior rotation rate of the planet,
+and may help to break the current degeneracy of interior density profiles.  The
+theory presented in this paper is intended to match the anticipated precision
+of such future measurements.
+
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/density_profile.pdf} \caption{ 
+Density structure of simple Saturn models, all fitted to Saturn's observed
+$J_2$ \citep{Jacobson2006}.  The blue curve shows an $N=128$ model with a
+constant-density core within $r=0.2 a$ and a polytropic outer envelope.  The
+red curve shows an $N=4$ model with the same core radius and two additional
+spheroids, adjusted to fit both $J_2$ and $J_4$.  For comparison, the dash-dot
+curve (teal) shows Saturn model MS24 of \citet{gudkova1999}.  The grey solid
+curve shows an unpublished Saturn model based on the density-functional theory,
+molecular-dynamics (DFT-MD) equation of state for hydrogen-helium, as used in
+the Jupiter model of \citet{hubbard2016}.
+}
+\label{fig:density_structure}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/saturn_Jn.pdf}
+\caption{ The zonal harmonics $J_n$ for the \textit{Cassini} Saturn model. Positive
+values are shown as filled and negative  as empty.}
+\label{fig:saturn_zonal}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/saturn_Cnm_compare.pdf}
+\caption{ In red, the tesseral harmonics $C_{nm}$ for the \textit{Cassini} Saturn
+model. In black, $C_{nm}$ for the same density profile and same value of $q_{\rm
+tid}$, but with $q_{\rm rot}=0$. Positive values are shown as filled and negative as
+empty.} \label{fig:saturn_tesseral}
+\end{figure}
+
+%\input{tabs/model_param_table}
+
+%\input{tabs/saturn_table}
+
+%\input{tabs/combined_table}
+
+
+
+\section{Jupiter's tidal response} \label{saturn}
+
+The \textit{Juno} spacecraft began studying Jupiter at close range following its
+orbital insertion in early July 2016. The unique low-periapse polar orbit and precise
+Doppler measurements of the spacecraft's acceleration will yield parameters of
+Jupiter's external gravitational field to unprecedented precision, approaching a
+relative precision of $\sim 10^{-9}$ \citep{kaspi2010}. In addition to providing
+important information about the planet's interior mass distribution, the
+non-spherical components of Jupiter's gravitational field should exhibit a detectable
+signal from tides induced by the planet's closer large moons, possibly superimposed
+on signals from mass anomalies induced by large-scale dynamic flows in the planet's
+interior \citep{cao2015,kaspi2010,kaspi2013}.
+
+As a benchmark for comparison with expected \textit{Juno} data, \citet{hubbard2016}
+constructed static interior models of the present state of Jupiter, using a
+barotropic pressure-density $P(\rho)$ equation of state for a near-solar mixture of
+hydrogen and helium, determined from \textit{ab intio} molecular dynamics simulations
+\citep{militzer2013a,militzer2013b}. In this paper, we extend those models to predict
+the static tidal response of Jupiter using the three-dimensional concentric Maclaurin
+spheroid (CMS) method \citep{wahl2016}.
+
+The \citet{hubbard2016} preliminary Jupiter model is an axisymmetric, rotating model
+with a self-consistent gravitational field, shape and interior density profile. It is
+constructed to fit pre-\textit{Juno} data for the degree-two zonal gravitational
+harmonic $J_2$ \citep{jacobson2003}. While solutions exist matching pre-\textit{Juno}
+data for the degree-four harmonic $J_4$, models using the \textit{ab initio} EOS required unphysical
+compositions with densities lower than that expected for the pure H-He mixture. As a result, the
+preferred model of \citet{hubbard2016} predicts a $J_4$ with an absolute value above
+pre-\textit{Juno} error bars. Preliminary Jupiter models consider the effect of a
+helium rain layer where hydrogen and helium become immiscible \citep{stevenson1977a}.
+The existence of such a layer has important effects for the interior structure of the
+planet, since it inhibits convection and mixing between the molecular exterior and
+metallic interior portions of the H-He envelope. This circumstance provides a
+physical basis for differences in composition and thermal state between the inner and
+outer portions of the planet.  Adjustments of the heavy element content and entropy
+of the $P(\rho)$ barotrope allow identification of an interior structure consistent
+with both pre-\textit{Juno} observational constraints and the \textit{ab initio}
+material simulations. The preferred preliminary model predicts a dense inner core
+with $\sim$12 Earth masses and an inner hydrogen-helium rich envelope with
+$\sim$3$\times$ solar metallicity, using an outer envelope composition matching that
+measured by the \textit{Galileo} entry probe.
+
+Although the \textit{Cassini} Saturn orbiter was not designed for direct measurements
+of the high degree and order components of Saturn's gravitational field, the first observational
+determination of Saturn's second degree Love number $k_2$ was recently reported by
+\citet{lainey2016}. This study used an astrometric dataset for Saturn's co-orbital
+satellites to fit $k_2$, and identified a value significantly larger than the
+theoretical prediction of \citet{gavrilov1977}. The non-perturbative CMS method
+obtains values of $k_2$ within the observational error bars for simple models of
+Saturn's interior, indicating the high value can be explained completely in terms of
+static tidal response \citep{wahl2016}. The perturbative method of
+\citet{gavrilov1977} provides an initial estimate of tidally induced terms in the
+gravitational potential, but neglects terms on the order of the product of tidal
+and rotational perturbations. \citet{wahl2016} demonstrated, that for the
+rapidly-rotating Saturn, these terms are significant and sufficient to explain the
+observed enhancement of $k_2$.
+
+\section{Barotrope}
+
+We assume the liquid planet is in hydrostatic equilibrium,
+%
+\begin{equation} \nabla P = \rho \nabla U,     
+    \label{eq:hydrostatic} \end{equation}
+%
+where $P$ is the pressure, $\rho$ is the mass density and $U$ the total effective
+potential. Modeling the gravitational field of such a body requires a barotrope
+$P(\rho)$ for the body's interior. In this paper, we use the barotrope of
+\citet{hubbard2016}, constructed from \textit{ab initio} simulations of
+hydrogen-helium mixtures \citep{militzer2013a,militzer2013b}. The $P(\rho)$ relation
+is interpolated from a grid of adiabats determined from density functional 
+molecular dynamics (DFT-MD) simulations using the Perdew-Burke-Ernzerhof (PBE) functional
+\citep{PBE} in combination with a thermodynamic integration technique. The
+simulations were performed with cells containing $N_{He}=18$ helium and $N_{H}=220$
+hydrogen atoms, corresponding to a solar-like helium mass fraction $Y_0=0.245$. An
+adiabat is characterized by an entropy per electron $S/k_B/N_e$
+\citep{militzer2013b}, where $k_B$ is Boltzmann's constant and $N_e$ is the number of
+electrons. Hereafter we refer to this quantity simply as $S$.
+
+In our treatment, the term ``entropy'' and the symbol $S$ refer to a particular
+adiabatic temperature $T(P)$ relationship for a fixed composition H-He mixture
+($Y_0=0.245$) as determined from the \textit{ab initio} simulations. The value of $S$
+in the outer portion of the planet is determined by matching the $T(P)$ measurements
+from the Galileo atmospheric probe (see Figure \ref{fig:eos}). This adiabatic $T(P)$
+is assumed to apply to small perturbations of composition, in terms of both helium
+fraction and metallicity. \citet{hubbard2016} demonstrated that these compositional
+perturbations have a negligible effect on the temperature distribution in the
+interior.
+
+The density perturbations to the equation of state are estimated using the additive
+volume law,
+%
+\begin{equation} 
+    V(P, T) = V_H(P, T) + V_{He}(P, T) + V_{Z}(P,T),
+ \label{eq:volume_law}
+\end{equation}
+%
+where the total volume $V$ is the sum of partial volumes of the main components $V_H$
+and $V_{He}$, the heavy element component $V_Z$. \citet{hubbard2016} demonstrated
+that this leads to a modified density $\rho$ in terms of the original H-He EOS
+density $\rho_0$,
+%
+\begin{equation} 
+    \frac{\rho_0}{\rho} = \frac{1-Y-Z}{1-Y_0} + 
+    \frac{ZY_0 + Y - Y_0}{1-Y_0}\frac{\rho_0}{\rho_{He}} + Z\frac{\rho_0}{\rho_Z},
+ \label{eq:density_ratio}
+\end{equation}
+%
+in which all densities are are evaluated at the same $T(P)$ and $Y_0$ is the helium
+fraction used to calculate the H-He equation of state.
+
+The choice of equation of state effects the density structure of the planet, and
+consequently, the distribution of heavy elements that is consistent with observational
+constraints. For comparison, we also construct models using the \citet{saumon1995}
+equation of state (SCvH) for H-He mixtures, which has been used extensively in giant planet
+modeling. 
+
+\textit{Ab initio} simulations show that, at the temperatures relevant to Jupiter's
+interior, there is no distinct, first-order phase transition between molecular
+(diatomic, insulating) hydrogen to metallic (monatomic, conducting) hydrogen
+\citep{vorberger2007}. In the context of a planet-wide model, however, the transition
+takes place over the relatively narrow pressure range between $\sim$1-2 Mbar. Within
+a similar pressure range an immiscible region opens in the H-He phase diagram
+\cite{morales2013}, which under correct conditions allows for a helium rain layer
+\cite{stevenson1977a,stevenson1977b}. By comparing our adiabat calculations to the
+\cite{morales2013} phase diagram, we predict such a helium rain layer in present-day
+Jupiter \citep{hubbard2016}. The extent of this layer in our models is highlighted in
+Figure \ref{fig:eos}. While the detailed physics involved with the formation and
+growth of a helium rain layer is poorly understood, the existence of a helium rain
+layer has a number of important consequences for the large-scale structure of the
+planet. In our models, we assume this process introduces a superadiabatic temperature
+gradient and a compositional difference between the outer, molecular layer and inner,
+metallic layer.
+
+In summary, the barotrope and resulting suite of axisymmetric Jupiter models that we
+use in this investigation are identical to the results presented by
+\citet{hubbard2016}. Each model has a central core mass and envelope metallicities
+set to fit the observed $J_2$ \citep{jacobson2003}, with densities corrected to be
+consistent with non-spherical shape of the rotating planet. Since tidal corrections
+to a rotating Jupiter model are of order $10^{-7}$, see
+Table~\ref{tab:jupiter_params} and the following section, it is unnecessary to re-fit
+the tidally-perturbed models to the barotrope assumed for axisymmetric models. 
+
+The physical parameters for each of these models is summarized in Table
+\ref{tab:model_values}. {\bf The gravitational moments at the planet's surface are
+insensitive to the precise distribution of extra heavy-element rich material within the
+innermost part of the planet. For instance, 
+the gravitational moments do not allow us to discern between a model
+with a dense rocky core and a model without a dense rocky core but with same amount
+of heavy element distributed in a larger but restricted volume in the deep interior. 
+Maintaining a constant core radius is
+computationally convenient when finding a converged core mass to $J_{2}$, since it
+requires no modification of the radial grid used through the envelope. For this
+reason we consider models with a constant core radius of $0.15a$. Decreasing this
+radius below $0.15a$ for a given core mass has a negligible effect on the calculated
+gravitational moments } \citep{hubbard2016}. Figure \ref{fig:density_structure} shows
+the density profile for two representative models.  In general, models using the
+DFT-MD equation of state lead to a larger central core and a lower envelope
+metallicity than those using SCvH.  \citet{hubbard2016} also noted that these models
+predict a value for $J_4$ outside the reported observational error bars
+\citep{jacobson2003}, since they would require unrealistic negative values of $Z$ to
+match both $J_2$ and $J_4$.
+
+
+\subsection{State Mixing for Static Love Numbers} \label{state_mixing}
+
+In the CMS method applied to tides, we calculate the tesseral harmonics $C_{nm}$
+directly, and the Love numbers $k_{nm}$ are then calculated using Eq.~\ref{eq:kn}.
+For the common tidal problem where $q_{\rm tid}$ and $q_{\rm rot}$ are carried to
+first order perturbation only, this definition of $k_{nm}$ removes all dependence on
+the small parameters $q_{\rm tid}$ and $a/R$, which is convenient for calculating the
+expected tidal tesseral terms excited by satellites of arbitrary masses at arbitrary
+orbital distances.  However, the high-precision numerical results from our CMS tidal
+theory reveal that when $q_{\rm rot} \approx 0.1$, as is the case for Jupiter and
+Saturn, the mixed excitation of tidal and rotational harmonic terms in the external
+gravity potential has the effect of introducing a small but significant dependence of
+$k_{22}$ on $a/R$; see Fig.~\ref{fig:J4_k2}. In the absence of rotation, the CMS
+calculations yield results without any state mixing, and the $k_{nm}$ are, as
+expected, constant with respect to $a/R$.  It is important to note this effect on the
+{\it static} Love numbers because, as we discuss below, dynamical tides can also
+introduce a dependence on $a/R$ via differing satellite orbital frequencies.
+
+\subsection{Calculated Static Tidal Response}
+
+The calculated zonal harmonics $J_n$ and tidal Love numbers $k_{nm}$ for all of the
+Jupiter models with Io satellite parameters are shown in
+Tab.~\ref{tab:model_harmonics}. Our preferred Jupiter model has a calculated $k_{2}$
+of 0.5900. In all cases, these Love numbers are significantly different from those
+predicted for a non-rotating planet (see Tab.~\ref{tab:satellite_harmonics}).
+Fig.~\ref{fig:tesseral_rotation} shows the different tesseral harmonics $C_{nm}$
+calculated with and without rotation. For a non-rotating planet with identical
+density distribution to the preferred model we find a much smaller $k_{22}=0.53725$.
+\textit{Juno} should, therefore, be able to test for the existence of the rotational
+enhancement of the tidal response.
+
+The effect of the interior mass distribution for a suite of realistic models has a
+minimal effect on the tidal response. Most models using the DFT-MD barotrope are
+within a 0.0001 range of values. The one outlier being the model constrained to match
+$J_4$ with unphysical envelope composition. The models using the SCvH barotrope
+yields slightly lower, but still likely indistinguishable values of $k_{22}$. The
+higher order harmonics show larger relative differences between models, but still
+below detection levels. Regardless, the zonal harmonic values are more diagnostic for
+differences between interior models than the tidal Love numbers. Fig.~\ref{fig:J4_k2}
+summarizes these results, and shows that the calculated $k_{22}$ value varies
+approximately linearly with $J_4$.  If \textit{Juno} measures higher order tesseral
+components of the field, it may be able to verify a splitting of the $k_{nm}$ Love
+numbers with different $m$, for instance, a predicted difference between
+$k_{31}\sim0.19$ and $k_{33}\sim0.24$.
+
+In addition, we find small, but significant, differences between the tidal response
+between Jupiter's most influential satellites. Fig. \ref{fig:tesseral_satellites}
+shows the calculated $C_{nm}$ for simulations with Io, Europa and Ganymede. We
+attribute the dependence on orbital distance to the state mixing described in Section
+\ref{state_mixing}. This leads to a difference in $k_{22}$ between the three
+satellites (Tab.~\ref{tab:satellite_harmonics}) that may be discernible in
+\textit{Juno}'s measurements.
+
+
+
+\section{Correction for Dynamical Tides}
+
+\subsection{Small Correction for Non-rotating Model of Jupiter}
+
+The general problem of the tidal response of a rotationally-distorted liquid
+Jovian planet to a time-varying perturbation from an orbiting satellite
+has not been solved to a precision equal to that of the static CMS tidal
+theory of \citet{wahl2016} and this paper.  However, an elegant approach
+based on free-oscillation theory has been applied to the less general problem
+of a non-rotating Jovian planet perturbed by a satellite in a circular orbit
+\citep{vorontsov1984}.  Let us continue to use the spherical coordinate system $(r,\theta,\phi)$,
+where $r$ is radius, $\theta$ is colatitude and $\phi$ is longitude.
+Assume that the satellite is in the planet's equatorial
+plane ($\theta=\pi/2$) and orbits prograde at angular rate $\Omega_S$.  For a given planet
+interior structure, \citet{vorontsov1984} first obtain its eigenfrequencies
+$\omega_{\ell m n}$ and orthonormal
+eigenfunctions ${\bf u}_{\ell m n}(r,\theta,\phi)$, projected on spherical harmonics
+of degree $\ell$ and order $m$ (the index $n=0,1,2,...$ is the number of radial nodes
+of the eigenfunction).  Note that in their convention, oscillations moving prograde
+(in the direction of increasing $\phi$) have negative $m$, whereas some authors, e.g.
+\citet{marley1993} use the opposite convention.
+
+Treating the tidal response as a forced-oscillation problem, equation (24) of
+\citet{vorontsov1984}, the vector tidal displacement ${\bf \xi}$ then reads
+
+\begin{equation}
+    {\bf \xi}({\bf r},t) = -\sum_{\ell,m,n} {{({\bf u}_{\ell,m,n},{\bf \nabla}\psi^r_{\ell m})}
+\over {\omega^2_{\ell m n} - m^2 \Omega_S^2}} e^{-i m \Omega_S t},
+\label{eq:xioft}
+\end{equation}
+where $({\bf u}_{\ell,m,n},{\bf \nabla} \psi^r_{\ell m})$ is the integrated scalar product of the
+vector displacement eigenfunction ${\bf u}_{\ell m n}(r,\theta,\phi)$ and the
+gradient of the corresponding term of the satellite's tidal potential
+$\psi^r_{\ell m}(r,\theta,\phi,t)$, {\it viz.}
+\begin{equation}
+    ({\bf u}_{\ell,m,n},{\bf \nabla} \psi^r_{\ell m})=
+\int dV \rho_0(r) ({\bf u}_{\ell,m,n} \cdot {\bf \nabla} \psi^r_{\ell m}).
+\label{eq:scalprod}
+\end{equation}
+The integral is taken over the entire spherical volume of the planet,
+weighted by the unperturbed spherical mass density distribution $\rho_0(r)$.
+
+\citet{vorontsov1984} then show that, for the nonrotating Jupiter problem, the
+degree-two dynamical Love number $k_{2,d}$ is determined to high precision ($\sim$
+0.05\%) by off-resonance excitation of the $\ell=2, m=2, n=0$ and $\ell=2, m=-2, n=0$
+oscillation modes, such that
+%
+\begin{equation}
+    k_{2,d}={{\omega^2_{220}} \over {\omega^2_{220} - (2 \Omega_S)^2}} k_2,
+\label{eq:k2d}
+\end{equation}
+%
+noting that $\omega_{220}$ and $\omega_{2-20}$ are equal for nonrotating Jupiter (all
+Love numbers in the present paper written without the subscript {\it d} are
+understood to be static).  For a Jupiter model fitted to the observed value of $J_2$,
+\citet{vorontsov1984} set $\Omega_S = 0$ to obtain $k_2  = 0.541$, within 0.7\% of
+our nonrotating value of 0.53725 (see Table~\ref{tab:satellite_harmonics}).  Setting
+$\Omega_S$ to the value for Io, Eq.~\ref{eq:k2d} predicts that $k_{2,d} = 0.547$,
+i.e. the dynamical correction increases $k_2$ by 1.2\%.  This effect would be only
+marginally detectable by the \textit{Juno} measurements of Jupiter's gravity, given
+the expected observational uncertainty.
+
+\subsection{{\bf Dynamical Effects} for Rotating Model of Jupiter}
+
+For a more realistic model of Jupiter tidal interactions, the dynamical correction to
+the tidal response might be larger, and therefore, more detectable.  We have already
+shown (Table 4) that inclusion of Jupiter's rotational distortion increases the
+static $k_2$ by nearly 10\% above the non-rotating static value for a spherical
+planet.  {\bf In this section, we note that
+Jupiter's rapid rotation may also change Jupiter's dynamic tidal response,
+by a factor that remains to be calculated.}
+
+In a frame co-rotating with Jupiter at the rate $\Omega_P=2 \pi / 35730$s,
+the rate at which the subsatellite point moves is obtained by the scalar difference
+$\Delta \Omega = \Omega_S - \Omega_P$, which is negative for all Galilean satellites.  Thus,
+in Jupiter's fluid-stationary frame, the subsatellite point moves retrograde
+(it is carried to the west by Jupiter's spin).  
+{\bf For Io, we have $\Delta \Omega = -1.35 \times 10^{-4}$ rad/s.
+Jupiter's rotation splits the
+$\omega_{2\pm20}$ frequencies \citep{vorontsov1981}, such that
+$\omega_{2-20}= 5.24 \times 10^{-4}$ rad/s and
+$\omega_{220}= 8.73 \times 10^{-4}$ rad/s.  The oscillation
+frequencies of the Jovian modes closest to tidal resonance with Io are
+higher than the frequency of the tidal disturbance in
+the fluid-stationary frame, but are closer to resonance than
+in the case of the non-rotating model considered by
+\citet{vorontsov1984}.
+
+An analogous investigation for tides on Saturn raised by
+Tethys and Dione yields results similar to the Jupiter values:
+tides from Tethys or Dione are closer to resonance with normal modes for $\ell=2$ and
+$m=2$ and $m=-2$.  Since our static
+value of $k_2$ for Saturn \citep{wahl2016} is robust to various assumptions about interior
+structure and agrees well
+with the value deduced by \citet{lainey2016}, so far we have no evidence for dynamical
+tidal amplification effects in the Saturn system.  
+
+Unlike the investigation of \citet{lainey2016}, which relied on analysis of astrometric data for
+Saturn satellite motions, the \textit{Juno} gravity investigation will attempt to directly determine
+Jupiter's $k_2$ by analyzing the influence of Jovian tesseral-harmonic terms on the spacecraft orbit.
+A discrepancy
+between the observed $k_2$ and our predicted static $k_2$
+would indicate the need for
+a quantitative theory of dynamical tides in rapidly rotating Jovian planets. }
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.7\textwidth]{figs/jupiter_eos.pdf}
+\caption{ The barotrope used in preferred model Jupiter `DFT-MD\_7.13'. Top:
+    temperature-pressure relationship for a hydrogen-Helium mixture with Y=0.245,
+    with a entropy $S=7.08$ at pressures below the demixing region, and $S=7.13$ at
+    pressures above the demixing region. The helium demixing region is shown by the
+    gap and shaded region. The red line shows measurements from the \textit{Galileo}
+probe. Bottom: density-pressure relationship for the same barotrope.}
+\label{fig:eos}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.9\textwidth]{figs/jupiter_density.pdf}
+\caption{   Density structure of Jupiter models (the planetary unit of
+density $\rho_{pu}=M/a^3$).  The red curve shows our preferred
+    model based on \textit{ab initio} calculations. The blue curve uses the Saumon and
+    Chabrier equation of state. The shaded area denotes the helium demixing region.
+    Both models have $N=511$ layers and a dense core within $r=0.15a$.  Constant core
+    densities are adjusted to match $J_2$ as measured by fits to Jupiter flyby Doppler
+    data \citep{jacobson2003}.}
+\label{fig:density_structure}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.8\textwidth]{figs/jupiter_weights.pdf}
+\caption{Top: Relative contribution of spheroids to external gravitational zonal
+    harmonic coefficients up to order 8. Bottom: Relative contribution of spheroids
+    to to external gravitational tesseral coefficients up to order 4. Tesseral
+    moments of the same order (i.e. $C_{31}$ and $C_{33}$) have indistinguishable
+radial distributions. Values normalized so that each harmonic integrates to unity.
+The shaded area denotes the helium demixing region.  }
+\label{fig:jupiter_weights}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.75\textwidth]{figs/jupiter_Cnm_rotation.pdf}
+\caption{ The tesseral harmonic magnitude $C_{nm}$ for the `DFT\_MD 7.13' Jupiter
+model with a tidal perturbation corresponding to Io at its average orbital distance.
+Black: the values calculated with Jupiter's rotation rate; red: the values for
+a non-rotating body with identical layer densities.  Positive values are shown as
+filled and negative as empty.}
+\label{fig:tesseral_rotation}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.75\textwidth]{figs/jupiter_Cnm_satellite.pdf}
+\caption{ The tesseral harmonic magnitude $C_{nm}$ for the `DFT\_MD 7.13' Jupiter
+model with a tidal perturbation corresponding to different satellites: Io (black),
+Europa (red) and Ganymede (blue).}
+\label{fig:tesseral_satellites}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.8\textwidth]{figs/jupiter_J4_k2.pdf}
+\caption{ Predicted $k_2$ Love numbers for Jupiter models plotted against $J_4$. The
+    favored interior model `DFT-MD\_7.13' with a tidal perturbation from Io is
+    denoted by the red star. The other interior models with barotropes based on the
+    DFT-MD simulations (blue) have $k_2$ forming a linear trend with $J_4$.  Models
+    using the Saumon and Chabrier barotrope (green) plot slightly above this trend.
+    The of $k_2$ for a single model `DFT-MD\_7.13' with tidal perturbations from
+    Europa and Ganymede (yellow) show larger differences than any resulting from
+    interior structure.
+    \label{fig:J4_k2}}
+\end{figure}
+
+%\floattable
+%\begin{deluxetable}{l|rrr}
+%\tablecaption{Jupiter Model Parameters}
+%\tablehead{
+    %\colhead{} & \colhead{Jupiter} & \colhead{} & \colhead{}}
+%\startdata
+%$GM$ & $1.26686535 \times 10^{8}$ \tablenotemark{a} &  ${\rm (km^3/s^2) }$  & \\
+%$a$ & $7.1492 \times 10^{4}$       \tablenotemark{a}  & ${\rm (km) }$   & \\ 
+%$J_2  \times  10^6$  & $14696.43$ \tablenotemark{a}  &        & \\
+%$J_4  \times  10^6$  & $-587.14$\tablenotemark{a}  &        & \\
+%$q_{\rm rot} $  & $ .08917920 $ \tablenotemark{b}  & & \\
+%$r_{\rm core} / a$ & $0.15$  & \\ 
+%\tableline
+%\tableline
+%& \colhead{Io\tablenotemark{b}} & \colhead{Europa\tablenotemark{b}} & \colhead{Ganymede\tablenotemark{b}} \\
+%\tableline
+%$q_{\rm tid} $  & $-6.872 \times 10^{-7} $ & $-9.169\times 10^{-8 }$  
+%&  $-6.976\times10^{-8}$  \\
+%$R/a$  & $5.90$  &  $9.39$  & $14.98$ \\
+%\enddata
+%\tablerefs{ a. \citet{jacobson2003}, b. \citet{archinal2011}}
+%\label{tab:jupiter_params}
+%\end{deluxetable}
+
+
+
+%\floattable
+%\begin{deluxetable}{l|cc|rrrr}
+%\tablecaption{Jupiter Model Values}
+%\tablehead{ 
+    %\colhead{} & \colhead{$S_{\rm molec.}$} &  \colhead{$S_{\rm metal.}$} & \colhead{$M_{\rm core}$} & \colhead{$M_{\rm Z,molec.}$}
+    %& \colhead{$M_{\rm Z,metal.}$} & \colhead{$Z_{\rm global}$} \\
+    %&  \colhead{($S/k_B/N_e$)} & \colhead{($S/k_B/N_e$)} & \colhead{($M_E$)} &  \colhead{($M_E$)} &  \colhead{($M_E$)} & }
+%\startdata
+%DFT-MD   7.24             &  7.08  &  7.24  &  12.5  &  0.9     &  10.3  &  0.07  \\
+%DFT-MD  7.24~(equal-$Z$)  &  7.08  &  7.24  &  13.1  &  1.1     &  7.5   &  0.07  \\
+%DFT-MD  7.20              &  7.08  &  7.20  &  12.3  &  0.8     &  9.9   &  0.07  \\
+%DFT-MD  7.15              &  7.08  &  7.15  &  12.2  &  0.7     &  9.2   &  0.07  \\
+%DFT-MD  7.15~($J_4$)      &  7.08  &  7.15  &  9.7   &  $-$0.6  &  14.9  &  0.08  \\
+%{\bf DFT-MD 7.13}       & {\bf 7.08}   & {\bf 7.13} & {\bf 12.2}  & {\bf  0.7}   &
+%{\bf 8.9}   &  {\bf 0.07}  \\
+%DFT-MD  7.13~(low-$Z$)  &  7.08  &  7.15  &  14.0  &  0.2  &  1.1   &  0.05  \\
+%DFT-MD  7.08            &  7.08  &  7.08  &  12.0  &  0.6  &  8.3   &  0.07  \\
+%SC      7.15            &  7.08  &  7.15  &  4.8   &  3.5  &  28.2  &  0.11  \\
+%SC      7.15~($J_4$)    &  7.08  &  7.15  &  4.3   &  3.2  &  29.3  &  0.12  \\
+%\enddata
+%\tablenotetext{}{Model parameters from\cite{hubbard2016}. $S$ is the
+%specific entropy for the adiabat through the inner or outer H-He envelope. $M$ is the
+%mass of heavy elements included in each layer. Each model matches
+%observed  $J_2 = 14696.43 \times 10^{−6}$ \citep{jacobson2003}, JUP230 orbit solution,
+%to six significant figures. Models denoted as 'DFT-MD' if equation of state based on
+%\textit{ab initio} simulations or 'SC' for the \citet{saumon1995} equation of
+%state, with a number denoting the entropy below the helium demixing layer.  The
+%number of Models denoted with ($J_4$) also match observed $J_4=-596.31\times
+%10^{-6}$. Model denoted (equal-$Z$) is constrained to have same metallicity in inner
+%and outer portions of the planet. Preferred interior model shown in bold face.}
+%\label{tab:model_values}
+%\end{deluxetable}
+
+
+%\floattable
+%\begin{deluxetable}{l|rrrr|rrrrrrrrrrrr}
+%\rotate
+%\tablecaption{Gravitational Harmonic Coefficients and Love Numbers}
+%\tablehead{ 
+%\colhead{(all $J_n$ $\times$ $10^6$)} &  $J_{4}$ &  $J_{6}$ &  $J_{8}$ &  $J_{10}$ &  $k_{22}$ &  $k_{31}$ &  $k_{33}$ &
+%$k_{42}$ &  $k_{44}$ &  $k_{51}$ &  $k_{53}$ &  $k_{55}$ &  $k_{62}$ &  $k_{64}$ &
+%$k_{66}$} 
+%\startdata
+%pre-\textit{Juno}~observed &  -587.14 &    34.25 &   \nodata & \nodata & \nodata &
+%\nodata & \nodata & \nodata & \nodata & \nodata & \nodata & \nodata & \nodata &
+%\nodata & \nodata  \\
+%\colhead{(JUP230)\tablenotemark{a}} &  $\pm$1.68 &   $\pm$5.22 &   \nodata & \nodata & \nodata &
+%\nodata & \nodata & \nodata & \nodata & \nodata & \nodata & \nodata & \nodata &
+%\nodata & \nodata  \\
+%DFT-MD 7.24            &  -597.34 &    35.30 &   -2.561 &     0.212 &   0.59001 &   0.19455 &   0.24424 &   1.79143 &   0.13920 &   0.98041 &   0.84803 &   0.09108 &   6.19365 &   0.52154 &   0.06451 \\
+%DFT-MD 7.24~(equal-$Z$) &  -599.07 &    35.48 &   -2.579 &     0.214 &   0.59004 &   0.19512 &   0.24498 &   1.79695 &   0.13984 &   0.98531 &   0.85239 &   0.09159 &   6.22719 &   0.52474 &   0.06492 \\
+%DFT-MD 7.20            &  -596.88 &    35.24 &   -2.556 &     0.211 &   0.59000 &   0.19440 &   0.24404 &   1.78994 &   0.13902 &   0.97903 &   0.84678 &   0.09093 &   6.18392 &   0.52058 &   0.06438 \\
+%DFT-MD 7.15            &  -596.31 &    35.18 &   -2.549 &     0.211 &   0.58999 &   0.19422 &   0.24381 &   1.78811 &   0.13881 &   0.97733 &   0.84526 &   0.09074 &   6.17202 &   0.51941 &   0.06423 \\
+%DFT-MD 7.15~($J_4$)     &  -587.14 &    34.18 &   -2.451 &     0.201 &   0.58985 &   0.19118 &   0.23989 &   1.75874 &   0.13537 &   0.95088 &   0.82162 &   0.08794 &   5.98975 &   0.50178 &   0.06195 \\
+%{\bf DFT-MD 7.13}        & {\bf -596.05} &  {\bf   35.15} &  {\bf  -2.546} &    {\bf
+%0.210} &  {\bf  0.58999} &   {\bf 0.19413} &   {\bf 0.24370} &   {\bf 1.78728} &
+%{\bf 0.13871} &   {\bf 0.97655} &   {\bf 0.84456} &   {\bf 0.09066} &   {\bf 6.16658}
+%&   {\bf 0.51887} &   {\bf 0.06416} \\
+%DFT-MD 7.13 (low-$Z$)   &  -601.72 &    35.77 &   -2.608 &     0.217 &   0.59009 &   0.19599 &   0.24610 &   1.80546 &   0.14083 &   0.99296 &   0.85924 &   0.09239 &   6.28019 &   0.52985 &   0.06558 \\
+%DFT-MD 7.08        &  -595.48 &    35.08 &   -2.539 &     0.210 &   0.58998 &   0.19395 &   0.24346 &   1.78542 &   0.13848 &   0.97482 &   0.84301 &   0.09047 &   6.15442 &   0.51767 &   0.06400 \\
+%SC 7.15           &  -589.10 &    34.86 &   -2.556 &     0.214 &   0.58993 &   0.19112 &   0.24002 &   1.76641 &   0.13699 &   0.96568 &   0.83567 &   0.09024 &   6.12279 &   0.51832 &   0.06449 \\
+%SC 7.15 ($J_4$)         &  -587.14 &    34.65 &   -2.534 &     0.212 &   0.58991 &   0.19048 &   0.23918 &   1.76013 &   0.13625 &   0.95997 &   0.83054 &   0.08963 &   6.08299 &   0.51443 &   0.06398 \\
+%\enddata
+%\label{tab:model_harmonics}
+%\tablenotetext{}{ All Love numbers for a tidal response with $q_{\rm tid}$ and $R/a$
+%corresponding to Jupiter's Satellite Io. Preferred interior model shown in bold face.}
+%\tablerefs{a. JUP230 orbit solution \cite{jacobson2003} }
+%\end{deluxetable}
+
+
+
+%\clearpage
+
+%\floattable
+%\begin{deluxetable}{l|rrrrr}
+    %\tablecaption{ Tidal Response for Various Satellites and Non-rotating Model}
+
+%\tablecolumns{6}
+%\tablewidth{0pc}
+%\tablehead{
+%\colhead{} & \colhead{\bf Io} & \colhead{Io\tablenotemark{a}} &
+    %\colhead{Europa} & \colhead{Ganymede} \\
+    %\colhead{}  &  \colhead{} &
+    %\colhead{non-} & \colhead{} & \colhead{} \\
+    %\colhead{}  &  \colhead{} & \colhead{rotating} & 
+%}
+%\startdata
+%\tableline
+%$k_{22}$  &  {\bf  0.58999}  &  0.53725  &  0.58964  &  0.58949  \\
+%$k_{31}$  &  {\bf  0.1941}   &  0.2283   &  0.1938   &  0.1937   \\
+%$k_{33}$  &  {\bf  0.2437}   &  0.2283   &  0.2435   &  0.2435   \\
+%$k_{42}$  &  {\bf  1.787}    &  0.1311   &  4.357    &  12.41    \\
+%$k_{44}$  &  {\bf  0.1387}   &  0.1311   &  0.1386   &  0.1386   \\
+%$k_{51}$  &  {\bf  0.9766}   &  0.0860   &  2.373    &  6.7486   \\
+%$k_{53}$  &  {\bf  0.8446}   &  0.0860   &  2.0289   &  5.740    \\
+%$k_{55}$  &  {\bf  0.0907}   &  0.0860   &  0.0906   &  0.0906   \\
+%$k_{62}$  &  {\bf  6.167}    &  0.0610   &  37.04    &  302.1    \\
+%$k_{64}$  &  {\bf  0.5189}   &  0.0610   &  1.237    &  3.487    \\
+%$k_{66}$  &  {\bf  0.0642}   &  0.0610   &  0.0641   &  0.0641   \\
+%\enddata
+%\label{tab:satellite_harmonics}
+%\tablenotetext{}{Tidal response of preferred interior model `DFT\_MD 7.13' with
+    %$q_{\rm tid}$ and $R/a$ for three large satellites, and for a `non-rotating'
+    %model with $q_{\rm rot}=0$. In bold face is the same preferred model as in
+    %\ref{tab:model_harmonics}. }
+%\tablenotetext{a}{Non-rotating model has identical density structure to rotating
+%model.  }
+%\end{deluxetable}
+
+
+
+
+\section{Summary} \label{summary}
+
+The non-perturbative CMS method for calculating a self-consistent shape and
+gravitational field of a static liquid planet has been extended to include the
+effect of a tidal potential from a satellite. This is expected to represent the
+largest contribution to the low-order tesseral harmonics measured by
+\textit{Juno} and future spacecraft studies of the gas giants. This approach
+has been benchmarked against analytical results for the tidal response of the
+constant density Jeans/Roche spheroid, a two constant density layer model and
+the polytrope of index unity. 
+
+We highlight for the first time an important effect of rapid rotation on the tidal
+response of the gas giants. CMS simulations of the tidal response on bodies with
+large rotational flattening show significant deviation in the tesseral harmonics of
+the gravitational field as compared to simulations without rotation. This includes
+splitting of the love numbers into different $k_{nm}$ for any given order $n>2$.
+Meanwhile, it leads to an observable enhancement in $k_2$ compared to a non-rotating
+model.
+
+This rotational enhancement of the $k_2$ love number for a simplified interior model
+of Saturn agrees with the recent observational result \citep{lainey2016}, which found
+$k_2$ to be much higher than previous predictions. Our predicted values of $k_2$ are
+robust for reasonable assumptions of interior structure, rotation rate and satellite
+parameters.  The \textit{Juno} spacecraft is expected to measure Jupiter's
+gravitational field to sufficiently high precision to measure lower order tesseral
+components arising from Jupiter's large moons, and we predict an analogous rotational
+enhancement of $k_2$ for Jupiter.  Our high-precision tidal theory will be an
+important component of the search for non-hydrostatic terms in Jupiter's external
+gravity field.
+
+Our study has predicted the static tidal Love numbers $k_{nm}$ for Jupiter and its three
+most influential satellites. These results have the following features: (a) They are
+consistent with the most recent evaluation of Jupiter's $J_2$ gravitational
+coefficient; (b) They are fully consistent with state of the art interior models
+\citep{hubbard2016} incorporating DFT-MD equations of state, with a density
+enhancement across a region of H-He imiscibility \citep{morales2013}; (c) We use the
+non-perturbative CMS method for the first time to calculate high-order tesseral
+harmonic coefficients and Love numbers for Jupiter.
+
+The combination of the DFT-MD equation of state and observed $J_{2n}$ strongly limit
+the parameter space of pre-\textit{Juno} models. Within this limited parameter space,
+the calculated $k_{nm}$ show minimal dependence on details of the interior structure.
+Despite this, our CMS calculations predict several interesting features of Jupiter's
+tidal response that the \textit{Juno} gravity science system should be able to
+detect. In response to the rapid rotation of the planet the $k_2$ tidal Love number
+is predicted to be much higher than expected for a non-rotating body. Moreover, the
+rotation causes state mixing between different tesseral harmonics, leading to a
+dependence of higher order static $k_{nm}$ on both $m$ and the orbital distance of the
+satellite. An additional, significant dependence on $a/r$ is expected in the dynamic
+tidal response. We present an estimate of the dynamical correction to our
+calculations of the static response, but a full analysis of the dynamic theory of
+tides has yet to be performed.
+
+

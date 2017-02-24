@@ -1,0 +1,317 @@
+\chapter{Thermodynamics of Convection with a Phase Transition}\label{chap3}
+
+
+\section{Motivation}
+
+One of the more surprising findings of the MESSENGER spacecraft to Mercuray was
+the confirmation that the smallest terrestrial planet has an internally
+generated, dipolar magnetic field, which is likely driven by a combination of
+thermal and compositional buoyancy sources. This observation places constraints
+on the thermal and energetic state of Mercury’s large iron core and on mantle
+dynamics because dynamo operation is strongly dependent on the amount of heat
+extracted from the core by the mantle. However, other observations point to
+several factors that should inhibit a present-day dynamo. These include
+physical constraints on a thin, possibly non-convecting mantle, as well as
+properties of liquid iron alloys that promote compositional stratification in
+the core.
+
+The lack of a simple relationship between the size of the body and the presence
+of a magnetic field in terrestrial planets of moons is striking. The
+thermodynamics of dynamo generation exhibit a competition between heat loss by
+convection and heat loss by conduction.  Dipolar magnetic fields arise from
+helicall flows that develop within a rotating conducting liquid undergoing
+turbulent convection. The properties of iron alloys, and particularly their
+melting temperature, is strongly influenced by the presence of light elements
+\cite{sanloup00}. As a result, the existence of a magnetic field depends, in a
+complicated fashion, on planet formation and evolution. I propose to study the
+influence of non-ideal mixing behavior in liquid alloys of iron and sulfur on
+thermal and compositional convection. Mercury's magnetic field strength has
+posed problems for standard dyanamo models \cite{christensen06,stanley05}, and
+partial crystallization resulting from non-ideal mixing provides a possible
+mechanism to explain this.
+
+Spacecraft observations have confirmed the presence of internally generated
+magnetic fields for Mercury \cite{anderson11} and Ganymede \cite{kivelson96}.
+The internal structure of both bodies is constrained by measurements of
+gravitational moments \cite{smith12,hauck06}. However, these measurements are
+not sufficiently precise to determine what portion of the cores are liquid, nor
+how much light component is contained in the cores. Thermal evolution
+calculations of both planets \cite{hauck04,hauck06,breuer07,bland08} suggest
+that several wt.\% S is necessary to preserve a substantial unfrozen layer in
+the core, despite inefficient stagnant-lid convection
+\cite{solomatov00,hauck04,breuer07} and tidal heating from a hypothesized
+resonance in Ganymede's orbital history \cite{showman97,bland08}. Some models
+for Mercury's formation suggest minimal accretion of volatile elements like
+sulfur, but surface observations from MESSENGER \cite{nittler11,mccubbin12} are
+inconsistent with extensive devolatization.
+
+The primary goals of this work is to develop an automated system to generate an
+interpolated thermodynamic model using experimentally determined, eutectic
+phase diagrams, to calculate adiabatic profiles for the thermodynamic model
+using a parcel method, and to evaluate the effect calculated adiabatic profiles
+have on global budgets of energy and entropy. This work was never published and
+is presented here in an incomplete state.
+
+A part of this work was integrated and added upon as part of a CIDER project with
+the author in collaboration with Brent Delbridge, and Ian Rose, of UC Berkeley, and Grace Cox of the Universit of Leeds, under the advisorship of Jessica Irving (Princeton), Bill McDonough and Laurent Montesi (Maryland), and  
+The last two Sections of this chapter present resulting from this collaboration
+
+\section{Iron Alloy Properties}
+
+It has long been recognized that alloying components are abundant in the cores
+of terrestrial planets and that they must play an important role in thermal
+evolution and dynamo generation. Indeed, it is now largely accepted that the
+exclusion of a light, alloying component is the most important contributor to
+convection in the Earth’s core (Lister and Buffett 1995). Therefore
+consolidating the present understanding about chemical state of Mercury’s
+interior is essential to knowing what can and cannot be demonstrated about
+Mercury’s dynamo.
+
+For sufficiently high concentrations of S and Si, the two would partition in a
+liquid-liquid immiscibility gap in the planets outer core. Within the pressure
+range and for reasonable compositions an “iron snow” state (Chen et al. 2008,
+Williams 2009), where iron crystallization initiates in the outer portions of
+the core, must also be considered for Mercury. We therefore require a
+coupled model of chemistry and for Mercury’s core to determine the constraints
+on composition of the core based on the planets gravitational moments (Smith et
+al. 2012), as well as constraints from our own entropy budget calculations.
+Since these constraints are very limited, it is necessary to develop a means of
+testing a very large number of possible interior structures and compositions.
+
+The pressures present in the cores of Mercury ($\sim$8$-$40 GPa) and Ganymede
+($\sim$8$-$12 GPa) are significantly lower than those for the Earth's core and
+accessible to a wider variety of experimental techniques. At these pressures, 
+FeS has been discovered to undergo multiple first-order phase transitions
+\cite{fei97,fei00}, stabilizing new phases $Fe_3S_2$ and $Fe_3S$ at 14 and 21 GPa 
+respectively. Fe-S melts undergo analogous changes in compacity
+\cite{morard07} and associated deviations from ideal mixing behavior
+\cite{chen08}. The Fe-FeS system shows eutectic melting behavior with eutectic
+sulfur composition decreasing from $\sim$30 wt.\% S at ambient pressure to $\sim$12 
+wt.\% S at 40 GPa \cite{chudinovskikh07}. The eutectic temperature shows
+anomalous behavior over a pressure range $\sim$5$-$20 GPa \cite{fei97,chen08}.
+Chen 2008 \cite{chen08} also found liquidus temperatures at intermediate
+compositions on the Fe side of the eutectic to deviate from those predicted by
+an ideal mixing model. These anomalous features in the Fe-S phase diagram lead
+to the prediction of `iron snow', partial crystallization near the top of the
+core with the lower portion remaining completely molten \cite{hauck06,chen08}.
+However, this process has yet to be analyzed in a thermodynamically consistent
+manner.
+
+\section{Thermodynamic model from Material Data}
+
+I have created a working `pipeline' in Matlab for generating a thermodynamic model from
+experimental data \cite{brett69,fei97,chen08,stewart07}. Data for 
+$X$-$T$ phase diagrams at constant
+pressure are fit with a smoothing-spline.To best account for the changing
+shape and eutectic composition, these spline fits are then
+interpolated with $P$ as a linear combination of fits at the two nearest
+values of $P$
+\begin{equation}
+  X(P,T) = X_{eut}(P)\sum_{i=1,2}\xi_i(P)\bar{X}_i(\bar{T}),
+\end{equation}
+where $\bar{X}$, $\bar{T}$ are fractional coordinates with respect to the
+values at the values at the eutectic and pure Fe endmembers, and $\xi_i$
+is linear mixing parameter. For parcel
+calculations, derivative relationships between $P$, $X$ and $T$ can be related
+using the lever rule. Additional parameters such as density, heat capacities
+and latent heat of fusion are included in a fashion allowing them to be
+specified as functions of $P$, $X$ and $T$. With this pipeline, it should be
+straightforward to repeat the analysis with other eutectic systems, such as
+silicate liquids, and test the affect of varying parameters.
+The salient feature of the system is the variation of the
+liquidus with light-element fraction, shown in Fig.~\ref{fig:liquidi}, as this
+determines where crystallization occurs.
+
+ \begin{figure}[H] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[width=7in]{figs/liquidi.png} 
+   \caption{Liquidus relationships for Fe-S alloys generated from the interpolated thermodynamic 
+   model for a range of light-element composition in wt.\% S. The sharp peak and trough lead to 
+   a region of partial crystallization for a range of thermal states of the core.}
+   \label{fig:liquidi}
+\end{figure}
+
+\section{Parcel Calculations}
+
+Parcel calculations using the interpolated thermodynamic model are performed
+by numerical integration of an expression derived from manipulation of the
+first law of thermodynamics
+\begin{equation}
+  \label{eqn:firstlaw}
+  d T = -d P \frac{\left[-T \sum_i \alpha_i\nu_ix_i +
+    L\left(\frac{\partial{X}}{\partial{P}}\right)_T \right] } 
+  {\left[ \sum_i C_{P,i}x_i + L \left(
+    \frac{\partial{X}}{\partial{T}}\right)_P \right] },
+\end{equation}
+where $\alpha_i$, $c_{P,i}$, $\nu_i$, and $L$ are the coefficient of thermal
+expansion, specific heat capcity, specific volume, and specific latent heat,
+respectively, for a phase with mass fraction $x_i$. Eqn. \ref{eqn:firstlaw}
+enforces the constraint of zero heat transfer as the pressure on the parcel is
+changed. Calculations are carried out by specifying a parcel composition,
+temperature and starting pressure, and integrating over a range of pressures.
+An example calculation for 6 wt.\% S, for a range of starting temperatures is
+presented in Fig.~\ref{fig:adiabats}. I find that for reasonable choices of
+parameters, the calculated adiabat within the `iron snow' region is maintained
+within $\sim$10 degrees of the liquidus over a range of $\sim$50$-$100 degrees
+in starting temperatures. Meanwhile, the temperatures outside the adiabat show
+negligible perturbation from simple single-phase adiabats.
+
+ \begin{figure}[H] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[width=7in]{figs/adiabats.png} 
+   \caption{$P-T$ profiles for an adiabatic parcel calculations with 6 wt.\% S using the interpolated Fe-S model. Starting 
+   temperatures are spaced by 50 K, and integrated from low to high pressure. The solid black line represents 
+   the melting temperature for pure Fe, and the dashed line the liquidus at 6 wt.\% S.}
+   \label{fig:adiabats}
+\end{figure}
+
+The onset of crystallization in the outer portion of a terrestrial core may
+affect convection and dynamo generation in multiple ways. Hauck 2006
+\cite{hauck06} suggested that settling of crystals might contribute to
+convection by releasing gravitational energy. It is unclear, however, that
+crystal settling can drive large scale convective motion. The crystal fractions
+for the simulation represented in Fig. \ref{fig:adiabats} also remains
+relatively small for conditions during which a separate `iron snow' region
+exists. One can consider the influence of this process through use of a
+perturbed adiabat with standard models for convection and dynamo generation.
+
+\section{Core Energy and Entropy Budgets}
+
+To determine the energy and entropy budgets, I make use of standard iterative
+methods for determining a mean core state, constrained by a planet mass, core
+mass and a requirement that $P=0$ at the surface (e.g. \cite{lister95}). From
+this, I will obtain radial profiles of material properties along a calculated
+adiabat.  I will use descriptions of the core energy and entropy budget
+\cite{gubbins79,lister95,lister03} to compare the evolution of mean core state
+with and without consideration of partial crystallization. Evolution
+calculations will be simplified by assuming fractional crystallization in the
+core has a negligible affect on the thermal state of the mantle, allowing the
+results of existing thermal evolution calculations \cite{hauck04,breuer07} to
+be used as boundary conditions Since the conductive heat flux is proportional
+to $\nabla T$, the steepened adiabat will cause a decrease in the convective
+heat flux. In the description of the entropy flux, this manifests itself as a
+term proportional to $k\left(\nabla T / T \right)^2$ arising from the
+divergence of the conductive heat flow \cite{lister03}. I will compare the
+magnitude of this contribution to standard estimates for the contribution from
+thermal and compositional convection.
+
+The semi-analytic methods presented above will allow for analysis of the
+affect of non-ideal melting on the energetics over long time-scales. However,
+the details of the dynamics of convection are also of importance to magnetic field
+generation. Numerical calculations of convection will, therefore, be a useful
+supplement to the results presented here. They will help evaluate the validity of
+key assumptions, such as the persistence of an adiabatic state through the
+`iron snow' region. This will be achieved through modification of the CALYPSO,
+a geodynamo code which passes standard benchmarks \cite{christensen01}. This
+requires implementation of phase tracking, and a contribution to the energy
+equation from latent heat release. 
+
+
+
+\section{Coupling with Mantle Convection}
+
+We have a working prototype for a code designed to calculate self-consistent
+internal structures. The code uses an efficient iterative procedure to
+calculate density, gravity, pressure and temperature profiles. It can also find
+an inner core radius that is In order to do this we have made use of the
+codebase provided by the BURNMAN project (Cotaar et al. 2014), a continuation
+of a prior CIDER collaboration. This framework allows for integration of
+thermodynamic properties of minerals in a straightforward and consistent
+manner. A major benefit of designing the structural model code around BURNMAN
+will be the systematic inclusion of uncertainty in the experimentally
+determined thermodynamic properties, which will be an important step in
+establishing the ability of any given set of constraints to determine the state
+of Mercury’s core. 
+
+We have developed a 3-layer interior structure model with a growing inner core.
+Material properties are calculated using a Mie-Gr\"{u}neisen-Debye EOS, using the BurnMan
+code. It finds adiabatic temperature profiles consistent with the pressure of the 
+inner core boundary and the composition of the liquid. 
+
+Also shown in Figure \ref{interior_model} is a model liquidus, fit to experimental
+phase diagrams. The melting curve of the Fe-S system has enigmatic features, which
+may not be captured captured by a  linear interpolation. The onset of ``snow''
+regions in the core is extremely sensitive to this interpolation.
+
+ \begin{figure}[H] %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tabular}{cc}
+ \includegraphics[width=0.4\textwidth]{figs/profiles.png} &
+ \includegraphics[width=0.4\textwidth]{figs/Liquidus_model.png} \\
+\end{tabular}
+   \caption{ Left: pressure, gravity, density, and temperature profiles of an
+interior model for Mercury, with 6 wt.\% S.  Right: Liquidus curves for different pressures in the Fe-FeS system, from compiled and interpolated experimental data (Wicks and Knezek, pers. comm.) }
+  \label{fig:interior_model}
+\end{figure}
+
+
+ \begin{figure}[H] %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tabular}{cc}
+ \includegraphics[width=0.4\textwidth]{figs/clapeyron_1.png} &
+ \includegraphics[width=0.4\textwidth]{figs/core_energetics.png} \\
+\end{tabular}
+\caption{Left: Clapeyron slopes for different interpolations of the iron
+melting curve, compared to adiabats with various parameterizations.  Right:  Models
+for latent heat and gravitational energy release from a solidifying core, with
+corresponding thermal energy change.}
+\label{fig:core_energy}
+\end{figure}
+
+
+Comparing the slope of the interpolated melting temperature to the slope of the
+adiabatic profile determines the crystallization behavior of the core, with a
+steeper melting temperature corresponding to  ``Earth-like'' conditions. For higher
+values of the thermal expansivity, $\alpha$, the core will be ``snowing'' at all
+times. For lower $\alpha$, the onset of snowing occurs with increasing S-content.
+
+The interior structure model is coupled to a parameterized convetion model for
+the thermal evolution of the planet. Shown on the right in Figure \ref{core_energy}
+are the changes in latent heat, gravitational and thermal energy in the core per
+change in core mantle boundary temperature for bulk composition of 6 wt.\% S. 
+
+
+ \begin{figure}[H] %  figure placement: here, top, bottom, or page
+   \centering
+\begin{tabular}{cc}
+ \includegraphics[width=0.4\textwidth]{figs/thermal_evolution.png}
+ \includegraphics[width=0.4\textwidth]{figs/inner_core_growth.png}
+\end{tabular}
+\caption{Left: Thermal evolution of the mercurian mantle and core. This
+  thermal evolution model couples the core thermodynamics in the previous section
+  with the parameterized convection model of Stevenson et al (1983). The colored
+  regions show the solution for models with $\pm \mathrm{100}$ degrees C. Note the
+  break in slope of the $\mathrm{T_{cmb}}$ temperature with the onset of inner core
+  growth at $\sim 2.5\times10^2~\mathrm{Ma}$. Right: Growth of the Inner Core versus
+  time. This model run yields an inner core of $ \sim 1400~\mathrm{km}$, slightly
+exceeding the upper bound of inner core size as constrained by Dumberry and Rivoldini
+(2015).}
+  \label{fig:thermal}
+\end{figure}
+
+
+ \begin{figure}[H] %  figurVVe placement: here, top, bottom, or page
+   \centering
+\begin{tabular}{c}
+ \includegraphics[width=0.8\textwidth]{figs/CMB_flux.pdf} 
+\end{tabular}
+\caption{ Heat flux variations due to insolation for a conducting mantle with negligible internal heating. The total CMB heat flux is $\sim 0.6~\mathrm{TW}$, and peak-to-peak variations are about 20\%. }
+\label{fig:flux}
+\end{figure}
+
+ \begin{figure}[H] %  figurVVe placement: here, top, bottom, or page
+   \centering
+\begin{tabular}{c}
+ \includegraphics[width=0.8\textwidth]{figs/entropy_fig.png} 
+\end{tabular}
+\caption{Entropy budget and inner core radius for a core with 6 wt.\% S and
+  current CMB heat flux of 0.5~TW. In this model, there is insufficient entropy to
+  drive a dynamo before inner core solidification (negative Ohmic dissipation), but
+  compositional sources that arise from inner core growth increase the available
+entropy such that a present-day dynamo can be sustained (positive Ohmic dissipation). }
+\label{entropy}
+\end{figure}
+
+Mercury's unusual 3:2 spin-orbit resonance causes persistent temperature variations at the surface.  This boundary condition may create significant heat-flux variations at the CMB, especially if the mantle is not convecting.  Here we solve a simple conduction equation in the mercurian mantle to calculate an estimate of heat flux at the CMB.  This heat-flux variation is then used to inform the boundary conditions of a dynamo simulation using the \texttt{Calypso} code.
+
+

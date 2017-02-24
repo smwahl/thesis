@@ -1,0 +1,908 @@
+\chapter{Calculating Gravitational Moments for an Interior Structure }\label{chap4}
+
+%volume integral in spherical coordinates
+\newcommand{\sphint}{\int_{-1}^1 d\mu' \int_{0}^{2\pi} d\phi' \int_{r' > r} dr'}
+\newcommand{\sphshort}{\int_{\tau} d\tau}
+\newcommand{\muint}{\int_{-1}^1 d\mu'}
+\newcommand{\phiint}{\int_{0}^{2\pi} d\phi'}
+\newcommand{\xiint}{\int_{b/a}^{\xi} d\xi'}
+
+\section{Motivation}
+
+The gas giants Jupiter and Saturn rotate so rapidly that adequate treatment of the
+non-spherical part of their gravitational potential requires either a very high-order
+perturbative, or better, an entirely non-perturbative approach \citep{hubbard2012,
+hubbard2013, hubbard2014, wisdom1996,wisdom2016}. Here we present an extension of the
+Concentric Maclaurin Spheroid (CMS) method of \citet{hubbard2012, hubbard2013} to three
+dimensions to include the tidal perturbation from a satellite. This allows for
+high-precision simulations of static tidal response, consistent with the
+planet's shape and interior mass distribution. The presence of a large rotational
+bulge produces an observable effect on the tidal response of giant planets. This
+effect, which has not been previously revealed by linear tidal-response theories
+applied to spherical-equivalent interior models, has implications for the observed
+tidal responses of Jupiter and Saturn.
+
+The \textit{Juno} spacecraft is expected to measure the strength of Jupiter's
+gravitational field to an unprecedented precision ($\sim$ one part in $10^9$)
+\citep{kaspi2010}, potentially revealing a weak signal from the planet's interior
+dynamics. Also present in Jupiter's gravitational field will be tesseral-harmonic
+terms produced by tides raised by the planet's large satellites.  In fact, close to
+the planet, the gravitational signal from Jupiter's tides has a similar magnitude to
+the predicted signal from models of deep internal dynamics
+\citep{cao2015,kaspi2010,kaspi2013}. An accurate prediction of the planet's
+hydrostatic tidal response will, therefore, be essential for interpreting the
+high-precision measurements provided by the \textit{Juno} gravity science experiment.
+
+Although the \textit{Cassini} Saturn orbiter was not designed for direct measurement
+of high-order components of Saturn's gravitational field, it has already provided
+gravitational information relevant to the planet's interior structure.
+\citet{lainey2016} used an astrometry dataset of the orbits of Saturn's co-orbital
+satellites to make the first determination of the planet's $k_2$ love number. Their
+observed $k_2$ was significantly larger than the theoretical prediction of
+\citet{gavrilov1977}. A mismatch between an observed $k_2$ and the value predicted
+for a Saturn model fitted to the planet's low-degree zonal harmonics $J_2$ and $J_4$
+would raise questions about the adequacy of the hydrostatic (non-dynamic) theory of
+tides.  
+
+In this paper we present theoretical results for simplified Saturn interior models
+matching the planet's observed low-degree zonal harmonics.  When these models are
+analyzed with the full 3-d CMS theory including rotation and tides, we predict a
+gravitational response in line with the observed $k_2$ value of \citet{lainey2016},
+suggesting that the observation can be completely understood in terms of a static
+tidal response.  A similar test will be possible for Jupiter once its $k_2$ has been
+measured by the \textit{Juno} spacecraft.
+
+There is extensive literature on the problem of the shape and gravitational potential
+of a liquid planet in hydrostatic equilibrium, responding to its own rotation and to
+an external gravitational potential from a satellite; see, e.g., a century-old
+discussion in \citet{jeans1919}.  Many classical geophysical investigations use a
+perturbation approach, obtaining the planet's linear and higher-order response to
+small deviations of the potential from spherical symmetry. A good discussion of the
+application of perturbation theory to rotational response, the so-called theory of
+figures, is found in \citet{zharkov1978}, while a pioneering calculation of the tidal
+response of giant planets is presented by \citet{gavrilov1977}.
+
+\citet{hubbard2012} introduced an iterative numerical method, based on the theory of
+figures, for calculating the self-consistent shape and gravitational field of a
+constant density, rotating fluid body to high precision. In the CMS method, integrals
+over the mass distribution are solved using Gaussian quadrature to obtain the
+gravitational multipole moments. This method was extended to non-constant density
+profiles by \citet{hubbard2013}, by approximating the barotropic pressure-density
+relationship with multiple concentric constant-density (Maclaurin) spheroids.  Here a
+spheroid is defined as a smooth shape obtained from deforming a sphere in three
+dimensions and is more general than an ellipsoid, whose shape is uniquely defined
+by 3 parameters.  This approach mitigates problems with cancellation of
+terms that arise in a purely numerical solution to the general equation of
+hydrostatic equilibrium, and has a typical relative precision of $\sim 10^{-12}$. The
+CMS method has been benchmarked against analytical results for simple models
+\citep{hubbard2014} and against an independent, non-perturbative numerical method
+\citep{wisdom1996,wisdom2016}. 
+
+The theory of \citet{gavrilov1977} begins with an interior model of Saturn fitted to
+the values of $J_2$ and $J_4$ observed at that time.  This interior model tabulates
+the mass density $\rho$ as a function of $s$, where $s$ is the mean radius of the
+constant-density surface.  Tidal perturbation theory is then applied to this
+spherical-equivalent Saturn.  The \citet{gavrilov1977} approach is sufficient for an
+initial estimate of the tidally-induced terms in the external potential, but it
+neglects terms which are of the order of the product of the tidal perturbation and
+the rotational perturbation.  Here we demonstrate that, for a rapidly-rotating giant
+planet, the latter terms make a significant contribution to the love numbers
+$k_{nm}$, as well as (unobservably small) tidal contributions to the gravitational
+moments $J_n$.
+
+\citet{vorontsov1984} introduced a novel approach to calculation of the tidal
+response of giant planets.  Rather than treating the problem as a purely static
+one, as we do here, they considered the case of a non-rotating giant planet
+orbited by a single satellite with an inertial orbital frequency $\Omega_s$.
+They then calculated the response of the planet's normal oscillation modes to
+the perturbation, noting that the mode frequencies (whose oscillation periods
+are measured in hours) are much higher than satellite orbital frequencies
+(satellite periods are measured in days). For such off-resonance excitation, it
+is unnecessary to consider damping (as parameterized by the tidal quality
+factor $Q$) in calculating the  tidal response.  Taking the limit
+$\Omega_s \rightarrow 0$, \citet{vorontsov1984} obtained the static tidal
+response of the non-rotating planet and thus its love number $k_2$.  We compare
+the Vorontsov et al. Saturn $k_2$ with our value in Section \ref{calc_k2}, below.
+
+An analogous problem has been studied for the tidal response of Galilean
+satellite Io by \citet{zharkov2004} and \citet{zharkov2010}, and for close-in
+exoplanets by \citet{correia2013}. These works consider the second order
+approximations through a higher order perturbative theory. Our problem is
+different, however, in that the tidal and rotational perturbations for Io are
+of comparable magnitude, while the large influence of rotation on a much weaker
+tidal response found here for Saturn is unlike Io.  Similarly, close-in,
+tidally locked exoplanets have comparable tidal and rotational perturbations.
+
+\citet{folonier2015} presented a method for approximating the love numbers of a
+non-homogeneous body using Clairaut theory for the equilibrium ellipsoidal
+figures.  This results in an expression for the love number $k_2$ for a body
+composed of concentric ellipsoids, parameterized by their flattening
+parameters. In the case of the constant density spheroid, there is a well-known
+result that the equipotential surface is an ellipsoid. However, in bodies with
+more complicated density distributions, the equipotential surfaces will have a
+more general spheroidal shape.  Because of the small magnitude of tidal
+perturbations, the method of \citet{folonier2015} works in the limit of slow
+rotation despite this limitation.  However, the method does not account for the
+coupled effect of tides and rotation, and does not predict love numbers of
+order higher than $k_2$.  Within these constraints, we show below that our
+extended CMS method yields results that are in excellent agreement with results
+from \citet{folonier2015}.
+
+Although our theory is quite general and can be used to calculate a rotating
+planet's static tidal response to multiple satellites located at arbitrary
+latitudes, longitudes, and radial distances, for application to Jupiter and
+Saturn it suffices to consider the effect of a single perturbing satellite
+sitting on an orbital plane at zero inclination to the planet's equator.  Since
+tidal distortions are always very small compared with rotational distortion,
+and Jupiter's Galilean satellites, as well many of Saturn's larger satellites,
+are on orbits with low inclination, the tidal response to multiple satellites
+can be obtained by a linear superposition of the perturbation from each body.
+Extension of our theory to a system with a large satellite on an inclined
+orbit, such as Neptune-Triton, would be straightforward, but is not considered
+here.
+
+\section{Concentric Maclaurin Spheroid Method }
+
+In the co-rotating frame of the planet in hydrostatic equilibrium,  the pressure $P$,
+the mass density $\rho$ and the total effective potential $U$ are related by
+%
+\begin{equation} \begin{aligned} \nabla P = \rho \nabla U. \end{aligned}
+    \label{eq:hydrostatic} \end{equation}
+%
+The total effective potential can be separated into three components,
+%
+\begin{equation} \begin{aligned} U = V + Q + W, \end{aligned}
+    \label{eq:potential_components} \end{equation}
+%
+where $V$ is the gravitational potential arising from the mass distribution
+within the planet, $Q$ is the centrifugal potential corresponding to a rotation
+frequency $\omega$, and $W$ is the tidal potential arising from a satellite
+with mass $m_{\rm s}$ at planet-centered coordinates $(R,\mu_s,\phi_s)$, where
+$R$ is the satellite's orbital distance from the origin, $\mu_s=\cos \theta$,
+where $\theta$ is the satellite's planet-centered colatitude and $\phi_s$ is
+the planet-centered longitude.  In this investigation, we treat only the static
+tides in the corotating frame of the planet, and thus  we always place the
+satellite at angular coordinates $\mu_s=0$ and $\phi_s=0$.  The relative
+magnitudes of $V$, $Q$, and $W$ can be described in terms of two
+non-dimensional numbers:
+%
+\begin{equation} q_{\rm rot} = \frac{\omega^2 a^3}{GM} \label{eq:qrot} \end{equation}
+%
+for the rotational perturbation and
+%
+\begin{equation} q_{\rm tid} = -\frac{3m_{\rm s}a^3}{MR^3} \label{eq:qtid}
+\end{equation}
+%
+for the tidal perturbation, where $G$ is the universal gravitational constant, and
+$M$ and $a$ are the mass and maximum equatorial radius of the planet. The planet-satellite
+system is described by these two small parameters along with a third parameter, the
+ratio $a/R$. 
+
+Since CMS theory is nonperturbative, in principle our results are valid to all powers
+of these small parameters and their products (until we reach the computer's numerical
+precision limit). For the giant-planet tidal problems that we consider here, terms of
+second and higher order in $q_{\rm tid}$ are always negligible, but terms linear in
+$q_{\rm tid}$ and multiplied by various powers of $q_{\rm rot}$ and $a/R$ contribute
+above the numerical noise level.  It is, in fact, terms of order $q_{\rm tid} \cdot
+q_{\rm rot}$ that contribute most importantly to the new results of this paper.
+
+We introduce dimensionless planetary units of pressure $P_{\rm pu}$, density
+$\rho_{\rm pu}$, and total potential $U_{\rm pu}$, such that
+%
+\begin{equation} \begin{aligned} P \equiv& \frac{GM^2}{a^4} P_{\rm pu} \\ \rho
+        \equiv& \frac{M}{a^3} \rho_{\rm pu} \\ U \equiv& \frac{GM}{a} U_{\rm pu}. \\
+    \end{aligned} \label{eq:planetary_units} \end{equation}
+%
+The CMS method considers a model planet composed of $N$ nested spheroids of constant
+density as depicted in Figure \ref{fig:spheroid}. We label these spheroids with index
+$i=0,1,2,\dots,N-1$, with $i = 0$ corresponding to the outermost spheroid and $i=N-1$
+corresponding to the innermost spheroid. Each spheroid is constrained to have a point
+at radial distance $a_i$ from the planet's center of mass, such that each of these
+fixed points has the same angular coordinates as the sub-satellite point
+$(\mu=0,\phi=0)$.  Accordingly, the $a_0$ of the outermost spheroid corresponds to
+its the largest principal axis, if the perturbing satellite is in the equatorial
+plane.
+
+When $q_{\rm tid}=0$, the potential is axially symmetric and the problem can be
+solved in two spatial dimensions. However, when both $q_{\rm tid}$ and $q_{\rm rot}$
+are nonzero, the symmetry is broken, meaning that each spheroid has a fully triaxial
+figure with the surface described by
+%
+\begin{equation} \zeta_i \equiv r_i(\mu,\phi) / a_i, \label{eq:shape} \end{equation}
+%
+such that $\zeta_0$ represents the shape of the outer surface.
+
+Taking advantage of the principle of superposition for a linear relationship between
+the potential $V$ and the mass density $\rho$, the total $V$ is given by the sum of
+the potential arising from each individual spheroid \citep{hubbard2013}. This allows us to
+approximate any monotonically increasing density profile, with the density of the
+$i$th spheroid represented by the density jump
+%
+\begin{equation} \delta \rho_i = \begin{cases} \rho_i - \rho_{i-1}, & i>0 \\ \rho_0,
+        & i=0.  \end{cases} \label{eq:density_increment} \end{equation}
+%
+This parameterization of density has the added benefit of naturally handling
+discontinuities in $\rho$, as would be expected for a giant planet with a dense
+central core.
+
+\section{Extension to Three Dimensions} \label{method_derivation}
+
+\subsection{Calculation of gravitational potential} \label{method_derivation}
+
+The general expansion of $V$ in spherical coordinates ${\bf r} = (r,\mu =
+\cos{\theta},\phi)$ is
+%
+\begin{equation}
+    \begin{aligned} V&(r,\mu,\phi) = \\
+        &\frac{G}{r} \left[ \sum_{n=0}^{\infty} P_n(\mu) \sphshort
+            \rho(r')P_n(\mu')\left(\frac{r'}{r}\right)^k \right. \\ & +
+            \sum_{n=0}^{\infty} \sum_{m=1}^{n} P^m_n(\mu)\cos(m\phi) \sphshort
+            \frac{2(n-m)!}{(n+m)!} \rho(r')P_n^m(\mu')\cos(m\phi')
+            \left(\frac{r'}{r}\right)^k \\ & \left.  + \sum_{n=0}^{\infty}
+            \sum_{m=1}^{n} P^m_n(\mu)\sin(m\phi) \sphshort \frac{2(n-m)!}{(n+m)!}
+            \rho(r')P_n^m(\mu')\sin(m\phi') \left(\frac{r'}{r}\right)^k \right]
+        \end{aligned} \label{eq:general_expansion}
+    \end{equation}
+
+\citep{zharkov1978}, where $P_n$ and $P_n^m$ are the Legendre and associated Legendre
+polynomials, 
+%
+\begin{equation*} d\tau = r'^2 dr' \sin(\theta')d\theta' d\phi' = r'^2 dr' d\mu' d\phi',
+\end{equation*}
+%
+and the origin, ${\bf r}=(0,0,0)$, is the center of mass of the planet.  The
+potential at a general point within the planet has a contribution from mass both
+interior and exterior to that point, for which the exponent $k$ in Eqn.
+\eqref{eq:general_expansion} is different:
+%
+\begin{equation*} k = \begin{cases} n, & r' < r \\ -(n+1), & r' > r .  \end{cases}
+\end{equation*}
+
+The centrifugal potential $Q$ depends only on $r$ and $\mu$
+%
+\begin{equation} \begin{aligned} Q(r,\mu) = \frac{1}{3}r^2\omega^2\left[1-P_2(\mu)
+        \right].  \end{aligned} \label{eq:centrifugal} \end{equation}
+%
+The tidal potential $W$ for a satellite at position ${\bf R}=(R,\mu_s,\phi_s)$ is
+%
+\begin{equation} \begin{aligned} W({\bf r}) = \frac{Gm_{\rm s}}{\left| {\bf R} - {\bf
+        r} \right|}.  \end{aligned} \label{eq:tidal} \end{equation}
+%
+The general expansion of $W$ around the center of mass of the planet is obtained by
+using the summation theorem for spherical harmonics \citep{gavrilov1977}  
+%
+\begin{equation} \begin{aligned} W(r,\mu,\phi) =& \frac{Gm_{\rm s}}{R}
+        \sum_{n=2}^\infty \left( \frac{r}{R} \right)^n \left[ P_n(\mu) P_n(\mu_s) \phantom{\frac{1}{1}}\right. \\
+        & \left. + 2 \sum_{m=1}^{n} \frac{(n-m)!}{(n+m)!} \cos(m\phi - m\phi_s)
+    P_n^m(\mu) P_n^m(\mu_s) \right].  \end{aligned} \label{eq:tidal_general}
+    \end{equation}
+
+Following \citet{hubbard2013}, we derive non-dimensional quantities in terms of the
+planet mass $M$ and maximum radius $a=a_0$. For each spheroid, we define a
+dimensionless radius of each spheroid
+%
+\begin{equation} \begin{aligned} \lambda_i \equiv& a_i/a \\
+    \end{aligned} \label{eq:lambda} \end{equation}
+%
+and dimensionless density increment, based on the mean density of the planet
+%
+\begin{equation} \begin{aligned} \bar{\rho} =& \frac{3M}{a^3}\frac{1}{\muint \phiint
+        \zeta_0^3} \\ \delta_i \equiv& \frac{\delta\rho_i}{\bar{\rho}}.
+        \label{eq:delta} \end{aligned} \end{equation}
+%
+A non-dimensional mass of the planet is then given by the integral expression
+%
+\begin{equation} M^* = \frac{1}{3} \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint \phiint
+    \zeta_j^3,  \label{eq:mass} \end{equation}
+%
+which is equal to unity when $\delta_j$ is properly normalized for $\zeta_j$.  The
+contribution to the potential is expanded in terms of interior and external zonal
+harmonics $J_{i,n}$ and $J_{i,n}'$. For the tidal problem, we must also consider the
+analogous $C_{i,nm}$, $C'_{i,nm}$, $S_{i,nm}$ and $S'_{i,nm}$ \citep{zharkov1978}.
+These contribute linearly to the total moment evaluated exterior to the planet's
+surface
+%
+\begin{equation} J_n = \sum_{i=0,N-1} J_{i,n}.  \label{eq:total_J2} \end{equation}
+%
+% Alias for tildaed variables
+\newcommand{\til}{\widetilde}
+%
+The layer-specific harmonics are then normalized by radius as 
+%
+\begin{equation} \begin{aligned}[c] \til{J}_{i,n} \equiv&
+        \frac{J_{i,n}}{\lambda_i^n}, & \til{J}'_{i,n} \equiv&
+        J'_{i,n}\lambda_i^{(n+1)} \\ \til{S}_{i,nm} \equiv&
+        \frac{S_{i,nm}}{\lambda_i^n}, & \til{S}'_{i,nm} \equiv&
+        S'_{i,nm}\lambda_i^{(n+1)} \\ \til{C}_{i,nm} \equiv&
+        \frac{C_{i,nm}}{\lambda_i^n}, & \til{C}'_{i,nm} \equiv&
+        C'_{i,nm}\lambda_i^{(n+1)}.  \end{aligned} \label{eq:normalization}
+\end{equation}
+% 
+Following the derivation in \citet{hubbard2013} and generalizing the expressions for
+full three dimensional volume integrals, we find the normalized interior harmonics
+%
+\begin{equation} \begin{aligned} \til{J}_{i,n} &=& -\frac{3}{n+3} \frac{ \delta_i
+            \lambda_i^3 \muint P_n(\mu') \phiint \zeta_i^{(n+3)} } { \sum_{j=0}^{N-1}
+        \delta_j \lambda_j^3 \muint \phiint \zeta_j^3} \\ \til{C}_{nm} &=&
+        \frac{6(n-m)!}{(n+3)(n+m)!} \frac{ \delta_i \lambda_i^3 \muint P_n^m(\mu')
+            \phiint \zeta_i^{(n+3)} \cos(m\phi') } { \sum_{j=0}^{N-1} \delta_j
+        \lambda_j^3 \muint \phiint \zeta_j^3} \\ \til{S}_{nm} &=&
+        \frac{6(n-m)!}{(n+3)(n+m)!} \frac{ \delta_i \lambda_i^3 \muint P_n^m(\mu')
+            \phiint \zeta_i^{(n+3)} \sin(m\phi') } { \sum_{j=0}^{N-1} \delta_j
+        \lambda_j^3 \muint \phiint \zeta_j^3}, \\ \end{aligned} \label{eq:harmonics}
+\end{equation}
+%
+and the exterior harmonics
+%
+\begin{equation} \begin{aligned} \til{J}'_{i,n} &=& -\frac{3}{2-n} \frac{ \delta_i
+            \lambda_i^3 \muint P_n(\mu') \phiint \zeta_i^{(-n+2)} } {
+                \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint \phiint \zeta_j^3} \\
+                \til{C}'_{nm} &=&  \frac{6(n-m)!}{(2-n)(n+m)!} \frac{ \delta_i
+                    \lambda_i^3 \muint P_n^m(\mu') \phiint \zeta_i^{(-n+2)}
+                \cos(m\phi') } { \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint \phiint
+            \zeta_j^3} \\ \til{S}'_{nm} &=& \frac{6(n-m)!}{(2-n)(n+m)!} \frac{
+                \delta_i \lambda_i^3 \muint P_n^m(\mu') \phiint  \zeta_i^{(-n+2)}
+            \sin(m\phi') } { \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint \phiint
+        \zeta_j^3} \\ \end{aligned} \label{eq:harmonics_prime} \end{equation}
+%
+with a special case for $n=2$
+%
+\begin{equation} \begin{aligned} \til{J}'_{i,n} &=& -3 \frac{ \delta_i \lambda_i^3
+        \muint P_n(\mu') \phiint \log(\zeta_i) } { \sum_{j=0}^{N-1} \delta_j
+    \lambda_j^3 \muint \phiint \zeta_j^3} \\ \til{C}'_{nm} &=&
+    \frac{6(n-m)!}{(n+m)!} \frac{ \delta_i \lambda_i^3 \muint P_n^m(\mu') \phiint
+    \log(\zeta_i) \cos(m\phi') } { \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint
+\phiint \zeta_j^3} \\ \til{S}'_{nm} &=& \frac{6(n-m)!}{(n+m)!} \frac{ \delta_i
+\lambda_i^3 \muint P_n^m(\mu') \phiint  \log(\zeta_i) \sin(m\phi') } {
+    \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \muint \phiint \zeta_j^3} \\ \end{aligned}
+\label{eq:harmonics_prime_n=2} \end{equation}
+%
+and
+%
+\begin{equation} \begin{aligned} J''_{i,0} =& \frac{2\pi\delta_i a_0^3}{3 M}.
+    \end{aligned} \end{equation}
+
+The shape of the surface of the planet is defined by the equipotential relationship
+%
+\begin{equation} U(\zeta,\mu,\phi,\mu_s,\phi_s) -  U(1,0,0,\mu_s,\phi_s) = 0,
+    \label{eq:equipotential_surface} \end{equation}
+%
+where the potential in planetary units at an arbitrary point on the planet's surface
+%
+\begin{equation} \begin{aligned} U(\zeta,\mu,\phi,\mu_s,\phi_s) =& \frac{1}{\zeta_0}
+        \left[ 1 - \sum^{N-1}_{i=0} \sum^\infty_{n=1} \lambda_i^n \zeta_0^{-n}
+            \left\{ P_{n}(\mu) \til{J}_{i,n} \phantom{\sum_{1}^{n}}\right. \right. \\
+            & \left. - \sum_{m=1}^{n} P_n^m(\mu) \left( \til{C}_{i,nm}\cos(m\phi) +
+            \til{S}_{i,nm}\sin(m\phi) \right) \right\}  \\ & + \frac{1}{3} q_{\rm
+            rot} \zeta_0^3 [1 - P_2(\mu)] \\ & -\frac{1}{3} \zeta_0^{3} q_{\rm tid}
+            \sum_{n=2}^\infty \left(\frac{a}{R}\right)^{(n-2)} \zeta_0^{(n-2)}
+            \left\{ P_n(\mu) P_n(\mu_s) \phantom{\sum_1^n}\right. \\ & \left. \left.
+        + 2 \sum_{m=1}^{n} \frac{(n-m)!}{(n+m)!} \cos(m\phi - m\phi_s) P_n^m(\mu)
+    P_n^m(\mu_s) \right\} \right]\\ \end{aligned} \label{eq:surface_potential}
+    \end{equation}
+%
+matches the reference potential at the sub-satellite point
+%
+\begin{equation} \begin{aligned} U(1,0,0,\mu_s,\phi_s) =& 1 - \sum^{N-1}_{i=0}
+        \sum^\infty_{n=1} \lambda_i^n   \left\{ P_{n}(0) \til{J}_{i,n} -
+        \sum_{m=1}^{n} P_n^m(0) \til{C}_{i,nm} \right\}  \\ &+ \frac{1}{2} q_{\rm
+        rot}  -\frac{1}{3} q_{\rm tid} \sum_{n=2}^\infty
+        \left(\frac{a}{R}\right)^{(n-2)} \left\{ P_n(0) P_n(\mu_s) \phantom{\sum_a^b}
+        \right. \\ & \left. + 2 \sum_{m=1}^{n} \frac{(n-m)!}{(n+m)!} \cos(- m\phi_s)
+    P_n^m(0) P_n^m(\mu_s) \right\}. \\ \end{aligned} \label{eq:surface_subsatellite}
+    \end{equation}
+%
+Similarly, the shapes of the interior spheroids are found by solving
+%
+\begin{equation} U_j(\zeta,\mu,\phi,\mu_s,\phi_s) -  U_j(1,0,0,\mu_s,\phi_s) = 0,
+    \label{eq:equipotential_interior} \end{equation}
+%
+where
+%
+\begin{equation} \label{eq:Uj} \begin{aligned} U_j(\zeta_j,\mu,\phi,\mu_s,\phi_s) =&
+        -\frac{1}{\zeta_j \lambda_j} \left[ \sum^{N-1}_{i=j} \sum^\infty_{n=0} \left(
+            \frac{\lambda_i}{\lambda_j} \right)^n \zeta_j^{-n} \left\{ P_{n}(\mu)
+            \til{J}_{i,n} \phantom{\sum_a^b} \right. \right. \\ & \left. -
+            \sum_{m=1}^{n} P_n^m(\mu) \left( \til{C}_{i,nm}\cos(m\phi) +
+            \til{S}_{i,nm}\sin(m\phi) \right) \right\}  \\ &+ \sum^{j-1}_{i=0}
+            \sum^\infty_{n=0} \left( \frac{\lambda_j}{\lambda_i} \right)^{n+1}
+            \zeta_j^{n+1} \left\{ \til{J}'_{i,n} P_n(\mu) \phantom{ \sum_1^m} \right.
+            \\ & \left. - \sum_{m=1}^{n} P_n^m(\mu) \left( \til{C}'_{i,nm}\cos(m\phi)
+        + \til{S}'_{i,nm}\sin(m\phi) \right) \right\} \\ &+ \left. \sum^{j-1}_{i=0}
+    J''_{i,0} \lambda_j^3 \zeta_j^3 \right] + \frac{1}{3} q_{\rm rot} \lambda_j^2
+    \zeta_j^2 [1 - P_2(\mu)] \\ &-\frac{1}{3} \lambda_j^2 \zeta_j^{2} q_{\rm tid}
+    \sum_{n=2}^\infty \left(\frac{a\lambda_j}{R}\right)^{(n-2)} \zeta_j^{(n-2)}
+    \left\{ P_n(\mu) P_n(\mu_s) \phantom{\sum_a^b} \right. \\ & \left. + 2
+    \sum_{m=1}^{n} \frac{(n-m)!}{(n+m)!} \cos(m\phi - m\phi_s) P_n^m(\mu)
+P_n^m(\mu_s) \right\} \end{aligned} \end{equation}
+%
+and
+%
+\begin{equation} \begin{aligned} U_{j}(1,0,0,\mu_s,\phi_s) =& -
+        \frac{1}{\lambda_j}\left[ \sum^{N-1}_{i=j} \sum^\infty_{n=0} \left(
+            \frac{\lambda_i}{\lambda_j} \right)^n   \left\{ P_{n}(0) \til{J}_{i,n} -
+            \sum_{m=1}^{n} P_n^m(0) \til{C}_{i,nm}\right\} \right.\\ & +
+        \sum^{j-1}_{i=0} \sum^\infty_{n=0} \left( \frac{\lambda_j}{\lambda_i}
+    \right)^{n+1} \left\{ \til{J}'_{i,n} P_n(0) - \sum_{m=1}^{n} P_n^m(0)
+\til{C}'_{i,nm} \right\} \\ & \left. + \sum^{j-1}_{i=0} J''_{i,0} \lambda_j^3 \right]
++\frac{1}{2} q_{\rm rot} \lambda_j^2 \\ & - \frac{1}{3} \lambda_j^2 q_{\rm tid}
+\sum_{n=2}^\infty \left(\frac{a\lambda_j}{R}\right)^{(n-2)} \left\{  P_n(0)
+    P_n(\mu_s) \phantom{\sum_1^1} \right. \\ & \left. + 2 \sum_{m=1}^{n}
+    \frac{(n-m)!}{(n+m)!} \cos(- m\phi_s) P_n^m(0) P_n^m(\mu_s) \right\}. \\
+\end{aligned} \label{eq:interior_subsatellite} \end{equation}
+%
+From Eqn. \eqref{eq:interior_subsatellite}, we also find the potential at the center
+of the planet
+%
+\begin{equation} \begin{aligned} U_{\rm center} = -\sum_{i=0}^{N-1} \sum_{n=0}^\infty
+        \lambda_i \left\{ \til{J}'_{i,n} - \sum_{m=1}^{n} \til{C}'_{i,nm} \right\}.
+    \end{aligned} \label{eq:central_potential} \end{equation}
+
+%
+Taking the limit of Eqn. \eqref{eq:central_potential} as the radius goes to zero
+yields
+%
+\begin{equation} \begin{aligned} U_{\rm center} &=\lim_{\zeta_j\to 0} U_j(\zeta_j)\\
+        &= - \sum_{i=0}^{N-1} \frac{J'_{i,n=0}}{ \lambda_i}, \end{aligned}
+\end{equation} correcting a typographical error in Eqn. 49 of \citet{hubbard2013}.
+%
+In solving equations \eqref{eq:equipotential_surface} and
+\eqref{eq:equipotential_interior}, we also require their analytical derivatives
+%
+\begin{equation} \begin{aligned} \frac{d \left[U(\zeta,\mu,\phi,\mu_s,\phi_s) -
+        U(1,0,0,\mu_s,\phi_s) \right] }{d\zeta} =& \frac{dU(\zeta,\mu,\phi)}{d\zeta}
+        \\ \frac{d \left[ U_j(\zeta_j,\mu,\phi,\mu_s,\phi_s) -
+        U_{j}(1,0,0,\mu_s,\phi_s) \right]}{d\zeta_j} =& \frac{d
+        U_j(\zeta_j,\mu,\phi)}{d\zeta_j}.  \label{eq:equipotential_derivative}
+    \end{aligned} \end{equation}
+
+\subsection{Gaussian quadrature} \label{quadrature}
+
+The preceding expressions give the gravitational potential and equipotential shapes,
+as a function of $q_{\rm rot}$ and $q_{\rm tid}$, within a layered planet with $N$
+concentric spheroids. In the limit of $N\to \infty$, the solution would apply to an
+arbitrary monotonically increasing barotropic relation, $\rho(P)$. 
+
+For practical applications, we need to find the potential as a multipole expansion up
+to a maximum degree $n_{\max}$. For the results presented here, we use $n_{\max}=30$.
+The angular integrals in equations
+\eqref{eq:harmonics}~--~\eqref{eq:harmonics_prime_n=2} can be evaluated using
+Gaussian quadratures on a two dimensional grid. Here we use Legendre-Gauss
+integration to integrate polar angles over $L_{1}=48$ quadrature points
+$\mu_{\alpha}=\cos(\theta_{\alpha})$, $\alpha = 1,2,\dots L_{1}$, with the
+corresponding weights $\omega_{\alpha}$ over the interval
+$0<\mu<1$. At any point in the calculation, we must keep track of radius values for
+each layer on a 2D grid of quadrature points $\zeta_{i\alpha\beta}$. For efficiency,
+we pre-calculate the values of all of the Legendre and associated Legendre polynomials
+at each polar quadrature point, $P_n(\mu_\alpha)$ and $P_n^m(\mu_\alpha)$.
+
+For the azimuthal angle, we encounter integrals of the form
+%
+\begin{equation} \begin{aligned} I_{c,m} \equiv \int^{2\pi}_0 f(\phi)
+        \cos(m\phi)d\phi \\ I_{s,m} \equiv \int^{2\pi}_0 f(\phi) \sin(m\phi)d\phi
+    \end{aligned} \label{eq:cheb_integral} \end{equation}
+%
+when calculating the tesseral harmonics. For these, we use Chebyshev-Gauss
+integration with $L_{2}=96$ quadrature points $\eta_{\beta}=\cos(\phi_{\beta})$,
+$\beta = 1,2,\dots L_{2}$, with the corresponding weights $\omega_{\beta}$, $\beta =
+1,2,\dots L_{2}$ over the interval $0<\phi<2\pi$  
+%
+\begin{equation} \begin{aligned} d\eta = -\sin(\phi)d\phi \\ d\phi = -
+        \frac{d\eta}{\sqrt{1-\eta^2}}.  \end{aligned} \end{equation}
+%
+Using the identity $(\sin\theta)^{m-k}=(1-\mu^2)^{\frac{m-k}{2}}$, the sinusoidal
+functions can be expanded as
+%
+\begin{equation} \begin{aligned} \cos{m\phi} = \sum^m_{k=0} { m \choose k } \eta^k
+        (1-\eta^2)^{\frac{m-k}{2}} \cos\left\{ \frac{\pi}{2}(m-k) \right\} \\
+        \sin{m\phi} = \sum^m_{k=0} { m \choose k } \eta^k (1-\eta^2)^{\frac{m-k}{2}}
+        \sin\left\{ \frac{\pi}{2}(m-k) \right\}.  \end{aligned} \end{equation}
+%
+Substituting these into Eqn. \eqref{eq:cheb_integral} and splitting the integral into
+two intervals $0<\phi<\pi$ and $\pi<\phi<2\pi$ yields
+%
+\begin{equation} \begin{aligned} I_{c,m} =& \sum^m_{k=0}{ m \choose k } \cos \left[
+        \frac{\pi}{2}(m-k) \right] \left\{ \int^{1}_{-1} \eta^k f(\cos^{-1}(-\eta))
+        \left[ 1 - \eta^2 \right]^{\frac{m-k}{2}} d\eta \right. \\ &- \left.
+        \int^{1}_{-1} \eta^k f(\cos^{-1}\eta) \left[ 1 - \eta^2
+        \right]^{\frac{m-k}{2}} d\eta \right\} \\ =& \sum^m_{k=0}{ m \choose k } \cos
+        \left[ \frac{\pi}{2}(m-k) \right] \\ &* \left\{ \pm \sum^{L_2}_{\beta =1}
+        \omega_\beta \eta_{\beta}^k f(\pi - \cos^{-1}(\eta_{\beta})) \left[ 1 -
+        \eta_\beta^2 \right]^{\frac{m-k}{2}} \right. \\ &- \left. \sum^{L_2}_{\beta
+        =1} \omega_\beta \eta_\beta^k f(\cos^{-1}\eta_\beta) \left[ 1 - \eta_\beta^2
+        \right]^{\frac{m-k}{2}} \right\}, \end{aligned} \end{equation}
+%
+where the sign of the second sum depends on the parity of $m$.  When calculating the
+zonal harmonics, the integral $I_{c,m}(f(\mu_\alpha,\phi_\beta))$ reduces to the
+axisymmetric solution with $m=0$. The zonal harmonics Eqn.  \eqref{eq:harmonics} can,
+therefore, be calculated via the summation
+%
+\begin{equation} \begin{aligned} \til{J}_{i,n} \approx - \left( \frac{3}{n+3} \right)
+        \left( \frac{ \delta_i \lambda_i^3 \sum^{L_1}_{\alpha =1} \omega_{\alpha}
+        P_n(\mu_{\alpha}) I_{c,0}( \zeta_{i\alpha\beta}^{(n+3)})} { \sum_{j=0}^{N-1}
+        \delta_j \lambda_j^3  \sum^{L_1}_{\alpha =1} \omega_{\alpha} I_{c,0}(
+        \zeta_{j\alpha\beta}^{3} )} \right) \end{aligned} \label{eq:zonal_quad}
+\end{equation}
+%
+and the tesseral harmonics likewise via
+%
+\begin{equation} \begin{aligned} \til{C}_{nm} &\approx&  \frac{6(n-m)!}{(n+3)(n+m)!}
+        \left( \frac{ \delta_i \lambda_i^3 \sum^{L_1}_{\alpha =1} \omega_{\alpha}
+        P^m_n(\mu_{\alpha})  I_{c,m}(\zeta_{i\alpha\beta}^{(n+3)}) } {
+            \sum_{j=0}^{N-1} \delta_j \lambda_j^3 \sum^{L_1}_{\alpha =1}
+            \omega_{\alpha} I_{c,0}(\zeta_{j\alpha\beta}^3)} \right).  \end{aligned}
+        \label{eq:tesseral_quad} \end{equation}
+%
+There are analogous expressions for $I_{s,m}$ and $S_{nm}$, but these evaluate to
+zero in all calculations presented here due to the symmetry of the model.
+
+\subsection{Iterative procedure} \label{iterative}
+
+We begin with initial estimates for the shape of each surface
+$\zeta_{i\alpha\beta,0}$ and for the moments $\til{J}_{i,n}$, $\til{J}'_{i,n}$,
+$\til{J}''_i$, $\til{C}_{i,nm}$, $\til{C}'_{i,nm}$, $\til{S}_{i,nm}$, and
+$\til{S}'_{i,nm}$. For each iteration $t$ the level surfaces are then updated using a
+single Newton-Raphson integration step. 
+%
+\begin{equation} \begin{aligned} \zeta_{i\alpha\beta,t+1} = \zeta_{i\alpha\beta,t} -
+        \frac{ f( \zeta_{i\alpha\beta,t})}{ f'( \zeta_{i\alpha\beta,t}) }
+    \end{aligned} \label{eq:newton} \end{equation}
+%
+where $f$ is the equipotential relation, Equations
+\eqref{eq:equipotential_surface}~--~\eqref{eq:surface_subsatellite} for the outermost
+surface and Equations
+\eqref{eq:equipotential_interior}~--~\eqref{eq:interior_subsatellite} for interior
+layers, and $f'$ is the first derivative of that function with respect to $\zeta$, Eqn.
+\eqref{eq:equipotential_derivative}. The multipole moments are then calculated for
+the updated $\zeta_{i\alpha\beta}$ via Equations
+\eqref{eq:harmonics}~--~\eqref{eq:harmonics_prime_n=2}. These two steps are repeated
+until all of the exterior moments, $J_{n}$, $C_{nm}$ and $S_{nm}$,
+have converged such that the difference between successive iterations falls below a
+specified tolerance. Starting with a naive guess for the initial state, a typical
+calculation achieves a precision much higher than would be required for comparison
+with \textit{Juno} measurements after about 40 iterations.
+
+In simulations with a finite $q_{\rm rot}$ and $q_{\rm tid}$, we typically find an
+initial converged equilibrium shape with a non-zero, first-order harmonic coefficient
+$C_{11}$ of the order of $q_{\rm rot} \cdot q_{\rm tid}$ or smaller. This indicates
+that the center of mass of the system is shifted slightly along the planet-satellite
+axis from the origin of the initial coordinate system. To remove this term, we apply
+a translation to the shape function of $\Delta x=-a\cdot C_{11}$ in the direction of
+the satellite. This correction requires approximating the coordinates $(\mu',\phi')$
+in the uncorrected frame that correspond to the quadrature points $\mu_\alpha$ and
+$\phi_\beta$ in the corrected frame, so that the correct shape $\zeta$ is integrated
+to find the moments in the corrected frame. For a value of $q_{\rm tid}$ similar to
+the gas giants, this correction yields a body with $C_{11}$ on the order of the
+specified tolerance. For systems with a much larger $q_{\rm tid}$ (of which there are
+none in our planetary system), this second-order effect might affect the precision of
+the calculation.  The residual effect is below the numerical noise level for the
+Saturn models presented in this paper.
+
+\subsection{Calculation of the barotrope} \label{barotrope}
+
+We first calculate the density of each uniform layer; for the $j$th layer we have 
+%
+\begin{equation}
+\begin{aligned}
+    \rho_{j,{\rm pu}} = \frac{\sum_{i=0}^j\delta_i}{\sum_{k=0}^{N-1}
+        \delta_k \lambda_k^3 \muint \phiint \zeta_k^3}.
+\end{aligned}
+\label{eq:barotrope}
+\end{equation}
+%
+Using this expression, we calculate the total potential $U_{\rm pu}$ on the surface
+of each layer and at the center using Equations \eqref{eq:surface_subsatellite} and
+\eqref{eq:interior_subsatellite}~--~\eqref{eq:central_potential}. Since the density
+is constant between interfaces, the hydrostatic equilibrium relation,
+Eqn. \eqref{eq:hydrostatic} is trivially integrated to obtain the pressure at the
+bottom of the $j$th layer.
+%
+\begin{equation}
+\begin{aligned}
+    P_{j,{\rm pu}} = P_{j-1,{\rm pu}} + \rho_{j-1,{\rm pu}}
+    (U_{j,{\rm pu}}-U_{j-1,{\rm pu}})
+\end{aligned}
+\end{equation}
+
+After obtaining a converged hydrostatic-equilibrium model for N spheroids with the
+above array using the initial density profile $\delta_j$, one calculates the arrays
+$U_{j,{\rm pu}}$ and $P_{j,{\rm pu}}$. Next, one calculates an array of desired
+densities 
+%
+\begin{equation}
+\begin{aligned}
+    \rho_{j,{\rm pu},{\rm desired}} = \rho\left(\frac{1}{2}(P_{j+1}+P_j)\right),
+\end{aligned}
+\label{eq:rhodesired}
+\end{equation}
+%
+where $\rho(P)$ is the inverse of the adopted barotrope $P(\rho)$.  Finding the
+difference between the desired densities of subsequent layers then gives a new array
+of $\delta_j$ for use in the next iteration. In our implementation, it is also
+necessary to scale these densities by a constant factor to obtain the correct total
+mass of the CMS model. 
+
+Self-gravity from the model's rotational and tidal deformation will cause a small
+change in the density profile from that expected for a spherical body.  In practice,
+only relatively large changes in the shape of the body will cause a significant
+deviation in the density profile. Since $q_{\rm rot} \gg q_{\rm tid}$, the influence
+of rotation dominates the shape of the body. For this reason, we can use an
+axisymmetric, rotation-only model as described in \citet{hubbard2013} to find a
+converged density structure for a given barotrope and specified $q_{\rm rot}$, and
+then perform a single further iteration with tides added to find the hydrostatic
+solution for that density profile.  Because the tide-induced density changes are very
+small, it is unnecessary to iterate with Eqn.  \eqref{eq:rhodesired} to relax the
+configuration further for the triaxial figure. Converging the density-pressure
+profile to a prescribed barotrope and a fully triaxial figure with relatively large
+$q_{\rm tid}$ is significantly more computationally expensive, and is irrelevant to
+any giant planet in our planetary system.
+
+\section{Comparison with test cases} \label{tests}
+
+\subsection{Spheroid of constant density} \label{maclaurin}
+
+The well-known special case of a single constant-density spheroid is an
+important test, because it has a closed form, analytical solution to the theory
+of figures \citep{tassoul2015}. In the case of non-zero $q_{\rm rot}$ it is
+conventionally referred to as the Maclaurin spheroid, as the Jeans spheroid for
+finite $q_{\rm tid}$, and the Roche spheroid in the general case. In
+equilibrium, the spheroid will have an ellipsoidal shape. In the limit of a
+low-amplitude tidal perturbation and zero rotation, the love number for all
+permitted $n$ is
+%
+\begin{equation}
+\begin{aligned}
+    k_n = \frac{3}{2(n-1)}
+\end{aligned}
+\label{eq:mac_kn}
+\end{equation}
+%
+\citep{munk2009}. 
+
+From our simulation results, we calculate the love numbers as
+%
+\begin{equation}
+\begin{aligned}
+    k_{nm} = -\frac{2}{3}\frac{(n+m)!}{(n-m)!}\frac{C_{nm}}{P_n^m(0)q_{\rm tid}}
+    \left( \frac{a}{R} \right)^{2-n}.
+\end{aligned}
+\label{eq:kn}
+\end{equation}
+%
+For simulations with finite $q_{\rm tid}$ and $q_{\rm rot}=0$, we find our calculated
+$k_{nm}$ to be degenerate with $m$ in accordance with the analytical result. For a
+given value of $n$, 
+%
+\begin{equation}
+    k_{nm} = \begin{cases}
+        0, & n \mathrm{~and~} m \mathrm{~opposite~parity} \\
+        \mathrm{const}, & n \mathrm{~and~} m \mathrm{~same~parity}. \\
+    \end{cases}
+    \label{eq:degenerate}
+\end{equation}
+%
+Figure \ref{fig:maclaurin_tidal_only} shows the calculated $k_n$ for the non-rotating
+Jeans spheroid as a function of $q_{\rm tid}$ up to order $n=6$, with $R/a$ taken
+to be that for Tethys and Saturn. For a small tidal perturbation, we find that $k_n$
+approaches the analytical result of Eqn. \eqref{eq:mac_kn}. Conversely, as $q_{\rm
+rot}$ approaches unity from below, the love numbers diverge, with $k_n$ decreasing
+for $n\leq3$ and increasing for $n>3$. The departure from the analytical solution
+becomes significant ($\left|\Delta k_n\right| > 0.1$) for $-q_{\rm tid}>10^{-3}$,
+whereas for values representative of the largest Saturnian satellites, $k_2$ matches
+the analytic value to within our numerical precision.
+
+In general, the tidal response of a gas giant planet will not be a perturbation to a
+perfect sphere, but to a spheroidal shape dominated by rotational flattening.
+Therefore, simulation of the tidal response in the absence of rotation is not
+generally applicable to real gas giants. When we simulate a Roche spheroid with
+both finite $q_{\rm rot}$ and $q_{\rm tid}$, we find a different behavior for
+$k_{nm}$ as defined by Eqn. \eqref{eq:kn}. Figure \ref{fig:maclaurin_rotation_effect}
+shows the calculated $k_{nm}$ for a spheroid with a constant $q_{\rm tid}$
+and a variable $q_{\rm rot}$. When the magnitude of $q_{\rm rot}$ is comparable to
+$q_{\rm tid}$, the tidal response matches the expected analytical result. However,
+for $q_{\rm rot}>10^{-3}$, we can see that the degeneracy of $k_{nm}$ with $m$ is
+broken, and all permitted $k_{nm}$ deviate from the expected values. In other words,
+Eqn.  \eqref{eq:degenerate} becomes
+%
+\begin{equation}
+    \begin{cases}
+        k_{nm}=0, & n \mathrm{~and~} m \mathrm{~opposite~parity} \\
+        k_{nm}\neq\mathrm{const}, & n \mathrm{~and~} m \mathrm{~same~parity}, \\
+    \end{cases}
+    \label{eq:nondegenerate}
+\end{equation}
+%
+and all permitted $k_{nm}$ deviate from the expected values. We also note that these
+deviations become pronounced earlier for the higher order $n$.
+
+\subsection{Two-layered spheroid} \label{two_layer}
+
+Proceeding to more complicated interior structures has proved challenging for
+analytical or semi-analytical methods. Even the next simplest model with two
+constant-density layers does not have a closed form solution for arbitrary order $n$.
+\citet{folonier2015} present an extension of Clairaut theory for a multi-layer planet
+under the approximation that the level surfaces are perfect ellipsoids. Under this
+approximation, they derive an analytic solution for the distortion in response to a
+tidal perturbation only. This yields an expression for $k_2$ as a function of two
+ratios of properties of the two layers, $a_1/a$ and $\rho_0/\rho_1$. Table
+\ref{tab:folonier_table} shows a comparison of our calculated $k_2$ with the analytic
+result from \citet{folonier2015} for a selection of parameters spanning a range of
+$a_1/a$ and $\rho_0/\rho_1$. All of our results using the CMS method differ from
+those using Clairaut theory by less than $10^{-5}$. This provides an important test
+of the correctness of the interior potentials used in our approach. It also indicates
+that ellipsoids, while not exact, are a very good approximation for the degree 2
+tidal response shape in the limit of very small $q_{\rm tid}$, and $q_{\rm rot}=0$. 
+
+\subsection{Polytrope of index unity} \label{polytrope}
+
+The polytrope of index unity defines a more realistic barotrope that also lends
+itself to semi-analytic analyses. It corresponds to the relation
+%
+\begin{equation}
+    P = K\rho^2
+    \label{eq:poly}
+\end{equation}
+%
+where the polytropic constant $K$ can be chosen to match the planet's physical
+parameters. For a non-rotating $n=1$ polytrope, the density distribution is given by
+%
+\begin{equation}
+    \rho = \rho_c \frac{\sin \pi \lambda}{\pi \lambda}
+    \label{eq:poly_rho}
+\end{equation}
+%
+where $\rho_c$ is the density at the center of the planet.  To obtain the first
+approximation of $\delta_j$, we differentiate Eqn. \eqref{eq:poly_rho} by $\lambda$:
+%
+\begin{equation}
+    \frac{d(\rho/\rho_c)}{d\lambda} = \frac{\cos \pi \lambda}{\lambda} 
+    - \frac{\sin \pi \lambda}{\pi \lambda^2}.
+\end{equation}
+%
+We then correct this profile to be consistent with the given $q_{\rm rot}$ via the
+method introduced in Section \ref{barotrope}. Scaling the densities to maintain the
+total mass of the planet has a straightforward interpretation for a polytropic
+barotrope, as it is equivalent to changing $K$.
+
+For the constant-density Roche spheroid the lowest degree love number was 
+%
+\begin{equation}
+    k_2 = \frac{3}{2}.
+\end{equation}
+% 
+Considering only the linear response to a purely rotational perturbation, we define a
+general degree 2 linear response parameter $\Lambda_2$ as 
+%
+\begin{equation}
+    J_2 = \Lambda_2 q_{\rm rot}.
+    \label{eq:linear_response}
+\end{equation}
+%
+Whereas $\Lambda_2=1/2$ for the Roche spheroid, for the polytrope of index unity
+the analytic result is \citep{hubbard1975} 
+%
+\begin{equation}
+\begin{aligned}
+    \Lambda_2 = \left( \frac{5}{\pi^2} - \frac{1}{3} \right).
+\end{aligned}
+\end{equation}
+%
+Considering linear response only, one finds in general
+%
+\begin{equation}
+\begin{aligned}
+    k_2 = 3 \Lambda_2 ,
+\end{aligned}
+ \label{eq:k2_lambda2}
+\end{equation}
+%
+valid in the limit $q_{\rm rot} \ll 1$ and $q_{\rm tid} \ll 1$, for any barotrope in
+hydrostatic equilibrium.  Thus, for the polytrope of index unity in this limit,
+%
+\begin{equation}
+\begin{aligned}
+    k_2 = \frac{15}{\pi^2} - 1 = 0.519817755.
+    \label{eq:poly_estimate}
+\end{aligned}
+\end{equation}
+%
+We compare this to a CMS simulation of the $n=1$ polytrope model with 128 layers,
+$q_{\rm rot}=0$, $q_{\rm tid}=10^{-6}$, and Tethys' $R/a$. The simulation results
+agree with the expected relation $J_2=2C_{22}$ to numerical precision, and yield
+$k_2=0.519775$. This provides a test of the multi-layer CMS approach subject to a
+tidal-only perturbation.  The CMS result matches our Eqn. \eqref{eq:poly_estimate}
+benchmark to better than the precision with which we could measure this parameter
+using the \textit{Juno} spacecraft.  The small difference can be attributed to
+approximation of a continuous polytrope by 128 layers in the CMS simulation.
+\citet{wisdom2016} (Eqn.  15) show the relative discretization error of a CMS
+polytrope model to be $\sim 10^{-3}$ for $N=128$, roughly consistent with our
+calculated difference. 
+
+Similar to the calculations on the constant density spheroid in Section \ref{maclaurin}, we
+performed additional $N=128$ polytrope simulations with finite $q_{\rm tid}$ and
+$q_{\rm rot}=0$. Once again, we find our calculated $k_{nm}$ to be degenerate with
+$m$ for the tidal-only simulations, in agreement with Eqn. \eqref{eq:degenerate}.
+Figure \ref{fig:polytrope_tidal_only} shows the behavior of $k_n$ for $n\leq6$ for
+these tidal-only polytrope simulations.  We only present these results up to $q_{\rm
+tid}\sim10^{-4}$, because above that value effects of the triaxial shape on the
+pressure-density profile would require iterated relaxation to the polytropic
+relation, as discussed in Section \ref{barotrope}. We observe that realistic values
+for $q_{\rm tid}$ have negligible effect on the tidal response. Even for the
+Io-Jupiter system, the effect of finite $q_{\rm tid}$ on $k_{nm}$ is near the
+numerical noise level. The general behavior is quite similar to the case of the
+single Jeans spheroid.  For small tidal perturbations, the polytrope $k_n$
+approach values smaller than the single spheroid case, with $k_2$ asymptoting to
+the analytic limit in Eqn.  \eqref{eq:poly_estimate}.  Similar to the single  
+spheroid, the behavior as $q_{\rm rot}$ increases from zero sees $k_n$ decrease for
+$n\leq3$ and increase for $n>3$.  The deviation from the low $q_{\rm tid}$ value is
+also less pronounced for the more realistic polytrope density distribution than for
+the single spheroid. This is to be expected since there is less mass concentrated
+in the outer portion of the polytrope model. 
+
+Figure \ref{fig:polytrope_rotation_effect} shows the effect of variable $q_{\rm rot}$
+on polytrope models with constant $q_{\rm tid}$. Once again, we find that $k_{nm}$
+degeneracy with respect to $m$ breaks, in agreement with Eqn.
+\eqref{eq:nondegenerate}, as $q_{\rm rot}$ increases. Although the splitting of
+$k_{nm}$ is somewhat diminished from the single Roche spheroid results, the
+deviations are still significant at large values of $q_{\rm rot}\sim 10^{-2}$
+consistent with the rapidly-rotating gas giants. The shift in $k_{nm}$ shows a nearly
+linear increase in magnitude with increasing $q_{\rm rot}$, with potentially
+observable increases in $k_2$ for both the ice giant and gas giant planets. The
+general behavior of $k_{nm}$ is very similar between these tests with two very
+different density profiles. The relative magnitudes and directions of all $k_{nm}$ up
+to $n=6$ are similar between the two cases. This indicates that the effect should be
+ubiquitous in all fast-spinning liquid bodies, and relatively insensitive to the
+density profile of the planet.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/spheroid.pdf}
+\caption{ Conceptual diagram of a Concentric Maclaurin Spheroid (CMS) model with a tidal
+perturbation from a satellite.}
+\label{fig:spheroid}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/maclaurin_tidal_only.pdf}
+\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
+non-rotating constant density (Jeans) spheroid up to order 6. The love numbers $k_n$ are degenerate
+with respect to $m$. The orbital radius is taken to be that of Tethys.}
+\label{fig:maclaurin_tidal_only}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/maclaurin_rotation_effect.pdf}
+\caption{ The effect of rotation rate on the tidal love numbers of a constant density
+    (Roche) spheroid up to order 6. The $k_{nm}$ for a given $n$ are found to split
+    at high rotation rates. $q_{\rm tid}$ is kept constant at $1.0\times10^{-6}$, and
+    the orbital radius is taken to be that of Tethys.}
+\label{fig:maclaurin_rotation_effect}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=1.0\textwidth]{figs/polytrope_tidal_linear.pdf}
+\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
+    non-rotating planet with an $n=1$ polytrope equation of state, up to order 6.
+    $\Delta k_n$ is the shift in love number $k_n$ from the limit of low $q{\rm
+    tid}$. The love numbers $k_n$ are degenerate with respect to $m$. The orbital
+    radius is taken to be that of Tethys. The vertical, dashed gray lines show $q_{\rm tid}$
+    for Tethys-Saturn and Io-Jupiter.}
+\label{fig:polytrope_tidal_only}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=0.8\textwidth]{figs/polytrope_rotation_both.pdf}
+\caption{ Top: The effect of rotation rate on the tidal love numbers of a planet with an
+    $n=1$ polytrope equation of state, up to order 6. The $k_{nm}$ for a given $n$
+    are found to split at high rotation rates. $q_{\rm tid}$ is kept constant at
+    $1.0\times10^{-6}$, and the orbital radius is taken to be that of Tethys. The
+    vertical, dashed gray lines show $q_{\rm rot}$ for Neptune, Uranus, Jupiter and Saturn.
+    Bottom: Shift in $k_{nm}$ as a function of $q_{\rm rot}$ on a linear scale.}
+\label{fig:polytrope_rotation_effect}
+\end{figure}
+
+%\input{tabs/folonier_table}
