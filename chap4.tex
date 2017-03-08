@@ -20,10 +20,10 @@ affect the chemistry of iron-silicate differentiation on the early Earth.
 
 Here we consider a simple representative material for the mixed rock-metal phase as a mixture
 of Fe and MgO formed via the reaction
-$\rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm liq}$. 
-% \begin{equation} \label{eqn:gibbs}
-%   \rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm liq}.
-% \end{equation}
+%$\rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm liq}$. 
+\begin{equation} \label{eqn:gibbs}
+  \rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm liq}.
+\end{equation}
 We determine the stability of these phases using first-principles calculations.  At a
 given pressure, a system with two separate phases can be described in terms of a
 miscibility gap. At low temperatures, homogeneous mixtures with intermediate compositions
@@ -351,54 +351,57 @@ thermodynamic integration technique. For quantities calculated using the
 thermodynamic integration, the quoted errors were derived by propagating
 the errors from each integration point.
 
-%\begin{deluxetable}{ccllllll}
-%\tabletypesize{\scriptsize}
-%\tablecolumns{8}
-%\tablewidth{0pc}
-%\tablecaption{Thermodynamic functions derived from DFT-MD simulations. 
-%\label{tab:results}}
 
- %\tablehead{ \colhead{$P$} & \colhead{$T$} & \colhead{system} &  \colhead{$\rho$} & 
- %\colhead{$P$} & \colhead{$U$} & \colhead{$S$} &  \colhead{$G$}  \\
- %\colhead{(GPa)} & \colhead{(K)} & &  \colhead{($\mathrm{g}/\mathrm{cm}^3$)} 
-   %& \colhead{(GPa)} & \colhead{(eV)} & \colhead{($k_B$)} & \colhead{(eV)} }
-%\startdata
-             %0 &   4000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.861 &   $-$0.41(17) &     $-$323(1) &    1064(4) &     $-$689.3(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   6.885 &    0.06(21) &  $-$206.53(9) &   496.7(4) &    $-$377.74(3) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   2.003 &    0.60(14) &   $-$275.0(5) &     776(2) &    $-$542.40(5) \\
-             %0 &   5000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.556 &    0.15(16) &     $-$289(1) &    1152(3) &     $-$785.4(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   6.340 &   $-$0.05(34) &   $-$189.8(1) &   540.1(4) &    $-$422.52(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   1.660 &    0.10(10) &   $-$242.8(8) &     860(2) &    $-$613.17(6) \\
-             %0 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.195 &   0.639(88) &   $-$251.9(8) &    1231(2) &     $-$888.3(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   5.740 &   $-$0.02(12) &   $-$170.8(1) &   580.2(3) &    $-$470.80(3) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   1.435 &   0.707(49) &     $-$213(1) &     924(2) &    $-$690.65(9) \\
-            %50 &   5000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.237 &   49.28(40) &   $-$315.5(7) &     963(2) &     $-$502.0(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   8.805 &   51.36(34) &   $-$203.3(3) &   475.0(6) &    $-$302.73(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.582 &   51.41(26) &   $-$261.4(5) &     703(1) &    $-$377.59(9) \\
-             %. &      . &    $\rm{Mg}_{6}$$\rm{Fe}_{54}$$\rm{O}_{6}$,liq &   7.797 &   50.61(43) &   $-$370.3(5) &     988(1) &    $-$579.56(9) \\
-             %. &      . &  $\rm{Mg}_{16}$$\rm{Fe}_{38}$$\rm{O}_{16}$,liq &   6.347 &   49.70(24) &   $-$338.0(8) &     995(2) &    $-$540.61(8) \\
-             %. &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{13}$$\rm{O}_{30}$,liq &   4.461 &   49.73(22) &   $-$302.3(7) &     911(2) &    $-$470.07(8) \\
-             %. &      . &   $\rm{Mg}_{36}$$\rm{Fe}_{4}$$\rm{O}_{36}$,liq &   3.838 &    47.6(12) &     $-$317(3) &     855(8) &     $-$459.4(1) \\
-             %. &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{30}$$\rm{O}_{30}$,liq &   5.237 &   47.94(21) &     $-$400(1) &    1190(3) &    $-$627.26(8) \\
-             %. &      . &  $\rm{Mg}_{48}$$\rm{Fe}_{48}$$\rm{O}_{48}$,liq &   5.237 &   48.49(21) &     $-$640(1) &    1908(3) &    $-$1004.9(2) \\
-             %. &      . &                             $\rm{Fe}_{64}$,liq &   8.805 &   50.57(18) &   $-$407.6(3) &   947.6(6) &    $-$605.53(2) \\
-             %. &      . &                $\rm{Mg}_{40}$$\rm{O}_{40}$,liq &   3.582 &    40.2(11) &     $-$365(3) &     788(8) &     $-$470.9(2) \\
-             %. &      . &                $\rm{Mg}_{50}$$\rm{O}_{50}$,liq &   3.582 &   44.43(37) &     $-$438(2) &    1023(4) &     $-$587.2(2) \\
-            %50 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.083 &   49.36(25) &   $-$291.5(7) &    1027(2) &     $-$587.3(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   8.537 &   50.95(21) &   $-$191.6(1) &   506.5(3) &    $-$345.03(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.446 &   49.50(24) &   $-$243.1(5) &     754(1) &    $-$439.09(4) \\
-            %50 &   7500 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   4.868 &   50.09(41) &     $-$254(2) &    1110(3) &     $-$725.7(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   8.164 &   50.59(52) &   $-$173.9(3) &   545.9(5) &    $-$413.29(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.301 &   51.09(60) &     $-$212(1) &     823(2) &    $-$540.85(6) \\
-             %. &      . &    $\rm{Mg}_{6}$$\rm{Fe}_{54}$$\rm{O}_{6}$,liq &   7.221 &   49.04(17) &   $-$317.2(3) &  1119.5(5) &    $-$806.98(5) \\
-             %. &      . &  $\rm{Mg}_{16}$$\rm{Fe}_{38}$$\rm{O}_{16}$,liq &   5.867 &   49.54(29) &   $-$278.9(8) &    1142(1) &    $-$772.40(6) \\
-             %. &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{13}$$\rm{O}_{30}$,liq &   4.115 &   49.90(27) &   $-$243.4(7) &    1058(1) &    $-$683.67(8) \\
-             %. &      . &   $\rm{Mg}_{36}$$\rm{Fe}_{4}$$\rm{O}_{36}$,liq &   3.538 &   50.10(17) &   $-$250.7(7) &    1020(1) &    $-$664.90(8) \\
-             %. &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{30}$$\rm{O}_{30}$,liq &   4.868 &   49.80(16) &     $-$321(1) &    1382(2) &    $-$907.77(9) \\
-              %. &      . &  $\rm{Mg}_{48}$$\rm{Fe}_{48}$$\rm{O}_{48}$,liq &   4.868 &   50.13(15) &     $-$507(1) &    2222(2) &    $-$1451.7(2) \\
-              %. &      . &                             $\rm{Fe}_{64}$,liq &   8.164 &   50.62(24) &   $-$347.7(3) &  1090.7(5) &    $-$825.75(2) \\
-              %. &      . &                $\rm{Mg}_{40}$$\rm{O}_{40}$,liq &   3.301 &   50.75(23) &   $-$264.9(7) &    1026(1) &    $-$674.98(4) \\
-              %. &      . &                $\rm{Mg}_{50}$$\rm{O}_{50}$,liq &   3.301 &   51.40(27) &     $-$330(1) &    1284(2) &    $-$843.19(7) \\
+
+\begin{table}[!h]
+\centering
+
+\caption{Thermodynamic functions derived from DFT-MD simulations (Part 1/2).
+\label{tab:results}}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{ccllllll}
+    \hline
+ {$P$} & {$T$} & {system} &  {$\rho$} & 
+ {$P$} & {$U$} & {$S$} &  {$G$}  \\
+ {(GPa)} & {(K)} & &  {($\mathrm{g}/\mathrm{cm}^3$)} 
+   & {(GPa)} & {(eV)} & {($k_B$)} & {(eV)} \\
+   \hline
+             0 &   4000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.861 &   $-$0.41(17) &     $-$323(1) &    1064(4) &     $-$689.3(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   6.885 &    0.06(21) &  $-$206.53(9) &   496.7(4) &    $-$377.74(3) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   2.003 &    0.60(14) &   $-$275.0(5) &     776(2) &    $-$542.40(5) \\
+             0 &   5000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.556 &    0.15(16) &     $-$289(1) &    1152(3) &     $-$785.4(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   6.340 &   $-$0.05(34) &   $-$189.8(1) &   540.1(4) &    $-$422.52(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   1.660 &    0.10(10) &   $-$242.8(8) &     860(2) &    $-$613.17(6) \\
+             0 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   2.195 &   0.639(88) &   $-$251.9(8) &    1231(2) &     $-$888.3(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   5.740 &   $-$0.02(12) &   $-$170.8(1) &   580.2(3) &    $-$470.80(3) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   1.435 &   0.707(49) &     $-$213(1) &     924(2) &    $-$690.65(9) \\
+            50 &   5000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.237 &   49.28(40) &   $-$315.5(7) &     963(2) &     $-$502.0(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   8.805 &   51.36(34) &   $-$203.3(3) &   475.0(6) &    $-$302.73(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.582 &   51.41(26) &   $-$261.4(5) &     703(1) &    $-$377.59(9) \\
+             . &      . &    $\rm{Mg}_{6}$$\rm{Fe}_{54}$$\rm{O}_{6}$,liq &   7.797 &   50.61(43) &   $-$370.3(5) &     988(1) &    $-$579.56(9) \\
+             . &      . &  $\rm{Mg}_{16}$$\rm{Fe}_{38}$$\rm{O}_{16}$,liq &   6.347 &   49.70(24) &   $-$338.0(8) &     995(2) &    $-$540.61(8) \\
+             . &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{13}$$\rm{O}_{30}$,liq &   4.461 &   49.73(22) &   $-$302.3(7) &     911(2) &    $-$470.07(8) \\
+             . &      . &   $\rm{Mg}_{36}$$\rm{Fe}_{4}$$\rm{O}_{36}$,liq &   3.838 &    47.6(12) &     $-$317(3) &     855(8) &     $-$459.4(1) \\
+             . &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{30}$$\rm{O}_{30}$,liq &   5.237 &   47.94(21) &     $-$400(1) &    1190(3) &    $-$627.26(8) \\
+             . &      . &  $\rm{Mg}_{48}$$\rm{Fe}_{48}$$\rm{O}_{48}$,liq &   5.237 &   48.49(21) &     $-$640(1) &    1908(3) &    $-$1004.9(2) \\
+             . &      . &                             $\rm{Fe}_{64}$,liq &   8.805 &   50.57(18) &   $-$407.6(3) &   947.6(6) &    $-$605.53(2) \\
+             . &      . &                $\rm{Mg}_{40}$$\rm{O}_{40}$,liq &   3.582 &    40.2(11) &     $-$365(3) &     788(8) &     $-$470.9(2) \\
+             . &      . &                $\rm{Mg}_{50}$$\rm{O}_{50}$,liq &   3.582 &   44.43(37) &     $-$438(2) &    1023(4) &     $-$587.2(2) \\
+            50 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.083 &   49.36(25) &   $-$291.5(7) &    1027(2) &     $-$587.3(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   8.537 &   50.95(21) &   $-$191.6(1) &   506.5(3) &    $-$345.03(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.446 &   49.50(24) &   $-$243.1(5) &     754(1) &    $-$439.09(4) \\
+            50 &   7500 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   4.868 &   50.09(41) &     $-$254(2) &    1110(3) &     $-$725.7(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   8.164 &   50.59(52) &   $-$173.9(3) &   545.9(5) &    $-$413.29(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.301 &   51.09(60) &     $-$212(1) &     823(2) &    $-$540.85(6) \\
+             . &      . &    $\rm{Mg}_{6}$$\rm{Fe}_{54}$$\rm{O}_{6}$,liq &   7.221 &   49.04(17) &   $-$317.2(3) &  1119.5(5) &    $-$806.98(5) \\
+             . &      . &  $\rm{Mg}_{16}$$\rm{Fe}_{38}$$\rm{O}_{16}$,liq &   5.867 &   49.54(29) &   $-$278.9(8) &    1142(1) &    $-$772.40(6) \\
+             . &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{13}$$\rm{O}_{30}$,liq &   4.115 &   49.90(27) &   $-$243.4(7) &    1058(1) &    $-$683.67(8) \\
+             . &      . &   $\rm{Mg}_{36}$$\rm{Fe}_{4}$$\rm{O}_{36}$,liq &   3.538 &   50.10(17) &   $-$250.7(7) &    1020(1) &    $-$664.90(8) \\
+             . &      . &  $\rm{Mg}_{30}$$\rm{Fe}_{30}$$\rm{O}_{30}$,liq &   4.868 &   49.80(16) &     $-$321(1) &    1382(2) &    $-$907.77(9) \\
+              . &      . &  $\rm{Mg}_{48}$$\rm{Fe}_{48}$$\rm{O}_{48}$,liq &   4.868 &   50.13(15) &     $-$507(1) &    2222(2) &    $-$1451.7(2) \\
+              . &      . &                             $\rm{Fe}_{64}$,liq &   8.164 &   50.62(24) &   $-$347.7(3) &  1090.7(5) &    $-$825.75(2) \\
+              . &      . &                $\rm{Mg}_{40}$$\rm{O}_{40}$,liq &   3.301 &   50.75(23) &   $-$264.9(7) &    1026(1) &    $-$674.98(4) \\
+              . &      . &                $\rm{Mg}_{50}$$\rm{O}_{50}$,liq &   3.301 &   51.40(27) &     $-$330(1) &    1284(2) &    $-$843.19(7) \\
 %% Note: The commented out data in the table is repeated in a continuation of the table,
 %% so that it nicely continues onto a second page.
 %%             50 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   4.546 &   51.31(32) &     -197(1) &    1210(2) &     -976.4(1) \\
@@ -436,66 +439,62 @@ the errors from each integration point.
 %%            400 &  15000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.553 &   399.7(11) &      117(2) &    1138(2) &     -235.9(1) \\
 %%              . &      . &                             $\rm{Fe}_{32}$,liq &  12.688 &  403.62(99) &    -19.3(7) &   562.1(6) &    -161.93(3) \\
 %%              . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   5.943 &   396.6(11) &      114(2) &     858(2) &      -95.8(1) \\
-%\enddata
-%%\tablecomments{Table \ref{data} is published in its entirety in the 
-%%electronic edition of the {\it Astrophysical Journal}.  A portion is 
-%%shown here for guidance regarding its form and content.}
-%\end{deluxetable}
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
-%\begin{deluxetable}{ccllllll}
-%\tabletypesize{\scriptsize}
-%\tablecolumns{8}
-%\tablewidth{0pc}
-%% \tablecaption{Table 1. (cont'd)}
-%\tablenum{1}
-%\tablecaption{(cont'd)}
+\begin{table}[!h]
+\centering
 
-%\tablehead{ \colhead{$P$} & \colhead{$T$} & \colhead{system} &  \colhead{$\rho$} & 
-%\colhead{$P$} & \colhead{$U$} & \colhead{$S$} &  \colhead{$G$}  \\
-%\colhead{(GPa)} & \colhead{(K)} & &  \colhead{($\mathrm{g}/\mathrm{cm}^3$)} 
-%& \colhead{(GPa)} & \colhead{(eV)} & \colhead{($k_B$)} & \colhead{(eV)} }
-%\startdata
-            %50 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   4.546 &   51.31(32) &     $-$197(1) &    1210(2) &     $-$976.4(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   7.536 &   49.92(47) &   $-$142.0(2) &   601.3(3) &    $-$537.28(3) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.054 &   50.64(51) &     $-$163(1) &     909(2) &     $-$727.8(1) \\
-           %100 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.144 &  100.54(60) &     $-$264(1) &     969(3) &     $-$375.5(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   9.771 &   97.45(69) &   $-$188.0(5) &     476(1) &    $-$244.43(4) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.432 &  100.04(18) &   $-$261.7(3) &   598.8(7) &    $-$269.70(8) \\
-           %100 &   6700 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.042 &   98.34(38) &   $-$254.2(7) &     998(1) &     $-$434.5(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   9.660 &   99.69(82) &   $-$179.6(5) &     495(1) &    $-$273.67(4) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.381 &  100.46(35) &   $-$250.5(6) &     627(1) &    $-$307.19(8) \\
-           %100 &   7000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.027 &  101.60(35) &   $-$238.4(8) &    1027(1) &     $-$461.2(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   9.611 &  100.24(30) &   $-$176.2(2) &   502.5(3) &    $-$286.64(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.360 &  100.53(42) &   $-$245.4(3) &   637.3(6) &    $-$323.25(7) \\
-           %100 &   8000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.932 &  103.41(68) &     $-$218(1) &    1068(2) &     $-$551.3(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   9.388 &   99.43(71) &   $-$165.0(5) &   527.1(8) &    $-$331.12(4) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   4.034 &  100.57(67) &   $-$183.8(7) &     785(1) &    $-$393.43(7) \\
-           %100 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.664 &  100.86(98) &     $-$176(2) &    1147(2) &     $-$742.5(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   8.998 &   98.79(49) &   $-$142.5(4) &   567.2(4) &    $-$425.41(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.842 &   99.23(52) &     $-$145(2) &     856(2) &    $-$534.78(8) \\
-           %100 &  15000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.157 &  101.17(74) &      $-$75(2) &    1281(2) &  $-$1267.13(10) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &   8.145 &  102.48(80) &    $-$81.2(5) &   645.5(4) &    $-$688.15(2) \\
-           %400 &   8000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   9.117 &  398.69(56) &      $-$24(1) &     921(2) &      390.9(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &  13.469 &   397.7(10) &    $-$93.1(8) &     453(2) &      145.0(2) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.487 &  399.95(25) &    $-$69.8(3) &   580.4(5) &      354.3(1) \\
-           %400 &   9300 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   9.010 &  400.51(49) &        5(2) &     974(2) &      285.7(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &  13.583 &  398.04(53) &    $-$95.6(5) &   445.8(7) &      92.59(8) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.434 &  400.24(54) &    $-$51.3(5) &   615.1(8) &      286.8(1) \\
-           %400 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.954 &  399.46(67) &       17(2) &     998(2) &      225.5(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &  13.263 &   397.6(25) &      $-$75(2) &     485(2) &       65.3(1) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.393 &  397.31(43) &    $-$41.8(3) &   632.4(5) &      249.7(1) \\
-           %400 &  12500 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.753 &  399.86(65) &       63(1) &    1071(1) &        2.5(2) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &  12.938 &   400.3(12) &    $-$46.0(9) &   530.1(9) &     $-$44.36(5) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   6.100 &  396.44(75) &       61(1) &     794(1) &       82.3(1) \\
-           %400 &  15000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.553 &   399.7(11) &      117(2) &    1138(2) &     $-$235.9(1) \\
-             %. &      . &                             $\rm{Fe}_{32}$,liq &  12.688 &  403.62(99) &    $-$19.3(7) &   562.1(6) &    $-$161.93(3) \\
-             %. &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   5.943 &   396.6(11) &      114(2) &     858(2) &      $-$95.8(1) \\
-%\enddata
-%%\tablecomments{Table \ref{data} is published in its entirety in the 
-%%electronic edition of the {\it Astrophysical Journal}.  A portion is 
-%%shown here for guidance regarding its form and content.}
-%\end{deluxetable}
-
+\caption{Thermodynamic functions derived from DFT-MD simulations (Part 2/2).}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{ccllllll}
+    \hline
+ {$P$} & {$T$} & {system} &  {$\rho$} & 
+ {$P$} & {$U$} & {$S$} &  {$G$}  \\
+ {(GPa)} & {(K)} & &  {($\mathrm{g}/\mathrm{cm}^3$)} 
+   & {(GPa)} & {(eV)} & {($k_B$)} & {(eV)} \\
+   \hline
+            50 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   4.546 &   51.31(32) &     $-$197(1) &    1210(2) &     $-$976.4(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   7.536 &   49.92(47) &   $-$142.0(2) &   601.3(3) &    $-$537.28(3) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.054 &   50.64(51) &     $-$163(1) &     909(2) &     $-$727.8(1) \\
+           100 &   6000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.144 &  100.54(60) &     $-$264(1) &     969(3) &     $-$375.5(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   9.771 &   97.45(69) &   $-$188.0(5) &     476(1) &    $-$244.43(4) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.432 &  100.04(18) &   $-$261.7(3) &   598.8(7) &    $-$269.70(8) \\
+           100 &   6700 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.042 &   98.34(38) &   $-$254.2(7) &     998(1) &     $-$434.5(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   9.660 &   99.69(82) &   $-$179.6(5) &     495(1) &    $-$273.67(4) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.381 &  100.46(35) &   $-$250.5(6) &     627(1) &    $-$307.19(8) \\
+           100 &   7000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   6.027 &  101.60(35) &   $-$238.4(8) &    1027(1) &     $-$461.2(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   9.611 &  100.24(30) &   $-$176.2(2) &   502.5(3) &    $-$286.64(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   4.360 &  100.53(42) &   $-$245.4(3) &   637.3(6) &    $-$323.25(7) \\
+           100 &   8000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.932 &  103.41(68) &     $-$218(1) &    1068(2) &     $-$551.3(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   9.388 &   99.43(71) &   $-$165.0(5) &   527.1(8) &    $-$331.12(4) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   4.034 &  100.57(67) &   $-$183.8(7) &     785(1) &    $-$393.43(7) \\
+           100 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.664 &  100.86(98) &     $-$176(2) &    1147(2) &     $-$742.5(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   8.998 &   98.79(49) &   $-$142.5(4) &   567.2(4) &    $-$425.41(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   3.842 &   99.23(52) &     $-$145(2) &     856(2) &    $-$534.78(8) \\
+           100 &  15000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   5.157 &  101.17(74) &      $-$75(2) &    1281(2) &  $-$1267.13(10) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &   8.145 &  102.48(80) &    $-$81.2(5) &   645.5(4) &    $-$688.15(2) \\
+           400 &   8000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   9.117 &  398.69(56) &      $-$24(1) &     921(2) &      390.9(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &  13.469 &   397.7(10) &    $-$93.1(8) &     453(2) &      145.0(2) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.487 &  399.95(25) &    $-$69.8(3) &   580.4(5) &      354.3(1) \\
+           400 &   9300 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   9.010 &  400.51(49) &        5(2) &     974(2) &      285.7(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &  13.583 &  398.04(53) &    $-$95.6(5) &   445.8(7) &      92.59(8) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.434 &  400.24(54) &    $-$51.3(5) &   615.1(8) &      286.8(1) \\
+           400 &  10000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.954 &  399.46(67) &       17(2) &     998(2) &      225.5(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &  13.263 &   397.6(25) &      $-$75(2) &     485(2) &       65.3(1) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,sol &   6.393 &  397.31(43) &    $-$41.8(3) &   632.4(5) &      249.7(1) \\
+           400 &  12500 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.753 &  399.86(65) &       63(1) &    1071(1) &        2.5(2) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &  12.938 &   400.3(12) &    $-$46.0(9) &   530.1(9) &     $-$44.36(5) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   6.100 &  396.44(75) &       61(1) &     794(1) &       82.3(1) \\
+           400 &  15000 &  $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$,liq &   8.553 &   399.7(11) &      117(2) &    1138(2) &     $-$235.9(1) \\
+             . &      . &                             $\rm{Fe}_{32}$,liq &  12.688 &  403.62(99) &    $-$19.3(7) &   562.1(6) &    $-$161.93(3) \\
+             . &      . &                $\rm{Mg}_{32}$$\rm{O}_{32}$,liq &   5.943 &   396.6(11) &      114(2) &     858(2) &      $-$95.8(1) \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
 
 Simulations of $\rm{Fe}_{32}$, $\rm{Mg}_{32}$$\rm{O}_{32}$ and
 $\rm{Mg}_{24}$$\rm{Fe}_{24}$$\rm{O}_{24}$ are included for every $P$-$T$
@@ -509,6 +508,7 @@ Finally, simulations with 1:1 stoichiometries but larger cells
 $\rm{Fe}_{64}$, $\rm{Mg}_{30}\rm{Fe}_{30}\rm{O}_{30}$,
 $\rm{Mg}_{45}\rm{Fe}_{45}\rm{O}_{45}$ $\rm{Mg}_{40}$$\rm{O}_{40}$, and
 $\rm{Mg}_{50}$$\rm{O}_{50}$.
+
 
 
 
@@ -541,230 +541,6 @@ low MgO concentrations. In doing so, we demonstrate that these calculations
 are consistent with Mg concentrations the below detection limit of
 laser-heated diamond anvil cell experiments performed at lower
 temperatures.
-
-\subsection{Comparison of thermodynamic integration with different classical potentials}
-
-The classical pair potentials are derived by fitting the forces and
-positions along a pre-computed DFT-MD trajectory. The potentials are
-constructed to approach zero for large separations. For small separations
-where the trajectories provide no information, linear extrapolation is
-used, which means our pair potentials are finite at the origin. All of the
-results presented in the paper used this fitting procedure.
-Figure~\ref{fig:potentials} shows an example for the pair potentials for
-liquid MgO and 50~GPa and 6000~K.  While the Mg-Mg and O-O potentials are
-purely repulsive, the deep mininum in the Mg-O potential represents the
-attractive forces between ions of opposite charge.
-
-Table~\ref{tab:compare_pots} provide all terms of the thermodynamic
-integration procedure. In order to test how robust our approach is, we
-constructed a different set of pair potential where we eliminated all
-bonding forces. The values of these non-bonding potentials are constrained
-to be positive, asymptoting to zero without a miniumum. Obviously they are a poor representation of the DFT forces
-in the system and therefore the free energy differences between the DFT and
-the classical system, $F_{\rm cl \to DFT}$, given in table
-\ref{tab:compare_pots}, is much larger than for our regular potentials.
-However, when the values for $F_{an}$, $F_{an \to cl}$, and $F_{\rm cl \to
-DFT}$ are added, we recover the results for $F_{DFT}$ within the 1$\sigma$
-error bars. This demonstrates that out free energy calculations are not
-sensitive to the details how we construct our classical potentials.
-
-%\begin{deluxetable}{ccllllll}
-%\tabletypesize{\scriptsize}
-%\tablecolumns{8}
-%\tablewidth{0pc}
-%\tablecaption{Comparison of integration paths using different classical potentials. 
-  %\label{tab:compare_pots}}
-
-%\tablehead{ \colhead{Potentials} & \colhead{$F_{\rm an}$} & \colhead{$F_{\rm an \to cl}$} & \colhead{$F_{\rm
- %cl}$} & \colhead{$F_{\rm cl \to DFT}$} & \colhead{$F_{\rm DFT}$} }
-%\startdata
-%Regular, bonding potentials & $-$427.151 & 27.962 & $-$399.189 & $-$233.825 $\pm$ 0.031 & $-$633.014  $\pm$ 0.031 \\
-%Non-bonding potentials & $-$427.151 & 204.129 & $-$223.022 & $-$409.927 $\pm$ 0.080 & $-$632.950 $\pm$ 0.080 \\
-%\enddata
-%\end{deluxetable}
-
-Although the correct final result is found when using an unrealistic
-potential, the efficiency for the thermodynamic integration is the highest
-when the classical forces best match the DFT forces.
-Figure~\ref{fig:integrate_dft} shows the calculated values of $\left<
-V_{DFT} - V_{\rm cl} \right>$ as a function of $\lambda$ using the regular
-``bonding'' potential, and for the ``non-bonding potential''. Here each
-plotted value of lambda represents and independent DFT-md simulation with
-using that fraction of DFT forces, along with the complementary fraction of
-classical forces. The integral of this function give the helmholtz free
-energy $F_{\rm cl \to DFT}$. In the first case , the function $\left<
-V_{DFT}-V_{\rm cl}\right>$ in figure~\ref{fig:integrate_dft} depends weakly
-on $\lambda$. The function is almost linear and the differnce between
-values at $\lambda=0$ and 1 is small. When both criteria are satisfied,
-very few $\lambda$ points are needed to evaluate the integral. The
-simulations with non-bonding potentials experience larger fluctuations  due
-to the greater mismatch in forces, leading to a larger statistical
-uncertainty.  As a result, these simulations required longer simulation
-times to match the results found with bonding potentials.
-
-Figure~\ref{fig:integrate_cmc} shows $\left< V_{\rm cl} \right>$ as a function
-of $\lambda$ from classical monte carlo simulations. The integration of
-$F_{an \to cl}$function becomes strongly non-linear as $\lambda$
-approaches zero, the non-interacting case. Since classical simulations are
-approximately 10$^5$ times more efficient, it is possible to obtain very
-close sampling of the a cusp in the integrated function. 
-
-Using the definition for the ensemble averaged potential at a given
-$\lambda$
-\begin{eqnarray}
-  \left< V_{\rm cl} \right>_{\lambda} = \frac{ \int \! d{\bf r} \, V_{\rm cl}({\bf r}) 
-  e^{ -\beta \lambda V_{\rm cl}({\bf r}) } }
-  { Z}, \label{eqn:average}
-\end{eqnarray}
-where $Z$ is the partition function
-\begin{eqnarray}
-Z =  \int \! d{\bf r} \, e^{ -\beta \lambda V_{\rm cl}({\bf r}) },
-\end{eqnarray}
-we find the following expression as $\lambda \to 0$
-\begin{eqnarray}
- \left< V_{\rm cl} \right>_{\lambda \to 0} &=& \frac{ \int \! d{\bf r} \, V_{\rm
- cl}}
- {  \int \! d{\bf r} \, 1} \nonumber \\
- &=& \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \label{eqn:limit}
-\end{eqnarray}
-Then from the deriviative of $\left< V_{\rm cl} \right>_{\lambda}$ in
-equation \ref{eqn:average} and \ref{eqn:limit}
-\begin{eqnarray}
-  \frac{d \left< V_{\rm cl} \right>}{d \lambda}
-   &=& \frac{1}{Z^2} 
-  \left[ Z \int \! d{\bf r} \, \left(-\beta \right)V_{\rm cl}^2({\bf r}) 
-    e^{ -\beta \lambda V_{\rm cl}({\bf r}) } 
-   - \left(-\beta \right)\left\{  \int \! d{\bf r} \, V_{\rm cl}({\bf r}) e^{ -\beta \lambda
-     V_{\rm cl}({\bf r}) } \right\}^2
-    \right] \nonumber \\
-   &=& (-\beta) \left[ \left< V_{\rm cl}^2 \right> - \left< V_{\rm
-   cl}\right>^2 \right] \nonumber \\
-   \left. \frac{d \left< V_{\rm cl} \right>}{d \lambda}\right|_{\lambda \to 0} 
-   &=& (-\beta) \left[  \frac{1}{V}  \int \! dr \, r^2 V^2_{\rm cl}(r) -
-     \left\{ \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \right\}^2 \right]
-  \end{eqnarray}
-This give us the slope and intercept for the integration at $\lambda=0$,
-necessary to correctly integrate the cusp.  Becauase of the extreme
-difference in computational efficiency, it is always best to adjust the
-classical potential to match the DFT forces.
-
-\subsection{Verification of thermodynamic integration in multicomponent
-systems}
-The second test is to verify that, in a multi-component system, the
-integration path does not effect the results. An integration path needs to
-be constructed that connects a system with Mg-Mg, Mg-O, and O-O pair
-potentials with an non-interacting system. In our standard proceduce we
-turn on all pair potentials simultaneously by changing
-$\lambda_1=\lambda_2=\lambda_3$ from 0 to 1.
-\begin{equation}
-  V_{\lambda_1\lambda_2\lambda_3} = \lambda_1 V_{\rm Mg-Mg} + \lambda_2 V_{\rm Mg-O} + \lambda_3 V_{\rm O-O} 
-\end{equation}
-However, as we will now demonstrate, alternative integration paths will give the same results. We compare different integration paths to calculate
-the free energy of the classical system, $F_{\rm cl}$, for both the regular
-and non-bonding potentials. This is comparison can not be made directly for
-$F_{\rm cl \to DFT}$ because tracking the intereaction of different species
-separarately is not possible in a Kohn-Sham formulation.
-
-%\begin{deluxetable}{clllllll}
-%\tabletypesize{\scriptsize}
-%\tablecolumns{8}
-%\tablewidth{0pc}
-%\tablecaption{Comparison of different integration paths using classical potentials. 
-  %\label{tab:compare_int_path}}
-
-%\tablehead{ \colhead{Potential} & 
-            %\colhead{$F_{\rm an}$} & 
-            %\colhead{$F_{\rm step}$} & 
-            %\colhead{$F_{\rm an} + \sum F_{\rm step}$}}
-%\startdata
-%Non-bonding & $-$427.151 & $F_{000 \to 111}$ = 204.196(27)      & $-$222.955(27)
-%\\[1mm]\hline\\[-2.5mm]
-%Non-bonding & $-$427.151 & $F_{000 \to 010}$ = $\,\:$16.328(6)  & $-$222.953(45)\\
-            %&          & $F_{010 \to 111}$ = 187.870(39) 
-%\\[1mm]\hline\\[-2.5mm]
-%Non-bonding & $-$427.151 & $F_{000 \to 101}$ = 166.363(15)      & $-$222.962(21)\\
-            %&          & $F_{101 \to 111}$ = $\,\:$37.826(18)
-%\\[1mm]\hline\\[-2.5mm]
-%Non-bonding & $-$427.151 & $F_{000 \to 100}$ = 104.323(11)      & $-$222.954(52)\\
-            %&          & $F_{100 \to 110}$ = $\,\:$31.225(10) \\
-            %&          & $F_{110 \to 111}$ = $\,\:$68.650(31)
-%\\[1mm]\hline\\[-2.5mm]
-%Regular     & $-$427.151 & $F_{000 \to 111}$ = $\,\:$28.028(31) & $-$399.123(31) 
-%\\[1mm]\hline\\[-2.5mm]
-%Regular     & $-$427.151 & $F_{000 \to 101}$ = ~~182.820(16)      & $-$399.123(37) \\
-            %&          & $F_{101 \to 111}$ = $-$154.792(21)
-%\enddata
-%%\tablecomments{Table \ref{data} is published in its entirety in the 
-%%electronic edition of the {\it Astrophysical Journal}.  A portion is 
-%%shown here for guidance regarding its form and content.}
-%\end{deluxetable}
-
-In line 2 of table~\ref{tab:compare_int_path}, we turn on the Mg-O
-potential in the first integration step ($F_{000 \to 010}$) and then switch
-on the Mg-Mg and O-O potentials in the second and final integration step
-($F_{101 \to 111}$). The indices refer to the three $\lambda$ values for
-Mg-Mg, Mg-O, and O-O potentials, respectively. In line 3 of
-table~\ref{tab:compare_int_path}, we interchange both integration steps. In
-line 4, we performed three integration steps turning on the one potential
-after the other. In the last column we compare the classical free energies
-after adding the results from every integration step to $F_{\rm an}$. The
-results agree within the statistical uncertainties demonstrating that the
-same classical free energies can be obtained for four different integration
-paths using non-bonding potentials.
-
-In table~\ref{tab:compare_int_path}, we also show the results for two
-integration paths using regular, bonding potentials. We find consistent
-results when we either turn on all potentials simultaneously and when we
-switch on the Mg-Mg and O-O potentials in the first step and the Mg-O
-potential in the second. We were not able, however, to turn on the
-attractive Mg-O alone because the system becomes unstable due to the
-imbalance between attractive and missing repulsive forces. This is similar
-to what happens in the case of a first-order phase transition, which over
-which thermodynamic integrations are also invalid. Nevertheless, this test
-demonstrates that different integration paths give consistent results also
-for the systems with attractive forces when care is taken to taken to avoid
-instabilities.
-
-% \section*{References}
-
-% \bibliography{femgo}
-
-% tables
-
-
-\begin{figure}[h!]  
-    \centering
-    \includegraphics[width=30pc]{figs/potentials_both.pdf}
-\caption{Example pair potentials for liquid MgO at 50 GPa and 6000 K. Left: 
-  Regular pair potentials fit to DFT-MD simulations, with a linear
-  extrapolation at small separation and an asymptote to 0 at large
-  separation.  All of the results presented in the paper used this fitting
-  procedure. Right: Non-bonding potential fit with the same procedure, but
-  constraining values to be positive. Included for comparison with the pair
-  potentials in table~\ref{tab:compare_pots}.}
-\label{fig:potentials}
-\end{figure}
-
-
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/dV_dft_both.pdf}
-\caption{The integration path to find $F_{cl \to DFT}$ potentials for MgO
-at 50 GPa 6000 K, using the regular, bonding pair potentials (upper) and
-the non-bonding pair potentials (lower). }
-\label{fig:integrate_dft}
-\end{figure}
-
-\begin{figure}[h!]  
-  \centering
-  \includegraphics[width=30pc]{figs/dV_cmc_both.pdf}
-\caption{The integration path to find $F_{an \to cl}$ potentials for MgO at 50 GPa 6000
-K, using the regular, bonding pair potentials (left) and
-the non-bonding pair potentials (right). These are plotted against the
-integration parameter, $\lambda$, to the $1/4$ power.}
-\label{fig:integrate_cmc}
-\end{figure}
-
 
 \section{Discussion} \label{sec:discussion}
 
@@ -813,7 +589,17 @@ mixing of the Earth's primitive mantle \citep{Mukhopadhyay2012}. Nonetheless, co
 evolution of a planet from a fully-mixed state is useful for demonstrating the effects
 our phase diagram on the mixing behavior in a planet. A fully mixed state is also not so
 far-fetched for super-Earths since heating from release of gravitational energy scales as
-roughly $M^{2/3}$. %$(M/M_{\Earth})^{2/3}$.
+roughly $M^{2/3}$. %$(M/M_{\Earth})^{2/3}$. 
+Fig.~\ref{fig:mantlecoremixing} shows a schematic diagram detailing some of the
+processes involved with the formation of this fully mixed state.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/mantlecoremixing.eps}  
+\caption{ Schematic diagram showing the sequence of physical processes proposed
+for core mantle mixing in the aftermath of a giant impact.}
+\label{fig:mantlecoremixing}
+\end{figure}
 
 The depth at which the phases separate from the fully mixed state is determined by the
 pressure dependence of solvus closure. Following such a large impact, the planet will
@@ -844,6 +630,16 @@ there is little unambiguous evidence for a magma ocean, despite it being a seemi
 unavoidable consequence of the moon-forming impact hypothesis. The high surface
 temperatures of some rocky exoplanets \citep{Pepe2013} might allow for prolonged cooling
 times from a such a mixed state.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/isentropes.pdf}  
+\caption{Calculated isentropes for the mixed FeMgO liquid phase compared to the solvus
+  closure temperature. These results favor the mixed phase to remain stable at depth. The
+  dashed, black line shows the MgO melting temperature from \citep{Boates2013}.The filled
+  regions represent the propagation of estimated errors from finite size effects.}
+\label{fig:isentropes}
+\end{figure}
 
 At the relatively low pressures of growing planetesimals
 \citep{Kleine2002,Sramek2012,Weiss2013}, these results predict that core formation begins
@@ -882,14 +678,18 @@ with pressure \citep{Frost2010}. Better characterization of element-partitioning
 high temperatures could constrain what fraction of the mantle could have been
 equilibrated in this fashion.
 
+
 \begin{figure}[h!]  
   \centering
-    \includegraphics[width=22pc]{figs/isentropes.pdf}  
-\caption{Calculated isentropes for the mixed FeMgO liquid phase compared to the solvus
-  closure temperature. These results favor the mixed phase to remain stable at depth. The
-  dashed, black line shows the MgO melting temperature from \citep{Boates2013}.The filled
-  regions represent the propagation of estimated errors from finite size effects.}
-\label{fig:isentropes}
+    \includegraphics[width=30pc]{figs/exsolution_figure_2.eps}  
+\caption{ A thermodynamic model depicting a hypothetical concentration curve of Mg in
+    iron as a function of temperature: Points above the curve are super-saturated.
+    Rapid mixing of a ‘cold’ reservoir ‘A’ with a ‘hot’ reservoir ‘B’ results in an
+    intermediate, super-saturated state ‘C’. The extent of exsolution predicted for
+    state C, depends on the super-saturation, and thus the shape of the concentration
+    curve. 
+}
+\label{fig:exsolution}
 \end{figure}
 
 
@@ -900,7 +700,8 @@ the core before it can cool and re-equilibrate with the mantle at lower temperat
 This would be followed by exsolution of a Mg-rich material at the top of the cooling
 core. This process has been suggested as a possible solution to the problem of the
 Earth's core having  insufficient energy to generate a magnetic field before nucleation
-of the inner core \citep{Stevenson2012}. If the interpretation of Fig.
+of the inner core \citep{Stevenson2012}. Fig.~\ref{fig:exsolution} details the
+energetics of such a process. If the interpretation of Fig.
 \ref{fig:isentropes} can be extended to more iron rich compositions, then exsolution will
 occur at the top of the core, depositing sediments of Mg-rich material at the core-mantle
 boundary \citep{buffett2000}. As a result, the effect of this sedimentation on core
@@ -939,3 +740,6 @@ likely overcome for some fraction of the planet during accretion. Energetic impa
 are now thought to have been commonplace during the formation of the terrestrial planets,
 and the role of miscibility between the most abundant rocky and metallic materials should
 be considered to adequately assess their early evolution.
+
+
+

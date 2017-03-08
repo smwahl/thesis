@@ -1,86 +1,484 @@
 \chapter{First-Principles simulation Methods}\label{chap2}
 
-\section{Density Functional Theory}
+
+In quantum chemistry and condensed matter physics, first-principles methods (often
+referred \textit{ab initio} methods) refer to calculations of material properties
+using physical models that do not rely on any specific experiment or measured
+material property. These calculations, therefore are built up from physical constants
+including the speed of light $c$, Planck's constant $h$, as well as the mass  and
+charge of consitutent electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless,
+approximations must be made in order to make solution to the many-body Schr\"odinger
+equation tractable.
+
+These methods are of particular use in the study of materials in the deep interiors
+of Earth and other planets, because the inherrent high pressures and temperatures
+pose difficulties for the design and interpretion of experiments. In the case of the
+Jovian planets, Jupiter and Saturn, these conditions are so extreme that modern
+experimental techniques are unable to recreate the conditions through a large portion
+of the planet's interior. In the following chapters I will be addressing questions of
+materials in some of these extreme pressure-temperaturature ranges.
+
+In studies of materials, the most prevalent classes of first-principles methods based
+on density functional theory (DFT) or quantum Monte Carlo (QMC). Most of these
+techniques are fundamentally zero temperature theories. In this work, as in most
+first-principles applications to planetary sciencei, I focus on the use of DFT. This
+is due largely to the advantage of its better computational efficiency. This
+computational efficiency means that DFT can currently be extended to larger atomic
+systems and to conisder finite temperature more easily than with Monte Carlo based
+techniques. The higher precision QMC techniques do have an important place in
+determining stability between phases in which energy differences are very small.
+Since the focus of the work presented here is on systems involving the exchange of
+atoms between phases the energy differences are expected to be large enough for DFT
+predictions to be sufficiently accurate.
+
+This chapter introduces the theoretical and computational backgrounds of the density
+functional theory molecular dynamics (DFT-MD) technique, which is our workhorse
+method for first-principles studies in planetary science. We also describe in depth
+the thermodynamic integration method, allows for a calucation of entropy of the
+simulated system.
+
+
+\section{Introduction}
+The total energy of quantum system of electrons and nuclei is described by the
+Hamiltonian\footnote{Neglecting relativistic, magnetic, and quantum
+electrodynamic effects.}
+%
+ \begin{equation}\label{generalhen}
+\mathcal{\hat H}=-\sum_i\frac{\hbar^2}{2m}\nabla_i^2-
+\sum_{i,I}\frac{Z_Ie^2}{|\textbf{\textit r}_i-\textbf{\textit R}_I|}+
+\sum_{\substack{i,j\\(i\neq j)}}\frac{e^2}{2|\textbf{\textit r}_i-\textbf{\textit r}_j|}-
+\sum_I\frac{\hbar^2}{2M_I}\nabla_I^2+
+\sum_{\substack{I,J\\(I\neq J)}}\frac{Z_IZ_Je^2}{2|\textbf{\textit R}_I-\textbf{\textit R}_J|}.
+\end{equation}
+%
+Here $\mathbf{r_i}$ describes the configuration of the electrons while $\mathbf{R_I}$ describes the position
+of the nuclei.  Because the mass of the nuclei is much greater than that of the
+electrons, the kinetic energy of the nuclei can be ignored, and the electrons are
+assumed to rearrange instantataneously with any change in the position of the nuclei
+(see Chapter 3.1 of \cite{martin-esbook}). This assumption, called the
+Born-Oppenheimer or adiabatic approximation, simplifies the general Hamitonian to
+%
+\begin{equation}\label{generalhee}
+\begin{aligned}
+\mathcal{\hat H}&=\hat{T}+V_\text{ext}+V_\text{ee}+V_{II} \\
+&=-\sum_i\frac{\hbar^2}{2m}\nabla_i^2-
+\sum_{i,I}\frac{Z_Ie^2}{|\textbf{\textit r}_i-\textbf{\textit R}_I|}+
+\sum_{\substack{i,j\\(i\neq j)}}\frac{e^2}{2|\textbf{\textit r}_i-\textbf{\textit r}_j|}+
+\sum_{\substack{I,J\\(I\neq J)}}\frac{Z_IZ_Je^2}{2|\textbf{\textit R}_I-\textbf{\textit R}_J|},
+\end{aligned}
+\end{equation}
+%
+where $\hat{T}, V_\text{ext}, V_\text{ee}$, and $V_{II}$ represent electronic kinetic
+energy, electron-nuclei Coulomb absorption\footnote{In general, $V_\text{ext}$ can
+also include electric fields and Zeeman terms.}, electron-electron Coulomb repulsion,
+and nuclei-nuclei Coulomb repulsion, respectively. $V_{II}$ has an analytical
+solution, which allows us to calculate solutions to a many-body equation for the system of electrons 
+%
+\begin{equation}\label{generaleeq}
+\begin{aligned}
+\hat{H}\Psi\{\textbf{\textit r}_i\}=\mathcal{E}\Psi\{\textbf{\textit r}_i\}, 
+\end{aligned}
+\end{equation}
+%
+for a specified configuration of nuclei $\mathbf{R_I}$ Hamiltonion describing all
+electron-elctron and electron-nuclei interactions further reduces to
+%
+\begin{equation}\label{generalhee}
+\begin{aligned}
+\hat{H}&=\hat{T}+V_\text{ext}+V_\text{ee} \\
+&=-\sum_i\frac{\hbar^2}{2m}\nabla_i^2-
+\sum_{i,I}\frac{Z_Ie^2}{|\textbf{\textit r}_i-\textbf{\textit R}_I|}+
+\sum_{\substack{i,j\\(i\neq j)}}\frac{e^2}{2|\textbf{\textit r}_i-\textbf{\textit r}_j|}.
+\end{aligned}
+\end{equation}
+
+\section{Density functional theory}\label{ksdft}
+
+A practical approach to solving the above fully interacting many-body problem
+requires some additional assumptions. Of the avaailable approaches to solving
+Eq.~\ref{generalhee}, DFT is the most widely used to date. 
+
+The DFT fram is based on two theorems proven by Hohenberg and Kohn \cite{hk1964} in
+1964: 1) any property of a system of interacting particles can be determined by the
+ground-state density of electrons $n_0(\textbf{\textit r})$; and 2) for any external
+potential $V_\text{ext}(\textbf{\textit r})$, a universal energy functional $E[n]$
+can be defined whose global minimum value is at $n(\textbf{\textit
+r})=n_0(\textbf{\textit r})$. These theorems are formally exact and general, and were
+soon made soluble in practice and by the Kohn-Sham approach \cite{ks1965} making use
+of the following ansatz:
+%
+\begin{itemize}
+\item The exact ground-state density of electrons can be represented by that of an auxiliary system of non-interacting particles.
+\item The auxiliary hamiltonian is chosen to have the usual kinetic operator and an effective local potential $V_\text{eff}^\sigma(\textbf{\textit r})$.
+\end{itemize}
+This allows solving the many-electron Eq. \ref{generaleeq} by converting it into an independent-particle problem 
+\begin{equation}\label{kseq}
+\begin{aligned}
+\hat{H}_\text{KS}^\sigma\psi_i^\sigma(\textbf{\textit r})=\varepsilon_i^\sigma\psi_i^\sigma(\textbf{\textit r}), 
+\end{aligned}
+\end{equation}
+where $\hat{H}_\text{KS}^\sigma=\hat{T}+V_\text{eff}^\sigma(\textbf r)$ is the spin-dependent single-particle Harmitonian.
+
+Comparing with the Hohenberg-Kohn energy functional 
+\begin{equation}\label{hkeq}
+\begin{aligned}
+E_\text{HK}
+&=T[n]+E_\text{int}[n]+\int{d\textbf{\textit r}}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II} \\
+&=F_\text{HK}[n]+\int{d\textbf{\textit r}}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II},
+\end{aligned}
+\end{equation}
+in the method of Kohn-Sham the ground-state energy
+\begin{equation}\label{kse}
+\begin{aligned}
+E_\text{KS}&=T_s[n]+E_\text{Hartree}[n]+\int d\textbf{\textit r}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II}+E_\text{xc}[n],
+\end{aligned}
+\end{equation}
+where 
+\begin{equation}\label{numberdensity}
+\begin{aligned}
+n(\textbf{\textit r})=\sum_\sigma\sum_{i=1}^{N^\sigma}|\psi_i^\sigma(\textbf{\textit r})|^2
+\end{aligned}
+\end{equation}
+is the the density of electrons satisfying $\int n(\textbf{\textit r})d(\textbf{\textit r})=N$ (total number of electrons),
+\begin{equation}\label{spTs}
+\begin{aligned}
+T_s=-\frac{\hbar^2}{2m}\sum_\sigma\sum_{i=1}^{N^\sigma}\langle\psi_i^\sigma|\nabla^2|\psi_i^\sigma\rangle=-\frac{\hbar^2}{2m}\sum_\sigma\sum_{i=1}^{N^\sigma}|\nabla\psi_i^\sigma|^2
+\end{aligned}
+\end{equation}
+is the kinetic energy, and 
+\begin{equation}\label{spEhatr}
+\begin{aligned}
+E_\text{Hartree}[n]=\frac{1}{2}\int{d\textbf{\textit r}d\textbf{\textit r}'}\frac{n(\textbf{\textit r})n(\textbf{\textit r}')}{|\textbf{\textit r}-\textbf{\textit r}'|}
+\end{aligned}
+\end{equation}
+is the classical self (Coulomb)-interaction energy, of the independent-particle system. All many-body effects are grouped into the exchange-correlation energy 
+\begin{equation}\label{spExc}
+\begin{aligned}
+E_\text{xc}[n]&=F_\text{HK}[n]-(T_s[n]+E_\text{Hartree}[n]) \\
+&=T[n]-T_s[n]+E_\text{int}[n]-E_\text{Hartree}[n].
+\end{aligned}
+\end{equation}
+%
+The exact ground-state energy and density of electrons
+can be obtained by solving Eqs. \ref{kseq} and \ref{numberdensity} in a
+self-consistent iterative way.
+
+The Kohn-Sham approch provides a feasible way of determining the exact ground-state
+properties of many-electron systems: given a known $E_\text{xc}[n]$. In principle the
+functional form of the exchange-correlation is not known. This leads to the main
+assumption of the DFT method. The success of the DFT method relies on the fact that
+it is ofthen reasonable to approximate $E_\text{xc}[n]$ as a local or nearly local
+functional of the density. 
+
+\subsection{Computational considerations}
+
+
+\subsubsection{Exchange correlation}
+
+There have been continuing efforts in the aim of exploring practical ways to improve
+the approximate the exchange-correlation functional to better match. The simplest
+choice is the local density approximation (LSDA, or simply LDA) is derived from the
+homogeneous electron gas. It continues to be a popular choice due to it's simplicity,
+freedom from required fit parameters, and its relative success in describing many
+real materials.
+
+In LDA, the exchange-correlation energy 
+\begin{equation}\label{spExclda}
+\begin{aligned}
+E_\text{xc}[n]
+=\int d\textbf{\textit r} n(\textbf{\textit r})\epsilon_\text{xc}([n],\textbf{\textit r})
+=\int d\textbf{\textit r} n(\textbf{\textit r})[\epsilon_\text{x}([n],\textbf{\textit r})+\epsilon_\text{c}([n],\textbf{\textit r})].
+\end{aligned}
+\end{equation}
+The exchange energy density (in atomic units) follows the exact expression \cite{martin-esbook}
+\begin{equation}\label{ldaxs1}
+\begin{aligned}
+\epsilon_\text{x}^\sigma=-\frac{3}{4}\left(\frac{6}{\pi}n^\sigma\right)^{1/3}.
+\end{aligned}
+\end{equation}
+In spin-unpolarized systems, $n^\uparrow=n^\downarrow=n/2$, so
+\begin{equation}\label{ldaxs0}
+\begin{aligned}
+\epsilon_\text{x}^\uparrow=\epsilon_\text{x}^\downarrow=\epsilon_\text{x}
+=-\frac{3}{4}\left(\frac{3}{\pi}n\right)^{1/3}
+=-\frac{3}{4\pi}\left(\frac{9\pi}{4}\right)^{1/3}\frac{1}{r_s},
+\end{aligned}
+\end{equation}
+where $r_s$ characterizes the density of electrons via $1/n=4\pi r_s^3/3$; 
+while in partially polarized cases,
+\begin{equation}\label{ldaxs2}
+\begin{aligned}
+\epsilon_\text{x}(n,\zeta)=\epsilon_\text{x}(n,0)+[\epsilon_\text{x}(n,1)-\epsilon_\text{x}(n,0)]f_\text{x}(\zeta),
+\end{aligned}
+\end{equation}
+where $f_\text{x}(\zeta)=[(1+\zeta)^{4/3}+(1-\zeta)^{4/3}-2]/[2(2^{1/3}-1)]$, $\zeta=(n^\uparrow-n^\downarrow)/n$, and $n=n^\uparrow+n^\downarrow$. For the correlation energy density, the widely used expression is based on parameterization \cite{Perdew81} of accurate quantum Monte Carlo simulations of homogeneous electron gas \cite{Ceperley1980}
+\begin{equation}\label{ldaccapz}
+\begin{aligned}
+\epsilon_\text{c}(r_s)=
+\begin{cases}
+-0.0480 + 0.031 \ln r_s - 0.0116r_s + 0.0020 r_s\ln r_s & \quad r_s < 1, \\
+-0.1423/(1+1.0529\sqrt{r_s}+0.3334r_s) & \quad r_s > 1.
+\end{cases}
+\end{aligned}
+\end{equation}
+
+The success of LDA has also prompted extensive work on designing new functionals. For
+example, by considering the non-uniform nature of electron distribution, several
+schemes of generalized gradiant approximation (GGA), in which the
+exchange-correlation functional is a function of both the density of electrons $n$
+and its gradient $\nabla n$, have been developed. In recent years one of the most
+popular exchange-correlation functionals is a GGA-class functional developed by
+Perdew, Burke and Ernzerhof \citep{Perdew1996} (PBE). Most of the DFT simulations
+presented in this work were performed using the PBE exchange correlation functional .
+
+There has also been active research (Chapter 5 of \cite{Kohanoff-esbook}) on other
+rungs of the Jacob's Ladder, such as meta-GGA, hybrid functionals, etc., toward
+higher levels of chemical accuracy, at the cost of increased computation time. There
+have also been more targeted attempts to solve material specific problems, for
+example the introduction of long-range Van der Waals forces using the VdW potentials
+\citep{Raymond2015}.
+
+
+\subsubsection{Self consistent iteration}
+Numerically solving the Kohn-Sham equation includes an initial guess of the density,
+and an iteration over $n^\text{in}\rightarrow V^\text{in}\rightarrow n^\text{out}$.
+In the Kohn-Sham energy functional $E_\text{KS}=T_s[n]+E_\text{pot}[n]$, the kinetic
+energy can be expressed as
+%
+\begin{equation}
+\begin{aligned}
+T_s[n] & =E_s-\sum_\sigma\int \mathrm{d}\textbf{\textit{r}} V^{\sigma,\text{in}}(\textbf{\textit{r}})n^\text{out}(\textbf{\textit{r}},\sigma) \\
+ & =\sum_\sigma\sum_{i=1}^{N^\sigma}\varepsilon_i^\sigma-\sum_\sigma\int \mathrm{d}\textbf{\textit{r}} V^{\sigma,\text{in}}(\textbf{\textit{r}})n^\text{out}(\textbf{\textit{r}},\sigma) \\
+& \approx E_s[V_{n^\text{in}}]-\sum_\sigma\int \mathrm{d}\textbf{\textit{r}} V^{\sigma}_{n^\text{in}}(\textbf{\textit{r}})n^\text{in}(\textbf{\textit{r}},\sigma), \label{eqtshwf}
+\end{aligned}
+\end{equation}
+and the potential energy
+\begin{equation}
+E_\text{pot}[n]=\int \mathrm{d}\textbf{\textit{r}} V_\text{ext}(\textbf{\textit{r}})n(\textbf{\textit{r}})+E_\text{Hartree}[n]+E_{II}+E_{xc}[n]\approx E_\text{pot}[n^\text{in}]. \label{eqpot}
+\end{equation}
+These allow accurate approximation of the true Kohn-Sham energy with 
+\begin{equation}
+ E_\text{KS} \approx E_s[V_{n^\text{in}}]-\sum_\sigma\int \mathrm{d}\textbf{\textit{r}} V^{\sigma}_{n^\text{in}}(\textbf{\textit{r}})n^\text{in}(\textbf{\textit{r}},\sigma)+E_\text{pot}[n^\text{in}] \label{eqksapprox},
+\end{equation}
+for densities near the correct solution. Equation \ref{eqksapprox} is now standard at each step of the self-consistent iteration in solving Kohn-Sham equations (see Chapter 9.2 of \cite{martin-esbook}).
+
+\subsection{Basis sets and pseudopotential}
+There are different methods for solving the Kohn-Sham equations. Typically one
+chooses a basis set to expand the orbitals, according to the nature of the system.
+Plane wave basis, Gaussian basis, and Slater-type orbital basis are often used.  For
+electronic structures condensed systems with periodic boundary condtions, such as
+those presented here, plane waves is the  natural choice.  They make form a complete,
+general basis that allows for easy convergence.
+
+Another noteworthy concept in DFT is the pseudopotential, which is  used in most
+materials simulations considering elements with Z$>$2. The idea of pseudopotentials
+is to use an effective ionic potential to replace the combined Coulomb potential of
+the nucleus and electrons on the valence electrons, whose effect is assumed to be
+nearly indentical regardless of ionic configuration. The use of pseudopotentials
+greatly reduces the size of the basis, which otherwise has to be large to describe
+the non-smooth electronic states near the nucleus. Particular attentions has to be
+paid to the pseudopotnetnial in studies at extremly high pressures, because a
+pseudopotential can be invalidated by overlaping of the core states of nearby atoms.
+
+%The expression of Hamiltonian in Eq. \ref{generalhee} is still valid for valence electrons when using a pseudopential\footnote{Except for ``non-local'' pseudopotentials.} to describe the ionic part.
+
+All DFT simulations presented here were performed using the implementation of the DFT
+formalism the Vienna {\it ab initio} simulation package (VASP) \citep{Kresse1996}.
+VASP uses projector augmented wave pseudopotentials \citep{Blochl1994} 
+
+\section{Finite Temperature Calculations}
+
+Real materials exist at finite temperatures. This imposes a number of additional
+problems for first-principles simulations that are not directly addressed by the 
+standard DFT methods. One of the most fundamental consequences is that the time
+averaged properties of the material do not correspond to a single, fixed ionic
+configuration. Rather, they must be obtained from an ensemble of different
+configurations, which must be weighted using principles from statistical mechanics.
+In most experimental and ``real world'' applications the ensemble of interest is a
+$NPT$ ensemble (one with number of atoms, pressure and temperature). For
+first-principles calculations, however, it is typically much easier to consider a
+$NVE$ or microcononical ensemble (with fixed volume and total energy).
+
+Low to intermediate temperatures can be treated as a perturbation to the ground state
+(see some discussion in Section 3.1 of \cite{martin-esbook}), leading to
+quasi-harmonic approximation (QHA). QHA typically works for solids at temperatures
+that are well below their melting temperature, where anharmonic effects are relatively
+small. For this reason, QHA can be used for applications in the solid portions of
+planets, but is generally insufficient for materials near or above their melting
+temperature. For this reason the work presented here focuses on using
+first-principles molecular dynamics (FPMD or DFT-MD).
+
+\subsection{Molecular Dynamics}
+
+Molecular dynamics (MD) is a means of sampling different configurations that are
+generated through tracking the realistic motions of nuclei, tracking their changing
+positions and velocities over time on pico-second timescales. Since these simulations
+mimic real processes it allows one to directly observe some properties, such as
+diffusion.
+
+At it's heart an MD simulation is just an extension of Newton's law. Considering the
+simple case of pair potentials, 
+%
+\begin{equation}
+    V(R) = \sum_{i>j} V({\bf r}_i,{\bf r_j}),
+\end{equation}
+%
+the total force acting on the $i$th atom is
+%
+\begin{equation}
+    {\bf F}_i = m_i{\bf a}_i = - \frac{\partial V}{\partial {\bf r}_i}.
+\end{equation}
+%
+The change of velocity then follows as 
+%
+\begin{equation}
+    \frac{\partial {\bf v}_i}{\partial t} = \frac{ {\bf F}_i}{m_i}
+\end{equation}
+%
+and the change in position as 
+%
+\begin{equation}
+    \frac{\partial {\bf r}_i}{\partial t} = {\bf v}_i.
+\end{equation}
+%
+
+Molecular dynamics implementations typically use the Verlet algorithm
+\citep{Verlet1967} which provides good numerical stability, as well as desirable
+physical properties such as time-reversibility. Because the primary goal of MD is in
+generating sample configurations higher order integrators are typically not
+necessary. The positions new position of an atom  ${\bf r}_{n+1}$ is updated based on it's
+previous two positions
+%
+\begin{equation}
+    {\bf r}_{n+1} = 2{\bf r}_{n} - {\bf r}_{n-1} + \left(\frac{ {\bf F}_n }{m}
+    \right) \Delta t^2 + O(\Delta t^4)
+\end{equation}
+%
+and the velocity
+%
+\begin{equation}
+    {\bf v}_{n} = \frac{{\bf r}_{n+1} - {\bf r}_{n-1}}{2\Delta t}  + O(\Delta t^2).
+\end{equation}
+%
+The time averaged material properties can then be determined from an
+average of the those calculated for each configuration. In the Microcanonical
+ensemble the total energy of simulation is constant, but the kinetic and potential
+energy, $K$ and $V$ where $E=K+V$ fluctuate over time. The time averaged kinetic
+energy is found as 
+%
+\begin{equation}
+    \langle K \rangle = \sum_i \frac{1}{2}m_i\langle  v_i^2 \rangle =
+    \frac{1}{2}Nk_BT.
+\end{equation}
+
+While $T$ is free to fluctuate between time steps, it is necessary to maintain the
+time-averaged temperature over the course of the simulation. This is done through the
+use of the Nos\'e-Hoover thermostat \citep{Nose1984}, which maintains $\langle T \rangle$ by
+considering heat transfer between the real system and imaginary degrees of freedom.
+The important features of this thermostat is that it is proven to obey the
+Microcanonical ensemble, thus preserving the ability to use the configurations to
+sample the desired properties.
+
+\subsection{Classical Monte Carlo}
+
+Besides MD, the other technique for sampling the Microcanonical ensemble is using
+Monte Carlo (MC) techniques. The technique generates a Markov chain of
+configurations (${\bf r}_1$,${\bf r}_2$,${\bf r}_3$\ldots) using the Metropolis
+algorithm \citep{Metropolis1953}, and then averaging the property of interest over
+those configurations. The Metropolis algorithm is as follows:
+%
+\begin{enumerate}
+    \item Start from configuration $R_{\rm old}$.
+    \item Propose a random move of an atom within a surrounding box, $R_{\rm old} \to
+        R_{\rm new}$.
+    \item Compute energies $E_{\rm old}=V(R_{\rm old})$ and $E_{\rm new}=V(R_{\rm
+        new})$.
+    \item If $E_{\rm new}<E_{\rm old}$ accept the new configuration.
+    \item If $E_{\rm new}>E_{\rm old}$ check whether to accept the new configuration
+        with probability $A$.
+\end{enumerate}
+%
+where the probably acceptance in the ``up-hill'' case is
+%
+\begin{equation}
+    A(R_{\rm old}\to R_{\rm new}) = \exp\left[-\frac{V(R_{\rm new} - V(R_{\rm old})}
+    {k_B T} \right].
+\end{equation}
+%
+In practice, a good rule of thumb is to choose the size of the box for moving the
+atoms such that the acceptance rate is near 50\%.  The Boltzmann factor is thus
+absorbed into the chain of generated configurations, and properties can be estimated
+as their simple average over all the configurations.
+
+There are also a number of different kinds of quantum Monte Carlo (QMC) techniques that
+are used extensively in condensed matter physics. These are , however, generally less
+computationally efficient than DFT, and are not presented in this work. Classical
+Monte Carlo (CMC) using simple pair potentials $V_{ij}=V({\bf r}_i,{\bf r}_j)$ did
+play an important role in our implementation of the thermodynamic integration
+technique outlined in the subsequent section.
 
 \section{Thermodynamic Integration}
 
+One of the major shortcomings of standard DFT-MD calculations from the viewpoint of
+many planetary science problems is the inability to calculate the entropy $S$ of a
+simulation. This quantity is of particular interest for a number of planetary
+problems because it is needed in order to calculate and compare the Gibb's free
+energy $G=E+PV-TS$. While one can identify the pressure of phase transitions at $T=0$
+by directly comparing the Helmholtz free energy $H=E+PV$ from DFT, mapping out these
+transitions up to thousands of K requires comparing $G$ between different phases.
+The technique is essential when considering transitions that involve liquid phases
+where use of the QHA is not possible. Calculating the entropy is also important for
+predictions of the temperature structure in the deep interiors of planets. In the
+simplest case of a vigorously convecting fluid layer, the $T$-$P$ path of constant
+entropy is a good approximation
 
-%%%% From F-H Manuscript
-Compression of materials with modern experimental techniques can reach megabar
-pressures, however the pressure-temperature conditions near Jupiter's core ($>$4 TPa) remain
-inaccessible. Temperatures in shockwave experiments climb rapidly at high
-pressures in comparison with planetary adiabats, while diamond anvil cell
-experiments
-are best suited for low temperatures. As a result, simulations based on ab 
-initio theories are best suited for directly probing the conditions of gas 
-giant interiors.
-
-
-We performed density functional theory molecular dynamics (DFT-MD) simulations
-to determine the energetics of a dissolution reaction, in which solid iron
-dissolves in pure liquid hydrogen. We calculate a Gibbs free energy of
-solvation:
-\begin{equation}
-  \Delta G_{sol}\left(\mathrm{Fe}:256\mathrm{H}\right) = G\left(\mathrm{H}_{256}\mathrm{Fe}\right) -
-  \left[ G\left(\mathrm{H}_{256}\right) +
-    \frac{1}{32}G\left(\mathrm{Fe}_{32}\right) \right]\mathrm{,}
+In addition to phase transitions within a
+composition, a determination of the entropy also allows us to begin addressing
+questions of simple chemical and compositional problems. For instance in Chapter 4 I
+present results on the high pressure solubility of iron and MgO, following the
+reaction $\rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm
+liq}$. This is achieved by running simulations of three separate phases and comparing
+the change Gibb's free energy
+%
+\begin{equation} \label{eqn:gibbs}
+% \frac{ \Delta G }{\rm{ FeMgO \; fun.}} =  \frac{1}{24}G_{\rm{(FeMgO)_{24}}} 
+  \Delta G_{\rm{\rm mix}}  =  \frac{1}{24}G_{\rm{(FeMgO)_{24}}} 
+- \frac{1}{32} \left[  G_{\rm{(MgO)_{32}}}  + G_{\rm{Fe_{32}}} \right]
 \end{equation}
-where $G\left(\mathrm{H}_{256}\right)$ and $G\left(\mathrm{Fe}_{32}\right)$
-are the Gibbs free
-energies of a pure hydrogen liquid and solid or liquid iron.
-$G\left(\mathrm{H}_{256}\mathrm{Fe}\right)$ is the Gibbs free energy of 1:256 liquid solution of iron
-in hydrogen. We assume that analysis of a single low-concentration solution is
-sufficient to determine the onset of core erosion, since the reservoir of
-metallic hydrogen would be much larger than the core. This does not rule out
-non-ideal effects of higher concentrations that might exist in a narrow,
-poorly convecting layer at the top of a core. 
+%
+associated with the reaction, where $G_{\rm{(MgO)_{32}}}$ and   $G_{\rm{Fe_{32}}}$
+are the Gibbs free energies of a pure MgO and iron endmembers with subscripts
+referring to the number of atoms in the periodic simulation cell. A representative
+snapshot from a MD simulation sell of ${\rm(FeMgO)}_{24}$ is shown in
+Fig.~\ref{femgosnap}.
+
+ \begin{figure}[h!] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[width=22pc]{figs/mgfeo_vest.png} 
+\caption{Snapshot of an MD-DFT simulation of liquid Fe + MgO
+    mixture.\label{femgosnap}}
+\end{figure}
+
+Thermodynamic integration (TDI) is a technique that considers a fictitious
+transformation of one atomic system into another. For instance, one can consider a
+system where you slowly change the interaction between atoms, running separate
+simulations for each step in the transformation. In our case we calculate an absolute
+$S$ by considering the transformation of the DFT system into an
+analogous classical system with the same number of atoms, having an analytic
+expression for $S$. Fig~\ref{tdi} shows a schematic representation of this
+transition. In principle this can also be done between two DFT systems, for
+instance transforming some subset of atoms from one element to another 
+
+ \begin{figure}[h!] %  figure placement: here, top, bottom, or page
+   \centering
+   \includegraphics[width=30pc]{figs/TD_integration.eps} 
+\caption{Schematic illustration of a thermodynamic integration between a simulation 
+    with DFT interactions and one with classical interactions. \label{tdi}}
+\end{figure}
 
 \subsection{Computation of Gibbs Free Energies}
 
-Free energy calculations require the determination of a contribution from
-entropy, which is not determined from the standard DFT-MD formalism. To achieve
-this, we adopt a two step thermodynamic integration method, as 
-used in previous studies \citep{morales09,wilson10,wilson12a,wilson12b}. The method
-requires integration of the change in Helmholtz free energy over an
-unphysical, yet thermodynamically permissible, transformation between two
-systems governed by potentials $U_a\left(\mathbf{r_i}\right)$ and 
-$U_b\left(\mathbf{r_i}\right)$. We define a hybrid potential 
-$U_{\lambda}=\left(1-\lambda\right)U_a+\lambda U_b$, where $\lambda$ is the
-fraction of the potential $U_b\left(\mathbf{r_i}\right)$. The difference is
-Helmholtz free energy is then given by
-\begin{equation}
-  \Delta F_{b\to a}\equiv F_b - F_a = \int_{0}^{1}{d\lambda\,\langle U_b\left(\mathbf{r_i}\right) -
-  U_a\left(\mathbf{r_i}\right) \rangle_{\lambda}}
-\end{equation}
-where the averaging is over configurations generated
-during simulations of the system governed by the hybrid potential. 
-
-To increase the efficiency, we calculated the Helmholtz free energy in two steps 
-each involving an integral of the form of Eq. 2. We first find $\Delta
-F_{\mathrm{DFT}\to \mathrm{cl}}$,
-between the systems governed by DFT and classical pair potentials, which are
-fit via a force-matching method \citep{izvekov04}. In the second step $\Delta
-F_{\mathrm{cl}\to \mathrm{an}}$, between the pair potentials and a reference system with an
-analytic solution $F_{\mathrm{an}}$. The Helmholtz energy for the DFT systems,
-$F_{\mathrm{DFT}}=F_{\mathrm{\mathrm{an}}}+\Delta F_{\mathrm{DFT}\to \mathrm{cl}}+\Delta F_{\mathrm{cl} \to \mathrm{an}}$, may then be
-compared directly. The first step requires DFT-MD simulations for a small
-number of $\lambda$ values, while the second uses applies a much faster classical Monte Carlo
-approach at numerous values of $\lambda$ to ensure a smooth integration.
-
-Finding a suitable reference system is essential to the method, as it allows
-$\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ to be found with a small number of 
-number of integration steps, and prevents solids from melting or transforming to a new
-structure. For liquid systems, we integrate to a non-interacting
-ideal gas, using classical two-body pair potentials as the intermediate
-step. For solid iron, we integrate to an Einstein solid, a system of
-non-interacting, 3-d harmonic oscillators. For the intermediate classical
-solid system we use a 50-50
-'mixture' of two-body and one-body harmonic oscillator potentials. Spring
-constants for the Einstein terms are found from the mean-squared displacement 
-of atoms from their ideal lattice sites during a DFT-MD simulation. 
-
-
-%%%% Similar discussion from FeMgO paper
+%%%% Discussion from FeMgO paper
 
 The Gibbs free energy of a material includes a contribution from entropy of the system.
 Since entropy is not determined in the standard DFT-MD formalism, we adopt a two step
@@ -117,27 +515,247 @@ supplementary information. The full energetics of the system is then described a
 F_{\mathrm{DFT}}=F_{\mathrm{\mathrm{an}}}+\Delta
 F_{\mathrm{an} \to \mathrm{cl}}+\Delta F_{\mathrm{cl}\to \mathrm{DFT}}
 \end{equation}
-where $\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ requires a small number of DFT-md
+where $\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ requires a small number of DFT-MD
 simulations, and $\Delta F_{\mathrm{an} \to \mathrm{cl}}$ numerous, but inexpensive
-classical Monte Carlo (CMC) simulations. The method depends on a smooth integration of
-$\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ and avoiding any first order phase transitions
-with $\lambda$.  We use five $\lambda$ points, for all $\Delta F_{\mathrm{cl}\to
-\mathrm{DFT}}$ integrations. For solid MgO we use a combination of classical pair and
-one-body harmonic oscillator potentials for $U_{\rm cl}$ \citep{Wilson2012a,Wahl2013}.
-Liquids we use only pair potentials. For solids the analytical reference system is an
-Einstein solid with atoms in harmonic potentials centered on a perfect lattice, while a
-gas of non-interacting particles is used for liquids. We found integrating over 5 lambda
-points to be sufficiently accurate, with an increase to 9 lambda points changing our
-results by $<0.003$ eV per formula unit. In the online supplementary information we
-include two additional tests of the thermodynamic integration method, demonstrating that
-our results are not sensitive use of different classical potentials or the integration
-path with respect to the interaction between different species in the multicomponent
-systems.
+classical Monte Carlo (CMC) simulations. The method depends on a smooth integration
+of $\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ and avoiding any first order phase
+transitions with $\lambda$.  We use five $\lambda$ points, for all $\Delta
+F_{\mathrm{cl}\to \mathrm{DFT}}$ integrations. For solids we use a combination of
+classical pair and one-body harmonic oscillator potentials for $U_{\rm cl}$
+\citep{Wilson2012a,Wahl2013}.  Liquids we use only pair potentials. For solids the
+analytical reference system is an Einstein solid with atoms in harmonic potentials
+centered on a perfect lattice, while a gas of non-interacting particles is used for
+liquids. We found integrating over 5 lambda points to be sufficiently accurate in
+most cases, with an increase to 9 lambda points changing our results by $<0.003$ eV
+per formula unit in the FeMgO study. In some cases as few as 3 lambda points are
+sufficient for the transformation from DFT to pair potentials. 
 
-All DFT simulations presented here were performed using the Vienna {\it ab initio}
-simulation package (VASP) \citep{Kresse1996}. VASP uses projector augmented wave
-pseudopotentials \citep{Blochl1994} and the exchange-correlation functional of Perdew,
-Burke and Ernzerhof \citep{Perdew1996}. Although the DFT formalism is based on a
-zero-temperature theory, DFT-MD simulations at high temperatures have been shown to agree
-with theory developed for warm dense matter \citep{Driver2012}. We use an iron
 
+\section{Tests of the Thermodynamic Integration Method}
+
+Here we present to tests validating the TDI method for use in multi component systems
+using different types of pair potentials. These were performed in conjunction with
+the Fe/MgO solubility study presented in Chapter 4.
+
+\subsection{Comparison of thermodynamic integration with different classical potentials}
+
+The classical pair potentials are derived by fitting the forces and
+positions along a pre-computed DFT-MD trajectory. The potentials are
+constructed to approach zero for large separations. For small separations
+where the trajectories provide no information, linear extrapolation is
+used, which means our pair potentials are finite at the origin. All of the
+results presented in the paper used this fitting procedure.
+Figure~\ref{fig:potentials} shows an example for the pair potentials for
+liquid MgO and 50~GPa and 6000~K.  While the Mg-Mg and O-O potentials are
+purely repulsive, the deep minimum in the Mg-O potential represents the
+attractive forces between ions of opposite charge.
+
+\begin{table}[!h]
+    \centering
+\caption{Comparison of integration paths using different classical potentials.\label{tab:compare_pots}}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{clllll}
+\hline
+Potentials & $F_{\rm an}$ & $F_{\rm an \to cl}$ & $F_{\rm cl}$ & $F_{\rm cl \to DFT}$ & $F_{\rm DFT}$ \\
+\hline
+Regular, bonding potentials & $-$427.151 & 27.962 & $-$399.189 & $-$233.825 $\pm$ 0.031 & $-$633.014  $\pm$ 0.031 \\
+Non-bonding potentials & $-$427.151 & 204.129 & $-$223.022 & $-$409.927 $\pm$ 0.080 & $-$632.950 $\pm$ 0.080 \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Table~\ref{tab:compare_pots} provide all terms of the thermodynamic
+integration procedure. In order to test how robust our approach is, we
+constructed a different set of pair potential where we eliminated all
+bonding forces. The values of these non-bonding potentials are constrained
+to be positive, asymptoting to zero without a minimum. Obviously they are a poor representation of the DFT forces
+in the system and therefore the free energy differences between the DFT and
+the classical system, $F_{\rm cl \to DFT}$, given in table
+\ref{tab:compare_pots}, is much larger than for our regular potentials.
+However, when the values for $F_{an}$, $F_{an \to cl}$, and $F_{\rm cl \to
+DFT}$ are added, we recover the results for $F_{DFT}$ within the 1$\sigma$
+error bars. This demonstrates that out free energy calculations are not
+sensitive to the details how we construct our classical potentials.
+
+\begin{figure}[h!]  
+    \centering
+    \includegraphics[width=30pc]{figs/potentials_both.pdf}
+\caption{Example pair potentials for liquid MgO at 50 GPa and 6000 K. Left: 
+  Regular pair potentials fit to DFT-MD simulations, with a linear
+  extrapolation at small separation and an asymptote to 0 at large
+  separation.  All of the results presented in the paper used this fitting
+  procedure. Right: Non-bonding potential fit with the same procedure, but
+  constraining values to be positive. Included for comparison with the pair
+  potentials in table~\ref{tab:compare_pots}.}
+\label{fig:potentials}
+\end{figure}
+
+
+Although the correct final result is found when using an unrealistic
+potential, the efficiency for the thermodynamic integration is the highest
+when the classical forces best match the DFT forces.
+Figure~\ref{fig:integrate_dft} shows the calculated values of $\left<
+V_{DFT} - V_{\rm cl} \right>$ as a function of $\lambda$ using the regular
+``bonding'' potential, and for the ``non-bonding potential''. Here each
+plotted value of lambda represents and independent DFT-md simulation with
+using that fraction of DFT forces, along with the complementary fraction of
+classical forces. The integral of this function give the helmholtz free
+energy $F_{\rm cl \to DFT}$. In the first case , the function $\left<
+V_{DFT}-V_{\rm cl}\right>$ in figure~\ref{fig:integrate_dft} depends weakly
+on $\lambda$. The function is almost linear and the differnce between
+values at $\lambda=0$ and 1 is small. When both criteria are satisfied,
+very few $\lambda$ points are needed to evaluate the integral. The
+simulations with non-bonding potentials experience larger fluctuations  due
+to the greater mismatch in forces, leading to a larger statistical
+uncertainty.  As a result, these simulations required longer simulation
+times to match the results found with bonding potentials.
+
+Figure~\ref{fig:integrate_cmc} shows $\left< V_{\rm cl} \right>$ as a function
+of $\lambda$ from classical monte carlo simulations. The integration of
+$F_{an \to cl}$function becomes strongly non-linear as $\lambda$
+approaches zero, the non-interacting case. Since classical simulations are
+approximately 10$^5$ times more efficient, it is possible to obtain very
+close sampling of the a cusp in the integrated function. 
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/dV_dft_both.pdf}
+\caption{The integration path to find $F_{cl \to DFT}$ potentials for MgO
+at 50 GPa 6000 K, using the regular, bonding pair potentials (upper) and
+the non-bonding pair potentials (lower). }
+\label{fig:integrate_dft}
+\end{figure}
+
+\begin{figure}[h!]  
+  \centering
+  \includegraphics[width=30pc]{figs/dV_cmc_both.pdf}
+\caption{The integration path to find $F_{an \to cl}$ potentials for MgO at 50 GPa 6000
+K, using the regular, bonding pair potentials (left) and
+the non-bonding pair potentials (right). These are plotted against the
+integration parameter, $\lambda$, to the $1/4$ power.}
+\label{fig:integrate_cmc}
+\end{figure}
+
+Using the definition for the ensemble averaged potential at a given
+$\lambda$
+\begin{eqnarray}
+  \left< V_{\rm cl} \right>_{\lambda} = \frac{ \int \! d{\bf r} \, V_{\rm cl}({\bf r}) 
+  e^{ -\beta \lambda V_{\rm cl}({\bf r}) } }
+  { Z}, \label{eqn:average}
+\end{eqnarray}
+where $Z$ is the partition function
+\begin{eqnarray}
+Z =  \int \! d{\bf r} \, e^{ -\beta \lambda V_{\rm cl}({\bf r}) },
+\end{eqnarray}
+we find the following expression as $\lambda \to 0$
+\begin{eqnarray}
+ \left< V_{\rm cl} \right>_{\lambda \to 0} &=& \frac{ \int \! d{\bf r} \, V_{\rm
+ cl}}
+ {  \int \! d{\bf r} \, 1} \nonumber \\
+ &=& \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \label{eqn:limit}
+\end{eqnarray}
+Then from the deriviative of $\left< V_{\rm cl} \right>_{\lambda}$ in
+equation \ref{eqn:average} and \ref{eqn:limit}
+\begin{eqnarray}
+  \frac{d \left< V_{\rm cl} \right>}{d \lambda}
+   &=& \frac{1}{Z^2} 
+  \left[ Z \int \! d{\bf r} \, \left(-\beta \right)V_{\rm cl}^2({\bf r}) 
+    e^{ -\beta \lambda V_{\rm cl}({\bf r}) } 
+   - \left(-\beta \right)\left\{  \int \! d{\bf r} \, V_{\rm cl}({\bf r}) e^{ -\beta \lambda
+     V_{\rm cl}({\bf r}) } \right\}^2
+    \right] \nonumber \\
+   &=& (-\beta) \left[ \left< V_{\rm cl}^2 \right> - \left< V_{\rm
+   cl}\right>^2 \right] \nonumber \\
+   \left. \frac{d \left< V_{\rm cl} \right>}{d \lambda}\right|_{\lambda \to 0} 
+   &=& (-\beta) \left[  \frac{1}{V}  \int \! dr \, r^2 V^2_{\rm cl}(r) -
+     \left\{ \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \right\}^2 \right]
+  \end{eqnarray}
+This give us the slope and intercept for the integration at $\lambda=0$,
+necessary to correctly integrate the cusp.  Becauase of the extreme
+difference in computational efficiency, it is always best to adjust the
+classical potential to match the DFT forces.
+
+
+\subsection{Verification of thermodynamic integration in multicomponent systems}
+
+The second test is to verify that, in a multi-component system, the
+integration path does not effect the results. An integration path needs to
+be constructed that connects a system with Mg-Mg, Mg-O, and O-O pair
+potentials with an non-interacting system. In our standard procedure we
+turn on all pair potentials simultaneously by changing
+$\lambda_1=\lambda_2=\lambda_3$ from 0 to 1.
+%
+\begin{equation}
+      V_{\lambda_1\lambda_2\lambda_3} = \lambda_1 V_{\rm Mg-Mg} + \lambda_2 V_{\rm
+      Mg-O} + \lambda_3 V_{\rm O-O} 
+\end{equation}
+%
+ However, as we will now demonstrate, alternative integration paths will give the
+ same results. We compare different integration paths to calculate the free energy of
+ the classical system, $F_{\rm cl}$, for both the regular and non-bonding potentials.
+ This is comparison can not be made directly for $F_{\rm cl \to DFT}$ because
+ tracking the interaction of different species separately is not possible in a
+ Kohn-Sham formulation.
+
+ \begin{table}[!h]
+     \centering
+\caption{Comparison of different integration paths using classical potentials. 
+  \label{tab:compare_int_path}}
+
+     \begin{tabular}{clllllll}
+         \hline
+{Potential} & 
+            {$F_{\rm an}$} & 
+            {$F_{\rm step}$} & 
+            {$F_{\rm an} + \sum F_{\rm step}$} \\
+         \hline
+Non-bonding & $-$427.151 & $F_{000 \to 111}$ = 204.196(27)      & $-$222.955(27)
+\\[1mm]\hline\\[-2.5mm]
+Non-bonding & $-$427.151 & $F_{000 \to 010}$ = $\,\:$16.328(6)  & $-$222.953(45)\\
+           &          & $F_{010 \to 111}$ = 187.870(39) 
+\\[1mm]\hline\\[-2.5mm]
+Non-bonding & $-$427.151 & $F_{000 \to 101}$ = 166.363(15)      & $-$222.962(21)\\
+           &          & $F_{101 \to 111}$ = $\,\:$37.826(18)
+\\[1mm]\hline\\[-2.5mm]
+Non-bonding & $-$427.151 & $F_{000 \to 100}$ = 104.323(11)      & $-$222.954(52)\\
+           &          & $F_{100 \to 110}$ = $\,\:$31.225(10) \\
+           &          & $F_{110 \to 111}$ = $\,\:$68.650(31)
+\\[1mm]\hline\\[-2.5mm]
+Regular     & $-$427.151 & $F_{000 \to 111}$ = $\,\:$28.028(31) & $-$399.123(31) 
+\\[1mm]\hline\\[-2.5mm]
+Regular     & $-$427.151 & $F_{000 \to 101}$ = ~~182.820(16)      & $-$399.123(37) \\
+           &          & $F_{101 \to 111}$ = $-$154.792(21) \\
+\hline
+%%\tablecomments{Table \ref{data} is published in its entirety in the 
+%%electronic edition of the {\it Astrophysical Journal}.  A portion is 
+%%shown here for guidance regarding its form and content.}
+%\end{deluxetable}
+\end{tabular}
+\end{table}
+
+In line 2 of table~\ref{tab:compare_int_path}, we turn on the Mg-O
+potential in the first integration step ($F_{000 \to 010}$) and then switch
+on the Mg-Mg and O-O potentials in the second and final integration step
+($F_{101 \to 111}$). The indices refer to the three $\lambda$ values for
+Mg-Mg, Mg-O, and O-O potentials, respectively. In line 3 of
+table~\ref{tab:compare_int_path}, we interchange both integration steps. In
+line 4, we performed three integration steps turning on the one potential
+after the other. In the last column we compare the classical free energies
+after adding the results from every integration step to $F_{\rm an}$. The
+results agree within the statistical uncertainties demonstrating that the
+same classical free energies can be obtained for four different integration
+paths using non-bonding potentials.
+
+In table~\ref{tab:compare_int_path}, we also show the results for two
+integration paths using regular, bonding potentials. We find consistent
+results when we either turn on all potentials simultaneously and when we
+switch on the Mg-Mg and O-O potentials in the first step and the Mg-O
+potential in the second. We were not able, however, to turn on the
+attractive Mg-O alone because the system becomes unstable due to the
+imbalance between attractive and missing repulsive forces. This is similar
+to what happens in the case of a first-order phase transition, which over
+which thermodynamic integrations are also invalid. Nevertheless, this test
+demonstrates that different integration paths give consistent results also
+for the systems with attractive forces when care is taken to taken to avoid
+instabilities.

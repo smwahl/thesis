@@ -228,7 +228,7 @@ Material properties are calculated using a Mie-Gr\"{u}neisen-Debye EOS, using th
 code. It finds adiabatic temperature profiles consistent with the pressure of the 
 inner core boundary and the composition of the liquid. 
 
-Also shown in Figure \ref{interior_model} is a model liquidus, fit to experimental
+Also shown in Fig.~\ref{fig:interior_model} is a model liquidus, fit to experimental
 phase diagrams. The melting curve of the Fe-S system has enigmatic features, which
 may not be captured captured by a  linear interpolation. The onset of ``snow''
 regions in the core is extremely sensitive to this interpolation.
@@ -265,11 +265,6 @@ steeper melting temperature corresponding to  ``Earth-like'' conditions. For hig
 values of the thermal expansivity, $\alpha$, the core will be ``snowing'' at all
 times. For lower $\alpha$, the onset of snowing occurs with increasing S-content.
 
-The interior structure model is coupled to a parameterized convetion model for
-the thermal evolution of the planet. Shown on the right in Figure \ref{core_energy}
-are the changes in latent heat, gravitational and thermal energy in the core per
-change in core mantle boundary temperature for bulk composition of 6 wt.\% S. 
-
 
  \begin{figure}[H] %  figure placement: here, top, bottom, or page
    \centering
@@ -289,6 +284,12 @@ exceeding the upper bound of inner core size as constrained by Dumberry and Rivo
   \label{fig:thermal}
 \end{figure}
 
+The interior structure model is coupled to a parameterized convetion model for
+the thermal evolution of the planet. Shown on the right in Fig.~\ref{fig:core_energy}
+are the changes in latent heat, gravitational and thermal energy in the core per
+change in core mantle boundary temperature for bulk composition of 6 wt.\% S. 
+
+
 
  \begin{figure}[H] %  figurVVe placement: here, top, bottom, or page
    \centering
@@ -298,6 +299,8 @@ exceeding the upper bound of inner core size as constrained by Dumberry and Rivo
 \caption{ Heat flux variations due to insolation for a conducting mantle with negligible internal heating. The total CMB heat flux is $\sim 0.6~\mathrm{TW}$, and peak-to-peak variations are about 20\%. }
 \label{fig:flux}
 \end{figure}
+
+Mercury's unusual 3:2 spin-orbit resonance causes persistent temperature variations at the surface.  This boundary condition may create significant heat-flux variations at the CMB, especially if the mantle is not convecting.  Here we solve a simple conduction equation in the mercurian mantle to calculate an estimate of heat flux at the CMB.  This heat-flux variation is then used to inform the boundary conditions of a dynamo simulation using the \texttt{Calypso} code.
 
  \begin{figure}[H] %  figurVVe placement: here, top, bottom, or page
    \centering
@@ -311,7 +314,3 @@ exceeding the upper bound of inner core size as constrained by Dumberry and Rivo
 entropy such that a present-day dynamo can be sustained (positive Ohmic dissipation). }
 \label{entropy}
 \end{figure}
-
-Mercury's unusual 3:2 spin-orbit resonance causes persistent temperature variations at the surface.  This boundary condition may create significant heat-flux variations at the CMB, especially if the mantle is not convecting.  Here we solve a simple conduction equation in the mercurian mantle to calculate an estimate of heat flux at the CMB.  This heat-flux variation is then used to inform the boundary conditions of a dynamo simulation using the \texttt{Calypso} code.
-
-
