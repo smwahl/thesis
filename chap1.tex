@@ -1,64 +1,187 @@
 \chapter{Introduction}\label{chap1}
 
-\begin{quote}
-{\small\textit{The world is richer than it is possible to express in any single language. - Ilya Prigogine}}
-\end{quote}
+The materials composing Earth's are $\sim$99\% composed of only 8 elements. In
+Jupiter at least 90\% of the planet is composed of just hydrogen and helium.
+Nonetheless these materials are the subject of constant study by experiment and
+simulation. The extreme high pressures and temperatures under which these
+materials exist make them difficult to study. For the Earth these conditions
+extend to $\sim$300 GPa and $\sim$6000 of Kelvin \citep{alfe2009} (the
+temperature value remains contentious); inside Jupiter the pressures reach in
+excess of 4 TPa, while the maximum temperatures in the aftermath of the
+moon-forming impact would  have been in the tens of thousands Kelvin. Under
+such extreme conditions materials can behave in ways that would not be
+predicted from their behavior at ambient conditions. Insulating materials can
+become metallic at high pressures, and elements that are nominally excluded can
+become readily soluble in a material.
 
-%\begin{theorem}
-%\tolerance=10000\hbadness=10000
-%Koopmanss; Kohn-Sham
-%\end{theorem}
+An accurate understanding of the properties of planetary materials is essential
+in determining their present structure and their evolution over time. Their
+properties our inextricably tied to the methods we use to probe the insides of
+planets, whether that be through seismology, geodesy, or measurement of their
+gravitational or magnetic fields. But understanding their properties alone is
+not sufficient. Planetary Science depends on physical models to take these
+properties acting on a microscopic material scale and study how they govern
+behaviour on planetary length- and time-scales. The results of such models are
+often non-unique, due to the relatively small number of direct measurements
+that can be made from a planet's surface, and due to the nature of key material
+properties such a density  being compatible with a large range of different
+compositions. A complete planetary model therefore draws on information from a
+variety of sources, including cosmochemical inferences and, on Earth, the
+record of rock sample exhumed from the planet's interior.
 
-Deep inside the Earth and giant planets, materials are under extremly high pressures and temperatures, which are mostly a million atomosphere pressure or higher and thousands degree temperature.
-%at the Earth's core-mantle boundary are 1.36 million atomosphere pressures and ~5000 Kelvin temperatures. 
-Diverse minerals and phases exist under these conditions and they together govern the specific dynamics of each planet, depending on its particular formation and evolution history. The chemistry and physics of minerals under high-pressure, temperature conditions determine the properties of planet interiores, which is coupled with geological signatures at the surface. Therefore, studying of minerals under extreme conditions has been an important topic in Earth and planetary science, essential for human beings to explore the solar system and beyond, such as exoplanets. 
+In this thesis I present a variety of work using computational techniques to
+address questions about planetary interiors and evolution, focused on: 1)
+determining properties of planetary materials from first-principles physics
+simulations, and 2) applying of these derived properties to models of
+large-scale planetary structure and processes. In Chapter~\ref{chap2} I discuss
+the physics numerical techniques I have used and developed to simulate
+planetary materials at high temperatures. Chapters~\ref{chap3} and \ref{chap4}
+summarize the results of two studies using these first-principles techniques to
+study the dissolution of a rock-ice cores in gas giant planets, and the
+high-temperature solubility of terrestrial cores and mantles.
+Chapter~\ref{chap5} introduces work to build a thermochemical model of iron 
+alloys for understanding the generation of magnetic fields in the cores of
+Mercury and other small terrestrial bodies. Chapter~\ref{chap6} shows the 
+derivation of a non-perturbative method for calculating self-consistent 
+gravitational fields of a fluid planet. Chapter~\ref{chap7} uses this method 
+to study the tidal response of Jupiter and Saturn. Finally, Chapter~\ref{chap8}
+uses the same technique in combination with first-principles equations of state
+to interpret the gravitational field measured by the \textit{Juno} spacecraft 
+at Jupiter.
 
-The physic quantity that governs the stability of phases is the Gibbs free energy $G=U+PV-TS$, where $U$ is the internal energy, $PV$ and $TS$ correspond to the pressure-volume and the temperature-entropy term, respectively. The lower in $G$, the more stable a phase is. Therefore, for phases with similar internal energy, high pressure tends to stabilize those with smaller volumes, while high temperature eases the formation of those with higher entropies.  Competition between the two factors leads to the particular stability region of each phases of a material. The boundary between phases is usually characterized by the Clapeyron slope, which is related to the changes in volume and entropy associated with the phase transition via $dP/dT=\Delta S/\Delta V$. The Clapeyron slope can be positive (for instance the perovskite to post-perovskite transition of MgSiO$_3$) or negative (such as the B1-B2 transition of MgO), leading to variations in the depth of phase transition at regions with temperature anomaly \cite{Karato-book}.
+\section{Interior Structure and formation of the Earth and other Planets}
 
-Some important questions for theoretists include: 1) how to accturatly calculate $G$ to determine the most stable phases out of a group of candiate structures? 2) how to precisely obtain the energy-pressure-temperature-volume relations ($E$-$P$-$T$-$V$ relations, or the equation of state) and properties of a system, once the structure is known? and 3) how to guide the design expensive experiments or verify and explain experimental discoveries? First-principles simulations, especially those based on density functional theory (DFT) \cite{ks1965} and quantum Monte Carlo (QMC) \cite{Ceperley2010}, are expected to provide satisfatory solutions to these questions. In this chapter, we introduce the interior of the Earth and the possible structures of Jovian and extrasolar planets, followed by some important questions for mineral physicists and methods in high-pressure studies. Details of first-principles methods will be described in the next chapter.
+The interior of the Earth, and presumably most other rocky planets and moons,
+are differentiated into into a number of layers, as is demonstrated
+seismological and geodynamic studies. It mainly consists of the mantle, which
+is likely dominantly of magnesium silicates and oxides, and the core, which is
+presumably Fe-Ni alloys with some light elements
+\cite{Birch1952,Mcdonough1995}.  The Earth's upper mantle (less than $\sim$7
+GPa) and the entire mantles of smaller terrestrial bodies are composed of the
+rock peridotite, consisting of the minerals olivine, garnet, and pyroxene. With
+increasing pressure at the these minerals undergo a number of phase transitions
+through the transition zone (410-660 km), eventually transforming into the
+lower mantle (669-2891 km) composition of bridgemanite (formally Mg-perovskite)
+and ferropericlase \cite{Tronnes2010}.  Down to a few hundred kilometers above
+the core-mantle boundary ($\sim$136 GPa), there exists the D$^{\prime\prime}$
+layer, which is characterized by strong seismic anomalies and lateral
+heterogeneities. This layer may involve an additional transition from
+bridgemanite to Mg-postperovskite and/or a dense partial melt.  The Earth's
+core is divided into a liquid outer core (2891-5150 km, 136-329 GPa),
+surrounding a solid inner core (5150-6371 km, 329-364 GPa). Smaller rocky
+planets are also expected to have at least a thin liquid outer core, due to the
+significant freezing point depression of Fe-S alloys.
 
-\section{The interior of the Earth and other planets}
-The interior of the Earth is in layers, as has been proven by seismological and geodynamic findings. It mainly consists of the mantle, which is likely dominantly silicates and oxides, and the core, which is presumably Fe-Ni alloys with some light elements \cite{Birch1952,Mcdonough1995}. Based on seismic characteristics, the mantle is divided into the upper mantle (from the bottom of crusts to 410 km depth), the tranzition zone (410-660 km), and the lower mantle (660-2891 km). Typical rocks in the upper mantle (less than $\sim$7 GPa) are peridotite and basalt, where the former consists of olivine, garnet, and pyroxene, and the latter is mainly made of garnet and pyroxene. With increasing pressure at the lower mantle (24-127 GPa), these minerals transform into bridgmanite, ferropericlase, calcium silicate perovskite, stishovite, etc \cite{Trønnes2010}. Down to a few hundred kilometers above the core-mantle boundary ($\sim$136 GPa), there exists the D$^{\prime\prime}$ layer, which is characterized by strong seismic anomalies and lateral heterogeneities. Deeper at the core region, there is a liquid layer at the outside known as the outer core (2891-5150 km, 136-329 GPa), surrounding a solid inner core (5150-6371 km, 329-364 GPa) that has complex anisotropic structure \cite{Mattesini2010}. It is noteworthy that the detailed mineral composition of the lower mantle (and likewise the core) is still in question, which is a topic to be studied in Chapter \ref{chap3} of this dissertation.
+The structure of giant-planet interiors is much more limited, but data from
+telescope observations and spacecraft missions, as well as cosmochemical
+studies based on meteorites and the solar photosphere have aided in
+constructing models interiors of Jovian planets \cite{Guillot2004}. Jupiter and
+Saturn are composed primarily of hydrogen and helium, but must contain tens of
+Earth-masses of heavy elements. The hydrogen-helium mixture transitions from an
+insulator to a metal at $\sim$1 TPa. It is not known for sure whether these
+planets have compositionally distinct layers, or if the ``rocks'' and ``ices''
+exist in solution, and are distributed through the planet (Chapters~\ref{chap3}
+and \ref{chap7} deal with this question).  Uranus and Neptune may each have a
+small rocky core surrounded by a thick layer of ice-hydrogen-rock mixture, and
+another layer near the surface consisting of hydrogen, helium, and ice.  Here
+the ``ices'' refer to hydrides of the most abundant light elements (oxygen,
+carbon, and nitrogen) that are next to hydrogen, helium and neon, such as
+water, methane, and ammonia, which condense from the nebula at relatively low
+temperatures. 
 
-%\begin{figure}
-%\centering\includegraphics[width=\textwidth]{figs/earth_interior.png}
-%\caption{\label{ch1fig1} The interior of the Earth \cite{Jeanloz1993}.}
-%\end{figure}
+Even less is known about the interiors and compositions of exoplanets, the
+confirmed number of which has reached 3,586 as of Mar. 2017 \cite{Schneider2011}.
+The known exoplanets span a large range of masses from smaller than Earth to
+greater than Jupiter.  There detection methods do have a selection bias towards
+larger planets that are closer in to their stars, thus many fall into to
+category of ``hot Jupiters''. Statistical analyses of the Kepler catalogue,
+however, suggest that the most numerous category of planets is that in a
+``super-Earth'' or ``sub-Neptune''  mass range. Comparing the planets'
+mass-radius data with the equation of state (EOS) of typical planet-forming
+materials enables estimating these planets' composition \cite{Seager2007} give
+some idea of the composition of these planets, although the determination is
+non-unique without additional information. The results of the studies in
+Chapters~\ref{chap3} and \ref{chap4} have some relevance to exoplanets, as does
+Chapter~\ref{chap8} in so far as, many exoplanets are expected to have
+analogous interior structures to Jupiter.
 
-%Therefore, the foundamental chemical systems to study include (Mg$_{1-x^A-y^A}$Fe$_{x^A}$Al$_{y^A}$)(Si$_{1-x^B-y^B}$Fe$_{x^B}$Al$_{y^B}$)O$_3$, Mg$_{1-x}$Fe$_x$O, SiO$_2$, and CaSiO$_3$, the high-pressure phases of each, the phase diagram and behavior of elements in their mixtures, the corresponding equation of states, and physical properties.
+The final stages of terrestrial planet formation are expected to be include 
+a number of energetic collisions between planetesimals and proto-planets. 
+These giant impacts have been invoked to explain a number of features of and
+difference between planets in the inner solar system. One of the more extreme
+examples is the hypothesized moon-forming impact. Recent studies have suggested
+even more energetic, high-angular momentum collisions \citep{Cuk2012} than the 
+canonical, Mars-sized impactor scenario \citep{canup2004}. A consequence of 
+such a giant impact is that at least a portion of the mantle would have been
+molten in the aftermath, and may have been heated to temperatures
+much higher than those typically considered in studies of Earth materials. 
+We pose this question in Chapter~\ref{chap4}.
 
-%\begin{figure}
-%\centering\includegraphics[width=1.0\textwidth]{figs/pyrolite_mantle.png}
-%\caption{\label{ch1fig2} Mineral proportion changes in pyrolite, a possible composition model for the Earth's mantle. Adapted from \cite{Lin2013}.}
-%\end{figure}
+For the giant planets there is an ongoing debate regarding the nature of their 
+formation: whether a terrestrial-like core must form first for the gas to accrete 
+on to, or if they formed directly from collapse of an instability in the gas. 
+The concentration of heavy elements towards the center of the planet is 
+indicative of the first scenario, although a comprehensive theory for the 
+early evolution of the gas giants is not settled. The work presented in 
+Chapters~\ref{chap3} and \ref{chap8} are relevant for this debate.
 
-Comparing with the Earth, knowledge of giant-planet interiors is much more limited due to the difficulty in direct detection. Despite of this, data from astronomical observations using telescopes or spacecraft emission have helped constructing models for the composition of Jovian planets \cite{Guillot2004}: Uranus and Neptune may each have a small rocky core surrounded by a thick layer of ice-hydrogen-rock mixture, and another layer near the surface consisting of hydrogen, helium, and ice; Jupiter and Saturn each has a icy rocky core, which is enveloped by a very thick layer of hydrogen-hellium mixtures. Here the ``ices'' refer to hydrides of the most abundant light elements (oxygen, carbon, and nitrogen) that are next to hydrogen, helium and neon, such as water, methane, and ammonia \cite{Stevenson2013}. Novel structures, such as a superionic state, have been predicted for these ices and refreshed our understanding about Uranus and Neptune \cite{Cavazzoni1999,Wilson2013}. Chapter \ref{chap5} and a few more works \cite{Militzer2016a,Militzer2016b} during my doctorate study are toward this end.
+\section{Methods in High-Pressure Studies}
 
-%\begin{figure}
-%\centering\includegraphics[width=0.6\textwidth]{figs/jovian_planets_interior.png}
-%\caption{\label{ch1fig3} The possible interiors Jovian planets. The estimated temperatures and pressures near the surfaces and shell boundaries are labeled. The size of the cores of Jupiter and Saturn are uncertain, even more so for the interiors of Uranus and Neptune. \cite{Guillot2004}}
-%\end{figure}
+Although the studies presented here focus on numerical simulations, the
+development of numerical techniques has gone hand in hand with experimental
+techniques  for studying materials at high pressure.  There are two main
+classes of high-pressure experimental techniques: 1) static compression and 2)
+dynamic compression. The first involves applying a constant pressure to a
+sample. These techniques include ones based on large-volume press, such as the
+multi-anvil apparatus \cite{Ito2007} that can attain pressures of $\sim$30 GPa
+(top of the lower mantle) and sometimes $\sim$100 GPa, or diamond anvil cells
+\cite{Mao2007}, which reach pressures greater than 360 GPa (center of the
+Earth). The second class involves generating and monitoring a shock wave in a
+sample. The drivers for dynamic compression experiments include gas
+gun\footnote{E.g., Lindhurst Laboratory for Experimental Geophysics at Caltech,
+    and more resources listed on
+http://mygeologypage.ucdavis.edu/stewart/OLDSITE/ImpactLabs.html.}, intensive
+laser\footnote{E.g., National Ignition Facility at Lawrence Livermore National
+Laboratory.}, or strong magnetic fields\footnote{E.g., Z Machine at  Sandia
+National Laboratories.} \cite{Asimow2015}.
 
-Even less is known about the interiors and compositions of exoplanets, although the confirmed number of which has reached 2951 as of Aug. 5, 2016. Many of the planets recently discovered by the Kepler mission \cite{keplerpj} are bigger than the Earth or similar to Jovian planets. Comparing the planets' mass-radius data with the equation of state (EOS) of typical planet-forming materials enables estimating these planets' composition \cite{Seager2007} and grouping them into ``super Earths'', ``sub-Neptunes'', ``hot Jupiters'', etc. This gives one example that reflects the importance of EOS calculations. In fact, many areas, including shock wave experiments, stellar physics, and high energy density physics, have put requisites on EOS. An example of EOS calculation in wide temperature and pressure ranges on warm dense sodium is given in Chapter \ref{chap6}.
+Static compression has the advantage of flexibility in reaching a large range
+desired temperatures and pressures. Large volume press allow for larger,
+centimeter-sized samples, which is helpful for studying equilibrium phase
+relations thorough analysis of the recovered samples . Diamond anvil cells are
+frequently used for studying isolated materials up to very high pressures,
+often with laser-heating to reach the desired temperature. Diamond anvil cell
+studies  have benefited greatly from the development of new-generation
+synchrotron radiation facilities, which provide high-energy X-ray beams to
+determine the structure of $\mu$m-sized samples in situ.
 
-\section{Essential questions for mineral physicists}\label{ch2s2}
-In order to understand the formation and evolution of the Earth, Jovians, and other planets beyond the solar system, it is important to have a good knowledge of the foundamental components---the minerals: their various chemistry, phases, and physical properties at high temperatures and pressures corresponding to the interiors of these planets.
+Dynamic compression utilizes shock waves to generate high pressures, which are
+necessarily accompanied by simultaneous high temperatures. This technique is
+particularly useful for constraining equations of state and detecting phase
+transitions under the extreme conditions. During propagation of the shock wave,
+the courses of the states of a target mineral is usually along specific paths
+that are governed by the EOS. Techniques such as pre-compression and
+multi-shock allows reaching states off the principle Hugoniots, and ramp
+compression enables high pressure measurements at low temperatures, which can
+be useful for studying pressure-driven phase transformations predicted by
+ground-state first-principles calculations.
 
-In the Earth's lower mantle as well as the rocky parts of Jovian and many extrasolar planets' interiors, the most important systems to study are (Mg$_{1-x-y}$Fe$_{x}$Al$_{y}$)(Si$_{1-x'-y'}$Fe$_{x'}$Al$_{y'}$)O$_3$, 
-Mg$_{1-x}$Fe$_x$O, SiO$_2$, and CaSiO$_3$. This includes the structure, texture, mechanic properties (compression behavior, elasticity, etc), transport properties (viscosity, thermal diffusivity and conductivity), as well as the phase diagram of each indivual system individually and their mixtures, at pressures spanning $10^5-10^7$ times atmosphere condition. Accurate data in these aspects are demanding for demystifying global and regional seismic anomalies observed in top-mid lower mantle and core-mantle boundary regions of the Earth. The are also important for screening or justifying geodynamic models for understanding mantle convection and evolution, core-mantle interaction, and plate techtonics.
-
-The Earth's core is of particular importance and interests to the Earth science community. The structure, density-pressure relation, and sound velocities \cite{Badro2014} of Fe and Fe-X (X=Si, O, S, etc.) alloys are useful for estimating the core's composition; the phase diagrams of these alloys and the behavior of the light elements X \cite{Hirose2013,ORourke2016} are important for constraining the inner-outer core boundary and growth of the inner core; the melting temperature \cite{Aquilanti2015} constrains the mantle geotherm; and the thermal conductivity \cite{Ohta2016,Konopkova2016} defines the heat flux that is important for understanding the Earth's magnetic field and the formation of the solid inner core. Tremondous efforts across the world have been invested to working on these topics, but the composition and state of the core are still uncertain.
-
-One common feature of the above questions is the condition of high pressure. At megabar pressurs, materials may exhibit new structures or behaviors that are distinct from those in ambient conditions. For example, at 0 GPa, $d$ electrons of Fe$^{2+}$ in (Mg,Fe)O ferropericlase are in a state with high spin number ($\mathcal{S}=5/2$), as is predicted by the Hund's rule. This ``high-spin'' state is no longer stable at mid-lower mantle pressure ($\sim$40 GPa), but transits into a ``low-spin'' state with $\mathcal{S}=0$, because the changes in crystal field splitting surpasses the spin-paring energy, at such high pressures. The spin transition is often believed to be associated with significant softening in the bulk modulus \cite{Chen2012} and increase in shear anisotropy \cite{Marquardt2009}, potentially result in dramatic changes in the partition of iron between bridgmanite and ferropericlase \cite{Badro2003} that are useful for geodynamic studies, and explain lateral heterogeneities in seismic observations \cite{Wu2014}. Another instance is, meterials under high pressure may have counter-intuitive stoichiometry \cite{WZhang2013}, because of the changes in electronic interaction and lattice dynamics due to compression. These factors should be considered seriously when studying materials at deep-interior conditions of planets.
-
-\section{Methods in high-pressure studies}
-Methods for materials studies at high pressure conditions have kept developing in the last few decades. Experimentally there are two main types of techniques---static compression and dynamic compression. The former is often based on large-volume press, such as the multi-anvil apparatus \cite{Ito2015} that can usually attain pressures of $\sim$30 GPa (top of the lower mantle) and sometimes $\sim$100 GPa, or diamond anvil cells \cite{Mao2007}, which enables reaching pressures higher than 360 GPa (center of the Earth); the latter using gas gun\footnote{E.g., Lindhurst Laboratory for Experimental Geophysics at Caltech, and more resources listed on http://mygeologypage.ucdavis.edu/stewart/OLDSITE/ImpactLabs.html.}, intensive laser\footnote{E.g., National Ignition Facility at Lawrence Livermore National Laboratory.}, or high magnetic fields\footnote{E.g., Z Machine at  Sandia National Laboratories.} can achieve pressures and temperatures greater than that at the center of Jupiter, and therefore plays a special role in the studies of Earth and planetary interiors \cite{Ahrens2003}.
-
-Static compression has the advantage of flexibility in reaching the desired temperatures and pressures. Large volume press allows operating with samples in the sizes of centimeters, which is advantageous in studying equilibrium phase relations by analyzing the recovered samples after the pressing, heating, and quenching procedure. Diamond anvil cells are frequently used for studying isolated materials up to very high pressures. The progress in this technique has benefited greatly from the development of new-generation synchrotron radiation facilities, which provide high-energy X-ray beams that are useful to determine the structure of $\mu$m-sized samples confined in chambers with limited opening angles. 
-
-Dynamic compression utilizes shock waves to generates high pressures, which are often accompanied by simultaneous high temperatures. This technique is particularly useful for measuring EOS and detecting phase transitions under the extreme conditions. During progation of the shock wave, the courses of the states of a target mineral is usually along specific paths that are governed by the EOS. Therefore, one can use theoretical models or calculations to provide EOS to guide the design of experiments, which improves the efficiency and could in turn verifies the theoretical data. Techniques such as pre-compression and multi-shock allows reaching states off the principle Hugoniots, and ramp compression enables high pressure measurments at low temperatures, which can be useful for studying pressure-driven phase transformations predicted by ground-state first-principles calculations.
-
-In addition to the collaboration between experiment and simulation, the mineral physics community also has traditions of working closely with other disciplines, such as seismology, geodynamics, geochemistry, and planetary science. Such multi-field synergy is very important for obtaining a complete and convincing picture on the origin and evolution of the Earth and other planets.
-
-
+In spite of sweeping advancements in the field, limitations remain for
+high-pressure experimental techniques, some of which can be aided by judicious
+use of first principles simulations. There are regions of pressure temperature
+space that are difficult or impossible to achieve in experiments. Shock
+experiments are classically confined to follow the Rankins-Hugoniot curve,
+meaning that for a given pressure the temperatures rise much faster than
+typical planetary barotropes. Laser heating of diamond anvil cells also has its
+limits when it comes to reaching very high temperatures. Thus, there is a range
+of conditions in deep planetary interiors, particularly for the giant planets,
+that are inaccessible to experiments. There are certain material properties
+that very difficult to measure in situ, and only some questions can be
+adequately addressed with recovered samples. In some cases, accuracy of
+experimentally determined pressures and densities are insufficient to constrain
+equations of state satisfactorily (as is the case for experimental
+hyderogen-helium equations of state of interest to the work in
+Chapter~\ref{chap8}). In spite of these issues, experiments are ultimately the
+way to unambiguously verify theoretical predictions. It is clear that both
+fields benefit immensely from contributions from the other.
 
