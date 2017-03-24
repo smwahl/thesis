@@ -36,7 +36,7 @@ instability, i.e., the collapse of a region of the disk under self-gravity
 still form at a later stage \citep{helled2014}.  Even if the planet initially
 formed with a distinct rock-ice core, at high pressures and temperatures these
 core materials become soluble in liquid metallic hydrogen
-\citep{Stevenson1985,wilson2012a,Wilson2012b,Wahl2013,Gonzalez2013}. As a
+\citep{Stevenson1985,Wilson2012a,wilson12b,Wahl2013,Gonzalez2013}. As a
 result, the core will erode and the heavy material will be redistributed
 outward to some extent. In this study we consider the effect of such a dilute
 core, in which the heavy elements have expanded to a significant fraction of
@@ -46,7 +46,7 @@ Jupiter's radius.
 
 Significant progress has been made in understanding hydrogen-helium mixtures at
 planetary conditions
-\citep{saumon1995,Saumon2004,Vorberger2007,Militzer2008,Fortney2010,Nettelmann2012,militzer2013a,becker2013,militzer2016},
+\citep{saumon1995,Saumon2004,vorberger2007,Militzer2008,Fortney2010,Nettelmann2012,militzer2013a,becker2013,militzer2016},
 but interior model predictions are still sensitive to the hydrogen-helium
 equation of state used \citep{hubbard2016,miguel2016}. 
 In Section \ref{sec:barotropes} we describe the derivation of barotropes from a
@@ -102,14 +102,6 @@ the molecular and metallic regions.
 
 
 \subsection{Barotropes} \label{sec:barotropes}
-In this paper we consider interior density profiles in hydrostatic equilibrium,
-%
-\begin{equation} \nabla P = \rho \nabla U,     
-    \label{eq:hydrostatic} \end{equation}
-%
-where $P$ is the pressure and $\rho$ is the mass density. In order to find a consistent
-density profile, we use a barotrope $P(\rho)$ corresponding to isentropic profiles
-constructed from various equations of state. 
 
 Most of the results presented are based on  density functional theory molecular
 dynamics (DFT-MD) simulations of hydrogen-helium mixtures from
@@ -148,7 +140,7 @@ hundred K through much of the molecular envelope
   \end{center}
   \caption{Different theoretical predictions for Jupiter's interior adiabat. The shaded areas corresponds to the layers
     in figure~\label{fig:galileo_match}}. 
-  \label{fig:jup}
+  \label{fig:galileo}
 \end{figure}
 
 
@@ -214,7 +206,7 @@ interior temperatures are sufficient for helium to become miscible again.
   \caption{Hydrogen-helium miscibility diagram. The solid lines show
     DFT-MD adiabats from \citet{militzer2013a} labeled with their entropy in
     units of $k_b$ per electron. The shaded area is the immiscibility
-    region calculated by \citet{Morales2013} that we extrapolated
+    region calculated by \citet{morales2013} that we extrapolated
     towards higher pressures. }
   \label{fig:imm}
 \end{figure}
@@ -263,7 +255,7 @@ layer.
 
 The thermodynamic stability of various material phases in giant planet
 interiors has been assessed using DFT-MD calculations
-\citep{wilson2012a,Wilson2012b,Wahl2013,Gonzalez2013}.  These calculations
+\citep{Wilson2012a,wilson12b,Wahl2013,Gonzalez2013}.  These calculations
 suggest that at the conditions at the center of Jupiter, all likely abundant
 dense materials will dissolve into the metallic hydrogen-helium envelope. Thus,
 a dense central core of Jupiter is expected to be presently eroded or eroding.
@@ -292,7 +284,7 @@ Gaussian $Z$ profile instead.  Fig.~\ref{fig:density} demonstrates the density
 profiles resulting from these different assumptions about the distribution of
 core heavy elements. 
 
-\section{Results} \label{sec:results}
+\section{Results} \label{sec:juno_results}
 
 \subsection{Reference Interior Model}
 
@@ -333,7 +325,7 @@ case, we used the approach described in \citet{miguel2016}.
 
 The even zonal moments observed by \textit{Juno} after the first two perijoves
 \citep{Folkner2017} are broadly consistent with the less precise predictions of
-\citet{Campbell1985} and \citet{Jacobson2003}, but inconsistent with the more
+\citet{Campbell1985} and \citet{jacobson2003}, but inconsistent with the more
 recent JUP310 solution \citep{Jacobson2013}.  Table~\ref{tab:models} compares
 these observations with a few representative models. 
 While the formal
@@ -342,13 +334,13 @@ contributions to them is still unknown.
 Although the solid-body (static) contribution dominates this low-order, even
 part of the gravity spectrum \citep{Hubbard1999}, a small dynamical
 contribution above \textit{Juno}'s expected sensitivity must be considered
-\citep{Kaspi2010}.  For sufficiently deep flows, these contributions could be
+\citep{kaspi2010}.  For sufficiently deep flows, these contributions could be
 many times larger than \textit{Juno}'s formal uncertainties for $J_n$
 \citep{Kaspi2017}, and thus represent the conservative estimate of uncertainty
 for the purpose of constraining the interior structure. Thus, ongoing gravity
 measurements by \textit{Juno}, particularly of odd and high order, even $J_n$,
 will continue to improve our understanding of Jupiter's deep interior
-\citep{Kaspi2013}.  Marked in yellow in Fig~\ref{fig:j4j6}, is the possible
+\citep{kaspi2013}.  Marked in yellow in Fig~\ref{fig:j4j6}, is the possible
 uncertainty considering a wide range of possible flows, and finding a
 corresponding density distribution assuming the large scale flows are to
 leading order geostrophic \citep{Kaspi2009}.  The relatively small range in our
@@ -416,7 +408,7 @@ Supplementary Section S3.
 In order to increase $J_4$ for a given planetary radius and $J_2$,  
 one must either increase the density below the 100 GPa pressure level or
 conversely decrease the density above that level \citep[][their
-Fig.~5]{Guillot1999}. We explore two possibilities: either we raise the density
+Fig.~5]{Guillot1999a}. We explore two possibilities: either we raise the density
 in the metallic region by expanding the central core, or we consider the
 possibility of an increased entropy in the molecular region.
 
@@ -440,31 +432,33 @@ compared to the observed value is less significant than for $J_4$ and $J_6$.
     matching the measured $J_2$.
     %
     (Upper) The blue rectangle shows the uncertainty of the \textit{Juno}
-    measurements as of perijove 2 \citep{Folkner2017}. The yellow region shows the
-    effective uncertainty in the static contribution due possible deep differential
-    rotation \citep{Kaspi2017}. The blue star is the reference (Model A) with
-    $Z=Z_{\rm Gal}$ matching that measured by the \textit{Galileo} entry probe, and
-    an core of $r/r_J$=$0.15$. The blue squares show how these results change as a
-    dilute core with a constant $Z$ enrichment with increasing $r$ is considered. The
-    green and red circles denote similar expanding core trends with lowered outer
-    envelope heavy element fraction to $Z$=$0.007$ and $Z$=$0.01$, respectively.  The
-    `+'s denote models which take perturb the MH13 EOS by introducing a jump in $S$
-    at $P$=$0.01$ (black), $P$=$5.0$ (blue) and $P$=$50.0$ GPa (red). Black diamonds
-    show models using the SCvH EOS at all conditions.     
+    measurements as of perijove 2 \citep{Folkner2017}. The yellow ellipse shows
+    the effective uncertainty in the static contribution due possible deep
+    differential rotation \citep{Kaspi2017} and with flow restricted to 10000
+    km (dash-dot), 3000 km (dashed), and 1000 km (solid). The blue star is the
+    reference (Model A, Tab.~\ref{tab:models}) with $Z_1=Z_{\rm Gal}$ 
+    matching that measured by the \textit{Galileo} entry probe, and an core of
+    $r/r_J$=$0.15$. The blue squares show how these results change as a dilute
+    core with a constant $Z_1$ enrichment and core radius $r$ increasing
+    to the right. The green and red circles denote similar expanding core
+    trends with lowered outer envelope heavy element fraction to 
+    $Z_1$=$0.007$ and $Z_2$=$0.01$, respectively.  The `+'s denote models
+    which take perturb the MH13 EOS by introducing a jump in $S$ at $P$=$0.01$
+    (black), $P$=$5.0$ (blue) and $P$=$50.0$ GPa (red), with $Z_11$
+    decreasing to the right. Black diamonds show models using the SCvH EOS.     
     %
-    (Lower) The stars denote models B,C,D,E, \& F in
-    Table~\ref{tab:models}. Violet diamonds show models using the REOS3 EOS
-    (Models R, S \& T).  Black and green `x's show models starting with the
-    green star (dilute core, $Z$=$0.007$) and changing the $S$ of the deep
-    interior or the onset pressure of helium rain. Red, green and cyan stars
-show models fitting the measured $J_4$ with the radius of the dilute core.
-Black Star shows model fitting $J_4$ with with the entropy jump magnitude
-$\Delta S$. 
-%Orange 'x's show models with a sharp molecular-metallic transition.
+    (Lower) Models fitting the observed $J_4$ yield larger $J_6$ with increasing core
+    radii. The stars denote models B, C, D, E, \& F in Table~\ref{tab:models}.
+    Violet diamonds show models using the REOS3 EOS (Models R, S \& T).  Black
+    and green `x's show models starting with the green star (dilute core,
+    $Z_1$=$0.007$) and changing the $S$ of the deep interior or  the
+    pressure of the onset of helium rain. Red, green and cyan stars show
+    models fitting the measured $J_4$ with the radius of the dilute core.
+    Black Star shows model fitting $J_4$ with with the entropy jump magnitude
+    $\Delta S$. 
 }
 \label{fig:j4j6}
 \end{figure}
-
 
 Precisely matching \textit{Juno}'s value for $J_4$ with the MH13 based models
 presented here, requires lower densities than the reference model through at
@@ -622,7 +616,7 @@ contributions increases the effective uncertainty of the static $J_2$--$J_8$ by
 orders of magnitude \citep{Kaspi2017}. It is expected that the dynamical
 contribution to $J_n$ will be better constrained following future perijove
 encounters by the \textit{Juno} spacecraft with measurements of odd and higher
-order even $J_n$ \citep{Kaspi2013}. 
+order even $J_n$ \citep{kaspi2013}. 
 
 Even with this greater effective uncertainty, it is possible to rule out
 a portion of the models presented in this study, primarily on the basis on the

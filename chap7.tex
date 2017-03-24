@@ -6,7 +6,7 @@
 We assume the liquid planet is in hydrostatic equilibrium,
 %
 \begin{equation} \nabla P = \rho \nabla U,     
-   \label{eq:hydrostatic} \end{equation}
+   \label{eq:hydrostatic2} \end{equation}
 %
 where $P$ is the pressure, $\rho$ is the mass density and $U$ the total effective
 potential. Modeling the gravitational field of such a body requires a barotrope
@@ -574,7 +574,7 @@ computationally convenient when finding a converged core mass to $J_{2}$, since 
 requires no modification of the radial grid used through the envelope. For this
 reason we consider models with a constant core radius of $0.15a$. Decreasing this
 radius below $0.15a$ for a given core mass has a negligible effect on the calculated
-gravitational moments \citep{hubbard2016}. Figure \ref{fig:density_structure} shows
+gravitational moments \citep{hubbard2016}. Figure \ref{fig:density_jupiter} shows
 the density profile for two representative models.  In general, models using the
 DFT-MD equation of state lead to a larger central core and a lower envelope
 metallicity than those using SCvH.  \citet{hubbard2016} also noted that these models
@@ -592,7 +592,7 @@ density $\rho_{pu}=M/a^3$).  The red curve shows our preferred
     Both models have $N=511$ layers and a dense core within $r=0.15a$.  Constant core
     densities are adjusted to match $J_2$ as measured by fits to Jupiter flyby Doppler
     data \citep{jacobson2003}.}
-\label{fig:density_structure}
+\label{fig:density_jupiter}
 \end{figure}
 
 \subsection{State Mixing for Static Love Numbers} \label{state_mixing}
@@ -760,7 +760,7 @@ eigenfunctions ${\bf u}_{\ell m n}(r,\theta,\phi)$, projected on spherical harmo
 of degree $\ell$ and order $m$ (the index $n=0,1,2,...$ is the number of radial nodes
 of the eigenfunction).  Note that in their convention, oscillations moving prograde
 (in the direction of increasing $\phi$) have negative $m$, whereas some authors, e.g.
-\citet{marley1993} use the opposite convention.
+\citet{Marley1993} use the opposite convention.
 
 Treating the tidal response as a forced-oscillation problem, equation (24) of
 \citet{vorontsov1984}, the vector tidal displacement ${\bf \xi}$ then reads

@@ -1,2 +1,108 @@
 \chapter{Conclusions}\label{chap9}
 
+The wide range of topics covered in this dissertation exemplifies the relevance of
+first-principles material simulations to a broad range of disciplines within
+planetary science. I have presented calculations for materials under pressure ranges
+multiple TPa and tens of thousands of Kelvin. I include studies of materials relevant
+to the Earth and other terrestrial planets, both today and during their violent
+formations, as well as the gas giants. This versatility when it comes exploring
+materials at the extreme conditions under which they reside within the planets is a
+major beneficial feature of first-principles techniques. Of course the studies
+presented here represent just a small selection of the relevant areas of planetary
+science to which these simulations are important.
+
+In Chapters 2-4, I presented methods and studies focused on the calculation and
+comparison of entropy in materials. This is an area of first-principles simulation
+which has seen increasing attention in recent years, due largely to the fact that
+these calculations remain computationally expensive. The significant improvements in
+the speed and availability of high performance computing over this period of time has
+played a huge role in expanding the range of tractable problems for materials
+simulation. This is particularly important in planetary science where liquids and
+high temperature environments are key to many processes of interest in their deep
+interiors. With these newly developed techniques (in particular thermodynamic
+integration) we are able to push beyond the more typical equation of state
+calculations and begin addressing problems involving simple chemical reactions.
+
+The miscibility of planetary materials is of profound interest across planetary
+sciences. The basic structure of the planets reflect the tendency of different
+materials to combine or exclude each other. Assessing the extent to which this occurs
+for Major elements in deep planetary interiors has been a major focus of my thesis
+work. In Chapter 3, I demonstrated that iron metal is soluble in in liquid metallic
+hydrogen over the entire range for which these materials might exist in the Jovian
+planets.  Combined with similar results on H$_2$O, MgO and SiO$_2$
+\citep{Wilson2012a,wilson12b,Gonzalez2013} we now predict that a dense core of Jupiter
+would be entirely soluble in the overlying hydrogen-helium envelope. This result has
+important consequences for the formation and evolution of the giant planets, although
+the specifics of Jupiter's evolution with an eroding core will require additional
+modeling efforts to understand fully. 
+
+Similarly, in Chapter 4, I assessed the solubility of analog materials for
+terrestrial mantles and cores at temperatures well above those in the present day
+Earth, but well within the extreme temperatures present in the aftermath of energetic
+giant impacts, such as those hypothesized in the formation of the Earth's moon
+\citep{Cuk2012,Canup2012}. In this study I derived solvus closure temperatures for
+the Fe-MgO system between $\sim$6000-9000 K over the pressure range within the Earth.
+Since heating from giant impacts is naturally heterogeneous, it can therefore be
+expected that a portion of the Earth was heated to these temperatures at times during
+it's early history. Since the time of publication, experimental results at lower
+temperatures \citep{Badro2016} have found solubilities broadly consistent with these
+solvus closure temperatures. Thus, a fraction of the planet was likely equilibrated
+in an entirely different regime with fully mixed core and mantle material.
+Geochemical models for the distribution of elements within the Earth are typically
+done based on understanding of material behaviour at lower temperatures, and thus may
+require some modification if enough of the planet experienced this very different
+material regime.  Assessing the importance of this mantle core miscibility is not
+straightforward, as there is presently great uncertainty in processes at work in the
+immediate aftermath of these energetic giant impacts, during which the degree of
+mechanical mixing may be at least as important as the preferred thermodynamic state
+of the material \citep{Nakajima2014,Deguen2014}. Although all of the work presented
+in this dissertation is focused on the most abundant elements, it is also possible to
+use the same techniques to assess the solubility of trace elements which act as
+important tracers for deep mantle processes in terrestrial samples.
+
+Finding the properties of material phases is, in general, only half of the
+story when it comes to applying first principles techniques to problems in planetary
+science. Correctly using an EOS derived from microscopic principles to model
+planetary scale processes is a complex art. Chapter 5 summarizes work towards
+building an integrated model for the evolution of the cores of small terrestrial
+planets. The interest in this work was focused on peculiarities in the Fe-S-Si phase
+diagram, for which I aggregated a combined model from various experimental sources.
+However, it is not possible to simply model a planet's core in isolation, since the
+heat flow is governed by the mantle and lithosphere above. With sufficient material
+information combined with iterative methods it is possible to create a self
+consistent model through a planet's interior, even when the precise structure is not
+known. The results of such a model will, however, be very sensitive to changes in the
+equations of state, for which numerous assumptions must be made to account for
+limitations of and inconsistencies between different experimental studies.
+
+With this in mind, Chapters 6-8 dealt with development of new method to relate
+existing equations of state to a direct measurable quantity for the gas giant
+planets. We demonstrated that the concentric Maclaurin spheroid (CMS) method is
+capable of measuring gravitational moments to higher precision in both axisymmetic
+cases and cases with a tidal perturbation. Since this method is non-perturbative, it
+led to the discovery of some previously undiscovered features of tidal response of a
+rotating body: the splitting of Love numbers of the same order, and a dependence on
+those harmonics on the orbital distance of the satellite, neither of which occur in
+perturbative calculations. Of more immediate, was the result that the primary
+tidal Love number, $k_{22}$, is elevated by rotation, bringing predictions in line
+with the recent observational result for Saturn \citep{lainey2016}. It remains to be
+seen whether Jupiter's tidal response also shows this elevated response.
+
+Finally I detailed a modelling study of the planet Jupiter for interpreting the even
+gravitational harmonics from the \textit{Juno} spacecraft's preliminary orbits. The
+CMS calculations of the gravitational moments are capable of reproducing the measured
+$J_n$, but not without significant modifications to the `preferred' model put forward
+before orbital insertion \citep{hubbard2016}. Differences in equations of state have
+a very strong influence on results, despite matching the best high pressure
+experiments on hydrogen to within experimental uncertainty. The equation of state
+using thermodynamic integration to determine entropy, and thus the one favored as
+most physically realistic, encounters problems because it is comparatively dense at
+low pressures. We demonstrated that a dilute core, expanded to a significant fraction
+of the planet's radius is helpful for matching $J_n$ with the preferred equation of
+state. However, even with an expanded core it is likely that there is at least one
+remaining issue with the current models. We proposed a number of solutions,
+including: a lower than expected heavy element content in the outer envelope, a
+hotter outer envelope (perhaps due to an extended radiative zone) or a systematic
+offset in the DFT densities for hydrogen-helium mixtures. Regardless, it appears that
+independent testing of the calculated equations of state may be necessary in order to
+make precise statements about the state of Jupiter's deep interior.
