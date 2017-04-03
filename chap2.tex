@@ -6,25 +6,25 @@ referred \textit{ab initio} methods) refer to calculations of material propertie
 using physical models that do not rely on any specific experiment or measured
 material property. These calculations, therefore are built up from physical constants
 including the speed of light $c$, Planck's constant $h$, as well as the mass  and
-charge of consitutent electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless,
+charge of constituent electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless,
 approximations must be made in order to make solution to the many-body Schr\"odinger
 equation tractable.
 
 These methods are of particular use in the study of materials in the deep interiors
-of Earth and other planets, because the inherrent high pressures and temperatures
-pose difficulties for the design and interpretion of experiments. In the case of the
+of Earth and other planets, because the inherent high pressures and temperatures
+pose difficulties for the design and interpretation of experiments. In the case of the
 Jovian planets, Jupiter and Saturn, these conditions are so extreme that modern
 experimental techniques are unable to recreate the conditions through a large portion
 of the planet's interior. In the following chapters I will be addressing questions of
-materials in some of these extreme pressure-temperaturature ranges.
+materials in some of these extreme pressure-temperature ranges.
 
 In studies of materials, the most prevalent classes of first-principles methods based
 on density functional theory (DFT) or quantum Monte Carlo (QMC). Most of these
 techniques are fundamentally zero temperature theories. In this work, as in most
-first-principles applications to planetary sciencei, I focus on the use of DFT. This
+first-principles applications to planetary sciences, I focus on the use of DFT. This
 is due largely to the advantage of its better computational efficiency. This
 computational efficiency means that DFT can currently be extended to larger atomic
-systems and to conisder finite temperature more easily than with Monte Carlo based
+systems and to consider finite temperature more easily than with Monte Carlo based
 techniques. The higher precision QMC techniques do have an important place in
 determining stability between phases in which energy differences are very small.
 Since the focus of the work presented here is on systems involving the exchange of
@@ -34,7 +34,7 @@ predictions to be sufficiently accurate.
 This chapter introduces the theoretical and computational backgrounds of the density
 functional theory molecular dynamics (DFT-MD) technique, which is our workhorse
 method for first-principles studies in planetary science. We also describe in depth
-the thermodynamic integration method, allows for a calucation of entropy of the
+the thermodynamic integration method, allows for a calculation of entropy of the
 simulated system.
 
 
@@ -54,9 +54,9 @@ electrodynamic effects.}
 Here $\mathbf{r_i}$ describes the configuration of the electrons while $\mathbf{R_I}$ describes the position
 of the nuclei.  Because the mass of the nuclei is much greater than that of the
 electrons, the kinetic energy of the nuclei can be ignored, and the electrons are
-assumed to rearrange instantataneously with any change in the position of the nuclei
+assumed to rearrange instantaneously with any change in the position of the nuclei
 (see Chapter 3.1 of \cite{martin-esbook}). This assumption, called the
-Born-Oppenheimer or adiabatic approximation, simplifies the general Hamitonian to
+Born-Oppenheimer or adiabatic approximation, simplifies the general Hamiltonian to
 %
 \begin{equation}\label{generalhee}
 \begin{aligned}
@@ -80,8 +80,8 @@ solution, which allows us to calculate solutions to a many-body equation for the
 \end{aligned}
 \end{equation}
 %
-for a specified configuration of nuclei $\mathbf{R_I}$ Hamiltonion describing all
-electron-elctron and electron-nuclei interactions further reduces to
+for a specified configuration of nuclei $\mathbf{R_I}$ Hamiltonian describing all
+electron-electron and electron-nuclei interactions further reduces to
 %
 \begin{equation}\label{generalhee2}
 \begin{aligned}
@@ -95,10 +95,10 @@ electron-elctron and electron-nuclei interactions further reduces to
 \section{Density functional theory}\label{ksdft}
 
 A practical approach to solving the above fully interacting many-body problem
-requires some additional assumptions. Of the avaailable approaches to solving
+requires some additional assumptions. Of the available approaches to solving
 Eq.~\ref{generalhee}, DFT is the most widely used to date. 
 
-The DFT fram is based on two theorems proven by Hohenberg and Kohn \cite{Hohenberg1964} in
+The DFT from is based on two theorems proven by Hohenberg and Kohn \cite{Hohenberg1964} in
 1964: 1) any property of a system of interacting particles can be determined by the
 ground-state density of electrons $n_0(\textbf{\textit r})$; and 2) for any external
 potential $V_\text{ext}(\textbf{\textit r})$, a universal energy functional $E[n]$
@@ -109,7 +109,7 @@ of the following ansatz:
 %
 \begin{itemize}
 \item The exact ground-state density of electrons can be represented by that of an auxiliary system of non-interacting particles.
-\item The auxiliary hamiltonian is chosen to have the usual kinetic operator and an effective local potential $V_\text{eff}^\sigma(\textbf{\textit r})$.
+\item The auxiliary Hamiltonian is chosen to have the usual kinetic operator and an effective local potential $V_\text{eff}^\sigma(\textbf{\textit r})$.
 \end{itemize}
 This allows solving the many-electron Eq. \ref{generaleeq} by converting it into an independent-particle problem 
 \begin{equation}\label{kseq}
@@ -117,7 +117,7 @@ This allows solving the many-electron Eq. \ref{generaleeq} by converting it into
 \hat{H}_\text{KS}^\sigma\psi_i^\sigma(\textbf{\textit r})=\varepsilon_i^\sigma\psi_i^\sigma(\textbf{\textit r}), 
 \end{aligned}
 \end{equation}
-where $\hat{H}_\text{KS}^\sigma=\hat{T}+V_\text{eff}^\sigma(\textbf r)$ is the spin-dependent single-particle Harmitonian.
+where $\hat{H}_\text{KS}^\sigma=\hat{T}+V_\text{eff}^\sigma(\textbf r)$ is the spin-dependent single-particle Hamiltonian.
 
 Comparing with the Hohenberg-Kohn energy functional 
 \begin{equation}\label{hkeq}
@@ -139,7 +139,7 @@ where
 n(\textbf{\textit r})=\sum_\sigma\sum_{i=1}^{N^\sigma}|\psi_i^\sigma(\textbf{\textit r})|^2
 \end{aligned}
 \end{equation}
-is the the density of electrons satisfying $\int n(\textbf{\textit r})d(\textbf{\textit r})=N$ (total number of electrons),
+is the density of electrons satisfying $\int n(\textbf{\textit r})d(\textbf{\textit r})=N$ (total number of electrons),
 \begin{equation}\label{spTs}
 \begin{aligned}
 T_s=-\frac{\hbar^2}{2m}\sum_\sigma\sum_{i=1}^{N^\sigma}\langle\psi_i^\sigma|\nabla^2|\psi_i^\sigma\rangle=-\frac{\hbar^2}{2m}\sum_\sigma\sum_{i=1}^{N^\sigma}|\nabla\psi_i^\sigma|^2
@@ -163,11 +163,11 @@ The exact ground-state energy and density of electrons
 can be obtained by solving Eqs. \ref{kseq} and \ref{numberdensity} in a
 self-consistent iterative way.
 
-The Kohn-Sham approch provides a feasible way of determining the exact ground-state
+The Kohn-Sham approach provides a feasible way of determining the exact ground-state
 properties of many-electron systems: given a known $E_\text{xc}[n]$. In principle the
 functional form of the exchange-correlation is not known. This leads to the main
 assumption of the DFT method. The success of the DFT method relies on the fact that
-it is ofthen reasonable to approximate $E_\text{xc}[n]$ as a local or nearly local
+it is often reasonable to approximate $E_\text{xc}[n]$ as a local or nearly local
 functional of the density. 
 
 \subsection{Computational considerations}
@@ -227,7 +227,7 @@ correlation energy density, the widely used expression is based on parameterizat
 
 The success of LDA has also prompted extensive work on designing new functionals. For
 example, by considering the non-uniform nature of electron distribution, several
-schemes of generalized gradiant approximation (GGA), in which the
+schemes of generalized gradient approximation (GGA), in which the
 exchange-correlation functional is a function of both the density of electrons $n$
 and its gradient $\nabla n$, have been developed. In recent years one of the most
 popular exchange-correlation functionals is a GGA-class functional developed by
@@ -269,7 +269,7 @@ for densities near the correct solution. Equation \ref{eqksapprox} is now standa
 There are different methods for solving the Kohn-Sham equations. Typically one
 chooses a basis set to expand the orbitals, according to the nature of the system.
 Plane wave basis, Gaussian basis, and Slater-type orbital basis are often used.  For
-electronic structures condensed systems with periodic boundary condtions, such as
+electronic structures condensed systems with periodic boundary conditions, such as
 those presented here, plane waves is the  natural choice.  They make form a complete,
 general basis that allows for easy convergence.
 
@@ -277,11 +277,11 @@ Another noteworthy concept in DFT is the pseudopotential, which is  used in most
 materials simulations considering elements with Z$>$2. The idea of pseudopotentials
 is to use an effective ionic potential to replace the combined Coulomb potential of
 the nucleus and electrons on the valence electrons, whose effect is assumed to be
-nearly indentical regardless of ionic configuration. The use of pseudopotentials
+nearly identical regardless of ionic configuration. The use of pseudopotentials
 greatly reduces the size of the basis, which otherwise has to be large to describe
 the non-smooth electronic states near the nucleus. Particular attentions has to be
-paid to the pseudopotnetnial in studies at extremly high pressures, because a
-pseudopotential can be invalidated by overlaping of the core states of nearby atoms.
+paid to the pseudopotential in studies at extremely high pressures, because a
+pseudopotential can be invalidated by overlapping of the core states of nearby atoms.
 
 %The expression of Hamiltonian in Eq. \ref{generalhee} is still valid for valence electrons when using a pseudopential\footnote{Except for ``non-local'' pseudopotentials.} to describe the ionic part.
 
@@ -300,7 +300,7 @@ configurations, which must be weighted using principles from statistical mechani
 In most experimental and ``real world'' applications the ensemble of interest is a
 $NPT$ ensemble (one with number of atoms, pressure and temperature). For
 first-principles calculations, however, it is typically much easier to consider a
-$NVE$ or microcononical ensemble (with fixed volume and total energy).
+$NVE$ or Microcononical ensemble (with fixed volume and total energy).
 
 Low to intermediate temperatures can be treated as a perturbation to the ground state
 (see some discussion in Section 3.1 of \cite{martin-esbook}), leading to
@@ -570,17 +570,16 @@ Non-bonding potentials & $-$427.151 & 204.129 & $-$223.022 & $-$409.927 $\pm$ 0.
 \end{adjustbox}
 \end{table}
 
-Table~\ref{tab:compare_pots} provide all terms of the thermodynamic
-integration procedure. In order to test how robust our approach is, we
-constructed a different set of pair potential where we eliminated all
-bonding forces. The values of these non-bonding potentials are constrained
-to be positive, asymptoting to zero without a minimum. Obviously they are a poor representation of the DFT forces
-in the system and therefore the free energy differences between the DFT and
-the classical system, $F_{\rm cl \to DFT}$, given in table
-\ref{tab:compare_pots}, is much larger than for our regular potentials.
-However, when the values for $F_{an}$, $F_{an \to cl}$, and $F_{\rm cl \to
-DFT}$ are added, we recover the results for $F_{DFT}$ within the 1$\sigma$
-error bars. This demonstrates that out free energy calculations are not
+Table~\ref{tab:compare_pots} provide all terms of the thermodynamic integration
+procedure. In order to test how robust our approach is, we constructed a different
+set of pair potential where we eliminated all bonding forces. The values of these
+non-bonding potentials are constrained to be positive, and asymptote to zero without
+a minimum. Obviously they are a poor representation of the DFT forces in the system
+and therefore the free energy differences between the DFT and the classical system,
+$F_{\rm cl \to DFT}$, given in table \ref{tab:compare_pots}, is much larger than for
+our regular potentials.  However, when the values for $F_{an}$, $F_{an \to cl}$, and
+$F_{\rm cl \to DFT}$ are added, we recover the results for $F_{DFT}$ within the
+1$\sigma$ error bars. This demonstrates that out free energy calculations are not
 sensitive to the details how we construct our classical potentials.
 
 \begin{figure}[h!]  
@@ -603,9 +602,9 @@ when the classical forces best match the DFT forces.
 Figure~\ref{fig:integrate_dft} shows the calculated values of $\left<
 V_{DFT} - V_{\rm cl} \right>$ as a function of $\lambda$ using the regular
 ``bonding'' potential, and for the ``non-bonding potential''. Here each
-plotted value of lambda represents and independent DFT-md simulation with
+plotted value of lambda represents and independent DFT-MD simulation with
 using that fraction of DFT forces, along with the complementary fraction of
-classical forces. The integral of this function give the helmholtz free
+classical forces. The integral of this function give the Helmholtz free
 energy $F_{\rm cl \to DFT}$. In the first case , the function $\left<
 V_{DFT}-V_{\rm cl}\right>$ in figure~\ref{fig:integrate_dft} depends weakly
 on $\lambda$. The function is almost linear and the differnce between
