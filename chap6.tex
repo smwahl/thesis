@@ -237,7 +237,15 @@ central core.
 
 \subsection{Calculation of gravitational potential} \label{calc_grav_pot}
 
-The general expansion of $V$ in spherical coordinates ${\bf r} = (r,\mu =
+The gravitational potential at a point vector coordinate, do to an arbitrary mass
+distribution is given by 
+%
+\begin{equation} \label{eq:basicV}
+    V(\mathbf{r}) = G \int d^3\mathbf{r'}
+    \frac{\rho(\mathbf{r'})}{\left|\mathbf{r}-\mathbf{r'}\right|}.
+\end{equation} 
+%
+An expansion of $V$ in spherical coordinates ${\bf r} = (r,\mu =
 \cos{\theta},\phi)$ is
 %
 \begin{equation}
@@ -819,6 +827,19 @@ method introduced in Section \ref{barotrope}. Scaling the densities to maintain 
 total mass of the planet has a straightforward interpretation for a polytropic
 barotrope, as it is equivalent to changing $K$.
 
+
+\begin{figure}[h]  
+  \centering
+    \includegraphics[width=22pc]{figs/polytrope_tidal_linear.pdf}
+\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
+    non-rotating planet with an $n=1$ polytrope equation of state, up to order 6.
+    $\Delta k_n$ is the shift in love number $k_n$ from the limit of low $q{\rm
+    tid}$. The love numbers $k_n$ are degenerate with respect to $m$. The orbital
+    radius is taken to be that of Tethys. The vertical, dashed gray lines show $q_{\rm tid}$
+    for Tethys-Saturn and Io-Jupiter.}
+\label{fig:polytrope_tidal_only}
+\end{figure}
+
 For the constant-density Roche spheroid the lowest degree love number was 
 %
 \begin{equation}
@@ -874,17 +895,6 @@ polytrope model to be $\sim 10^{-3}$ for $N=128$, roughly consistent with our
 calculated difference. 
 
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/polytrope_tidal_linear.pdf}
-\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
-    non-rotating planet with an $n=1$ polytrope equation of state, up to order 6.
-    $\Delta k_n$ is the shift in love number $k_n$ from the limit of low $q{\rm
-    tid}$. The love numbers $k_n$ are degenerate with respect to $m$. The orbital
-    radius is taken to be that of Tethys. The vertical, dashed gray lines show $q_{\rm tid}$
-    for Tethys-Saturn and Io-Jupiter.}
-\label{fig:polytrope_tidal_only}
-\end{figure}
 
 Similar to the calculations on the constant density spheroid in Section \ref{maclaurin}, we
 performed additional $N=128$ polytrope simulations with finite $q_{\rm tid}$ and
@@ -908,7 +918,7 @@ the single spheroid. This is to be expected since there is less mass concentrate
 in the outer portion of the polytrope model. 
 
 
-\begin{figure}[h!]  
+\begin{figure}[h]  
   \centering
     \includegraphics[width=22pc]{figs/polytrope_rotation_both.pdf}
 \caption{ Top: The effect of rotation rate on the tidal love numbers of a planet with an
@@ -936,7 +946,53 @@ to $n=6$ are similar between the two cases. This indicates that the effect shoul
 ubiquitous in all fast-spinning liquid bodies, and relatively insensitive to the
 density profile of the planet.
 
+\subsection{Limits of the Laplace Expansion and Audit Point Calculations}\label{expansion}
 
+One short-coming of the CMS expansion in the formalism presented in this chapter is
+the fact that it has an upper limit to the rotation rate for which the method
+converges. The issue surrounds the expansion of the
+$\left|\mathbf{r}-\mathbf{r'}\right|$ in Eqn.~\ref{eq:basicV} in powers of $r'/r$. In
+Figure~\ref{fig:audit_point} this expansion converges for the region inside the inner
+circle and outside the outer circle, but diverges in the region between these two
+circles. \citet{zharkov1978} concluded that the series converged the use of this
+expansion is valid, as it becomes convergent upon integration. \citet{Hubbard2014}
+demonstrated that there is a critical rotation rate for which the expansion diverges
+and thus the method becomes unstable. For a single constant density spheroid the
+critical shape is given by
+%
+\begin{equation}\label{eq:crit_ell}
+\begin{aligned}
+    \ell < 1, \\
+    \ell^2 = \frac{a^2}{b^2}-1.
+\end{aligned}
+\end{equation}
+%
+This was verified through comparison of the results at the ``audit point'', point A in
+Fig.~\ref{fig:audit_point}. At this point there is an equivalent, exact expression
+for the potential, which avoids use of the expansion in question. This ``audit
+point'' also exists in the case of $N$ spheroids, so it provided an important test during
+the development of the method.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/audit_point.png}
+\caption{ Schematic of the ``audit point'' calculation for a constant density
+    spheroid with critical degree of flattening. Figure from \citet{Hubbard2014},
+credit: William Hubbard.}
+\label{fig:audit_point}
+\end{figure}
+
+All the planet's in our solar system rotate sufficiently slowly as to be far from the
+critical degree of flattening introduced above. There are, however, astrophysical
+applications where this is not the case. One of these of relevance to the planetary
+sciences is the possibility of a very fast rotating Earth-Moon system in the
+aftermath of the moon forming impact \cite{Cuk2012}. In this case the rotational
+flatting might exceed the limit in Eq.~\ref{eq:crit_ell}. \citet{Kong2013} presented
+a version of the CMS method that avoids this issue at high rotation rates by choosing
+different integration domains. Unfortunately, this alternative formalism leads to an
+implementation that is more computationally intensive than the one presented here.
+For this reason, we elect to use the original CMS description for rapid testing of
+interior structure models.
 
 
 
