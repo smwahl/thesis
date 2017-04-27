@@ -186,6 +186,14 @@ $q_{\rm tid}$ and multiplied by various powers of $q_{\rm rot}$ and $a/R$ contri
 above the numerical noise level.  It is, in fact, terms of order $q_{\rm tid} \cdot
 q_{\rm rot}$ that contribute most importantly to the new results of this paper.
 
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=26pc]{figs/spheroid.pdf}
+\caption{ Conceptual diagram of a Concentric Maclaurin Spheroid (CMS) model with a tidal
+perturbation from a satellite.}
+\label{fig:spheroid}
+\end{figure}
+
 We introduce dimensionless planetary units of pressure $P_{\rm pu}$, density
 $\rho_{\rm pu}$, and total potential $U_{\rm pu}$, such that
 %
@@ -659,6 +667,16 @@ permitted $n$ is
 %
 \citep{munk2009}. 
 
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/maclaurin_tidal_only.pdf}
+\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
+non-rotating constant density (Jeans) spheroid up to order 6. The love numbers $k_n$ are degenerate
+with respect to $m$. The orbital radius is taken to be that of Tethys.}
+\label{fig:maclaurin_tidal_only}
+\end{figure}
+
 From our simulation results, we calculate the love numbers as
 %
 \begin{equation}
@@ -690,6 +708,16 @@ for $n\leq3$ and increasing for $n>3$. The departure from the analytical solutio
 becomes significant ($\left|\Delta k_n\right| > 0.1$) for $-q_{\rm tid}>10^{-3}$,
 whereas for values representative of the largest Saturnian satellites, $k_2$ matches
 the analytic value to within our numerical precision.
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/maclaurin_rotation_effect.pdf}
+\caption{ The effect of rotation rate on the tidal love numbers of a constant density
+    (Roche) spheroid up to order 6. The $k_{nm}$ for a given $n$ are found to split
+    at high rotation rates. $q_{\rm tid}$ is kept constant at $1.0\times10^{-6}$, and
+    the orbital radius is taken to be that of Tethys.}
+\label{fig:maclaurin_rotation_effect}
+\end{figure}
 
 In general, the tidal response of a gas giant planet will not be a perturbation to a
 perfect sphere, but to a spheroidal shape dominated by rotational flattening.
@@ -732,6 +760,33 @@ those using Clairaut theory by less than $10^{-5}$. This provides an important t
 of the correctness of the interior potentials used in our approach. It also indicates
 that ellipsoids, while not exact, are a very good approximation for the degree 2
 tidal response shape in the limit of very small $q_{\rm tid}$, and $q_{\rm rot}=0$. 
+
+%\input{tabs/folonier_table}
+\begin{table}[h]
+ \centering   
+\caption{Comparing two-layer models. Calculated $k_2$ for a two layer model with $q_{\rm 
+tid}=10^{-6}$, $q_{\rm rot}=0$  
+and Tethy's $R/a$, for chosen values of ratio of radii and densities of
+the two layers. Results closely match the approximation using Clairaut theory in
+\citet{folonier2015}, Eqn. 41.
+  \label{tab:folonier_table}}
+    \begin{tabular}{cccc}
+        \hline
+    {$a_1/a$}   &  {$\rho_0/\rho_1$}  &  
+    {$k_2$~CMS}  &  {$k_2$~Clairaut}  \\
+    \hline
+0.1       &  0.5             &  1.496283   &  1.496286        \\
+0.3       &  0.5             &  1.411183   &  1.411185        \\
+0.5       &  0.1             &  0.465714   &  0.465716        \\
+0.5       &  0.3             &  0.947967   &  0.947969        \\
+0.5       &  0.5             &  1.205309   &  1.205311        \\
+0.5       &  0.7             &  1.360183   &  1.360186        \\
+0.5       &  0.9             &  1.461667   &  1.461669        \\
+0.7       &  0.5             &  1.057405   &  1.057407        \\
+0.9       &  0.5             &  1.217192   &  1.217194        \\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Polytrope of index unity} \label{polytrope}
 
@@ -818,6 +873,19 @@ approximation of a continuous polytrope by 128 layers in the CMS simulation.
 polytrope model to be $\sim 10^{-3}$ for $N=128$, roughly consistent with our
 calculated difference. 
 
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/polytrope_tidal_linear.pdf}
+\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
+    non-rotating planet with an $n=1$ polytrope equation of state, up to order 6.
+    $\Delta k_n$ is the shift in love number $k_n$ from the limit of low $q{\rm
+    tid}$. The love numbers $k_n$ are degenerate with respect to $m$. The orbital
+    radius is taken to be that of Tethys. The vertical, dashed gray lines show $q_{\rm tid}$
+    for Tethys-Saturn and Io-Jupiter.}
+\label{fig:polytrope_tidal_only}
+\end{figure}
+
 Similar to the calculations on the constant density spheroid in Section \ref{maclaurin}, we
 performed additional $N=128$ polytrope simulations with finite $q_{\rm tid}$ and
 $q_{\rm rot}=0$. Once again, we find our calculated $k_{nm}$ to be degenerate with
@@ -839,6 +907,20 @@ also less pronounced for the more realistic polytrope density distribution than 
 the single spheroid. This is to be expected since there is less mass concentrated
 in the outer portion of the polytrope model. 
 
+
+\begin{figure}[h!]  
+  \centering
+    \includegraphics[width=22pc]{figs/polytrope_rotation_both.pdf}
+\caption{ Top: The effect of rotation rate on the tidal love numbers of a planet with an
+    $n=1$ polytrope equation of state, up to order 6. The $k_{nm}$ for a given $n$
+    are found to split at high rotation rates. $q_{\rm tid}$ is kept constant at
+    $1.0\times10^{-6}$, and the orbital radius is taken to be that of Tethys. The
+    vertical, dashed gray lines show $q_{\rm rot}$ for Neptune, Uranus, Jupiter and Saturn.
+    Bottom: Shift in $k_{nm}$ as a function of $q_{\rm rot}$ on a linear scale.}
+\label{fig:polytrope_rotation_effect}
+\end{figure}
+
+
 Figure \ref{fig:polytrope_rotation_effect} shows the effect of variable $q_{\rm rot}$
 on polytrope models with constant $q_{\rm tid}$. Once again, we find that $k_{nm}$
 degeneracy with respect to $m$ breaks, in agreement with Eqn.
@@ -854,82 +936,8 @@ to $n=6$ are similar between the two cases. This indicates that the effect shoul
 ubiquitous in all fast-spinning liquid bodies, and relatively insensitive to the
 density profile of the planet.
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=26pc]{figs/spheroid.pdf}
-\caption{ Conceptual diagram of a Concentric Maclaurin Spheroid (CMS) model with a tidal
-perturbation from a satellite.}
-\label{fig:spheroid}
-\end{figure}
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/maclaurin_tidal_only.pdf}
-\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
-non-rotating constant density (Jeans) spheroid up to order 6. The love numbers $k_n$ are degenerate
-with respect to $m$. The orbital radius is taken to be that of Tethys.}
-\label{fig:maclaurin_tidal_only}
-\end{figure}
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/maclaurin_rotation_effect.pdf}
-\caption{ The effect of rotation rate on the tidal love numbers of a constant density
-    (Roche) spheroid up to order 6. The $k_{nm}$ for a given $n$ are found to split
-    at high rotation rates. $q_{\rm tid}$ is kept constant at $1.0\times10^{-6}$, and
-    the orbital radius is taken to be that of Tethys.}
-\label{fig:maclaurin_rotation_effect}
-\end{figure}
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/polytrope_tidal_linear.pdf}
-\caption{ The effect of tidal perturbation strength on the tidal love numbers of a
-    non-rotating planet with an $n=1$ polytrope equation of state, up to order 6.
-    $\Delta k_n$ is the shift in love number $k_n$ from the limit of low $q{\rm
-    tid}$. The love numbers $k_n$ are degenerate with respect to $m$. The orbital
-    radius is taken to be that of Tethys. The vertical, dashed gray lines show $q_{\rm tid}$
-    for Tethys-Saturn and Io-Jupiter.}
-\label{fig:polytrope_tidal_only}
-\end{figure}
 
-\begin{figure}[h!]  
-  \centering
-    \includegraphics[width=22pc]{figs/polytrope_rotation_both.pdf}
-\caption{ Top: The effect of rotation rate on the tidal love numbers of a planet with an
-    $n=1$ polytrope equation of state, up to order 6. The $k_{nm}$ for a given $n$
-    are found to split at high rotation rates. $q_{\rm tid}$ is kept constant at
-    $1.0\times10^{-6}$, and the orbital radius is taken to be that of Tethys. The
-    vertical, dashed gray lines show $q_{\rm rot}$ for Neptune, Uranus, Jupiter and Saturn.
-    Bottom: Shift in $k_{nm}$ as a function of $q_{\rm rot}$ on a linear scale.}
-\label{fig:polytrope_rotation_effect}
-\end{figure}
-
-%\input{tabs/folonier_table}
-
-\begin{table}
- \centering   
-\caption{Comparing two-layer models.Calculated $k_2$ for a two layer model with $q_{\rm 
-tid}=10^{-6}$, $q_{\rm rot}=0$  
-and Tethy's $R/a$, for chosen values of ratio of radii and densities of
-the two layers. Results closely match the approximation using Clairaut theory in
-\citet{folonier2015}, Eqn. 41.
-  \label{tab:folonier_table}}
-    \begin{tabular}{cccc}
-        \hline
-    {$a_1/a$}   &  {$\rho_0/\rho_1$}  &  
-    {$k_2$~CMS}  &  {$k_2$~Clairaut}  \\
-    \hline
-0.1       &  0.5             &  1.496283   &  1.496286        \\
-0.3       &  0.5             &  1.411183   &  1.411185        \\
-0.5       &  0.1             &  0.465714   &  0.465716        \\
-0.5       &  0.3             &  0.947967   &  0.947969        \\
-0.5       &  0.5             &  1.205309   &  1.205311        \\
-0.5       &  0.7             &  1.360183   &  1.360186        \\
-0.5       &  0.9             &  1.461667   &  1.461669        \\
-0.7       &  0.5             &  1.057405   &  1.057407        \\
-0.9       &  0.5             &  1.217192   &  1.217194        \\
-\hline
-\end{tabular}
-\end{table}
 

@@ -12,11 +12,12 @@ in Fig.~\ref{fig:jplot}.
 
 \begin{figure}[h]
   \begin{center}
-    \noindent\includegraphics[width=22pc]{figs/jplot.pdf}
+    \noindent\includegraphics[width=20pc]{figs/jplot.pdf}
   \end{center}
 \caption{Improvement in measurements of Jupiter's first even zonal harmonics, as a function of year
 (abscissa).  All $J_n$ values are normalized to $a$ = 71492 km, and referenced to theoretical
-values from a recent Jupiter model \citep{hubbard2016}, horizontal red line. }
+values from a recent Jupiter model \citep{hubbard2016}, horizontal red line. Figure
+Credit: William Hubbard. }
 \label{fig:jplot}
 \end{figure}
 
@@ -138,8 +139,11 @@ hundred K through much of the molecular envelope
   \begin{center}
     \noindent\includegraphics[width=22pc]{figs/galileo.eps}
   \end{center}
-  \caption{Different theoretical predictions for Jupiter's interior adiabat. The shaded areas corresponds to the layers
-    in figure~\label{fig:galileo_match}}. 
+  \caption{ Fitting procedure for determining the model entropy in in the outer
+      envelope, $S_1$. Here the red curve is the SCvH isentrope that best fits the 
+      Galileo temperature measurements \citep{Seiff1997}. Figure Credit: Burkhard
+      Militzer.
+    \label{fig:galileo_match}} 
   \label{fig:galileo}
 \end{figure}
 
@@ -229,7 +233,7 @@ the planet.
   \end{center}
   \caption{The two diagrams show the
     fractional radius and pressure as a function of fractional mass
-    For a representative Jupiter interior model.}
+    For a representative Jupiter interior model. Figure Credit: Burkhard Miltzer.}
 \label{fig:our_Jupiter_model}
 \end{figure}
 
@@ -246,8 +250,9 @@ layer.
   \begin{center}
     \noindent\includegraphics[width=22pc]{figs/Jupiter_adiabat68.eps}
   \end{center}
-  \caption{Different theoretical predictions for Jupiter's interior adiabat. The shaded areas corresponds to the layers
-    in figure~\ref{fig:our_Jupiter_model}}. 
+  \caption{Different theoretical predictions for Jupiter's interior adiabat. The
+      shaded areas corresponds to the layers in figure~\ref{fig:our_Jupiter_model}
+  Figure Credit: Burkhard Militzer.}
   \label{fig:jup}
 \end{figure}
 
@@ -350,7 +355,7 @@ This density
 distribution is then integrated to calculate the dynamical contribution to the
 gravity spectrum.
 
-\begin{sidewaystable}
+\begin{sidewaystable}[hp]
 \caption{Comparison of selected models to observed gravitational moments}
 \label{tab:models}
 %\centering
@@ -422,7 +427,7 @@ trend for $J_8$, although the relative change in $J_8$ with model parameters
 compared to the observed value is less significant than for $J_4$ and $J_6$. 
 
 
-\begin{figure}[!h]
+\begin{figure}[hp]
 \centering
 
 \includegraphics[width=22pc]{figs/jgr_J4J6_edit.eps}
@@ -508,7 +513,22 @@ shifting the onset pressure for helium rain, between 50 to 200 GPa, and the
 entropy in the deep interior, $S=7.07$ to $7.30$ (lower frame in Fig.
 \ref{fig:j4j6}).  Both modifications exhibit a similar slope in $J_4$--$J_6$ to
 the models with different core radii, but spanning a smaller range in $J_4$
-than for the dilute core trend. 
+than for the dilute core trend. Figure \ref{fig:j4j6_rain} shows how much $J_6$
+changes when Model F is perturbed by shifting either the onset pressure, of the
+thickness of the helium rain layer.
+
+\begin{figure}[h]
+\centering
+
+%\setfigurenum{S1} %%Change number for each figure
+\includegraphics[width=22pc]{figs/he_rainlayer_j4j6.png}
+
+\caption{ Change in zonal gravitational harmonic and $J_6$ for model F (black star),
+    when onset pressure is is shifted to 50 or 200 GPa (red diamonds), or the layer
+width is decreased to allow only a narrow helium rain layer (green diamond)
+    matching the measured $J_2$.}
+\label{fig:j4j6_rain}
+\end{figure}
 
 The models using REOS3 have a significantly hotter adiabatic $T$ profile than
 MH13.  Models R and S (\ref{tab:models}) are two example solutions obtained

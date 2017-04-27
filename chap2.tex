@@ -1,14 +1,14 @@
-\chapter{First-Principles simulation Methods}\label{chap2}
+\chapter{First-Principles Simulation Methods}\label{chap2}
 
 
 In quantum chemistry and condensed matter physics, first-principles methods (often
 referred \textit{ab initio} methods) refer to calculations of material properties
 using physical models that do not rely on any specific experiment or measured
 material property. These calculations, therefore are built up from physical constants
-including the speed of light $c$, Planck's constant $h$, as well as the mass  and
-charge of constituent electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless,
-approximations must be made in order to make solution to the many-body Schr\"odinger
-equation tractable.
+including Planck's constant $h$, as well as the mass  and charge of constituent
+electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless, approximations
+must be made in order to make solution to the many-body Schr\"odinger equation
+tractable.
 
 These methods are of particular use in the study of materials in the deep interiors
 of Earth and other planets, because the inherent high pressures and temperatures
@@ -19,7 +19,8 @@ of the planet's interior. In the following chapters I will be addressing questio
 materials in some of these extreme pressure-temperature ranges.
 
 In studies of materials, the most prevalent classes of first-principles methods based
-on density functional theory (DFT) or quantum Monte Carlo (QMC). Most of these
+on density functional theory (DFT) or quantum Monte Carlo (QMC)
+\citep{Allen1987,Newman1999,martin-esbook}. Most of these
 techniques are fundamentally zero temperature theories. In this work, as in most
 first-principles applications to planetary sciences, I focus on the use of DFT. This
 is due largely to the advantage of its better computational efficiency. This
@@ -41,22 +42,15 @@ simulated system.
 \section{Introduction}
 The total energy of quantum system of electrons and nuclei is described by the
 Hamiltonian\footnote{Neglecting relativistic, magnetic, and quantum
-electrodynamic effects.}
+electrodynamic effects}
 %
- \begin{equation}\label{generalhen}
-\mathcal{\hat H}=-\sum_i\frac{\hbar^2}{2m}\nabla_i^2-
-\sum_{i,I}\frac{Z_Ie^2}{|\textbf{\textit r}_i-\textbf{\textit R}_I|}+
-\sum_{\substack{i,j\\(i\neq j)}}\frac{e^2}{2|\textbf{\textit r}_i-\textbf{\textit r}_j|}-
-\sum_I\frac{\hbar^2}{2M_I}\nabla_I^2+
-\sum_{\substack{I,J\\(I\neq J)}}\frac{Z_IZ_Je^2}{2|\textbf{\textit R}_I-\textbf{\textit R}_J|}.
-\end{equation}
-%
-Here $\mathbf{r_i}$ describes the configuration of the electrons while $\mathbf{R_I}$ describes the position
-of the nuclei.  Because the mass of the nuclei is much greater than that of the
-electrons, the kinetic energy of the nuclei can be ignored, and the electrons are
-assumed to rearrange instantaneously with any change in the position of the nuclei
-(see Chapter 3.1 of \cite{martin-esbook}). This assumption, called the
-Born-Oppenheimer or adiabatic approximation, simplifies the general Hamiltonian to
+% \begin{equation}\label{generalhen}
+%\mathcal{\hat H}=-\sum_i\frac{\hbar^2}{2m}\nabla_i^2-
+%\sum_{i,I}\frac{Z_Ie^2}{|\textbf{\textit r}_i-\textbf{\textit R}_I|}+
+%\sum_{\substack{i,j\\(i\neq j)}}\frac{e^2}{2|\textbf{\textit r}_i-\textbf{\textit r}_j|}-
+%\sum_I\frac{\hbar^2}{2M_I}\nabla_I^2+
+%\sum_{\substack{I,J\\(I\neq J)}}\frac{Z_IZ_Je^2}{2|\textbf{\textit R}_I-\textbf{\textit R}_J|}.
+%\end{equation}
 %
 \begin{equation}\label{generalhee}
 \begin{aligned}
@@ -71,8 +65,16 @@ Born-Oppenheimer or adiabatic approximation, simplifies the general Hamiltonian 
 where $\hat{T}, V_\text{ext}, V_\text{ee}$, and $V_{II}$ represent electronic kinetic
 energy, electron-nuclei Coulomb absorption\footnote{In general, $V_\text{ext}$ can
 also include electric fields and Zeeman terms.}, electron-electron Coulomb repulsion,
-and nuclei-nuclei Coulomb repulsion, respectively. $V_{II}$ has an analytical
-solution, which allows us to calculate solutions to a many-body equation for the system of electrons 
+and nuclei-nuclei Coulomb repulsion, respectively.  Here $\mathbf{r_i}$ describes the
+configuration of the electrons while $\mathbf{R_I}$ describes the position.  of the
+nuclei.  Because the mass of the nuclei is much greater than that of the electrons,
+the kinetic energy of the nuclei can be ignored, and the electrons are assumed to
+rearrange instantaneously with any change in the position of the nuclei (see Chapter
+3.1 of \cite{martin-esbook}). This assumption, called the Born-Oppenheimer or
+adiabatic approximation, simplifies the wavefunction of the system to consider only
+electronic interactions, with interactions with the fixed nuclei occurring only
+through the potential. This allows us to calculate solutions to a many-body equation
+for the system of electrons 
 %
 \begin{equation}\label{generaleeq}
 \begin{aligned}
@@ -98,14 +100,16 @@ A practical approach to solving the above fully interacting many-body problem
 requires some additional assumptions. Of the available approaches to solving
 Eq.~\ref{generalhee}, DFT is the most widely used to date. 
 
-The DFT from is based on two theorems proven by Hohenberg and Kohn \cite{Hohenberg1964} in
-1964: 1) any property of a system of interacting particles can be determined by the
-ground-state density of electrons $n_0(\textbf{\textit r})$; and 2) for any external
-potential $V_\text{ext}(\textbf{\textit r})$, a universal energy functional $E[n]$
-can be defined whose global minimum value is at $n(\textbf{\textit
-r})=n_0(\textbf{\textit r})$. These theorems are formally exact and general, and were
-soon made soluble in practice and by the Kohn-Sham approach \cite{Kohn1965} making use
-of the following ansatz:
+The DFT from is based on two theorems proven by Hohenberg and Kohn
+\cite{Hohenberg1964} in 1964: 1) any property of a system of interacting particles
+can be determined by the ground-state density of electrons $n_0(\textbf{\textit r})$;
+and 2) for any external potential $V_\text{ext}(\textbf{\textit r})$, a universal
+energy functional $E[n]$ can be defined whose global minimum value is at
+$n(\textbf{\textit r})=n_0(\textbf{\textit r})$. The first theorem is of great
+practical importance because it reduces the dimensionality of the problem from $3N$
+to 3 dimensions, rendering the problem far more tractable for computational methods.
+These theorems are formally exact and general, and were soon made soluble in practice
+and by the Kohn-Sham approach \cite{Kohn1965} making use of the following ansatz:
 %
 \begin{itemize}
 \item The exact ground-state density of electrons can be represented by that of an auxiliary system of non-interacting particles.
@@ -190,7 +194,7 @@ E_\text{xc}[n]
 =\int d\textbf{\textit r} n(\textbf{\textit r})[\epsilon_\text{x}([n],\textbf{\textit r})+\epsilon_\text{c}([n],\textbf{\textit r})].
 \end{aligned}
 \end{equation}
-The exchange energy density (in atomic units) follows the exact expression \cite{martin-esbook}
+The exchange energy density (in atomic units) follows the expression \cite{martin-esbook}
 \begin{equation}\label{ldaxs1}
 \begin{aligned}
 \epsilon_\text{x}^\sigma=-\frac{3}{4}\left(\frac{6}{\pi}n^\sigma\right)^{1/3}.
@@ -404,21 +408,25 @@ those configurations. The Metropolis algorithm is as follows:
 where the probably acceptance in the ``up-hill'' case is
 %
 \begin{equation}
-    A(R_{\rm old}\to R_{\rm new}) = \exp\left[-\frac{V(R_{\rm new} - V(R_{\rm old})}
+    A(R_{\rm old}\to R_{\rm new}) = \exp\left[-\frac{V(R_{\rm new}) - V(R_{\rm old})}
     {k_B T} \right].
 \end{equation}
 %
+Aggregated over many Monte Carlo steps, this criterion leads to a set of
+configurations with a probability obeying canonical distribution with temperature $T$.
 In practice, a good rule of thumb is to choose the size of the box for moving the
 atoms such that the acceptance rate is near 50\%.  The Boltzmann factor is thus
 absorbed into the chain of generated configurations, and properties can be estimated
 as their simple average over all the configurations.
 
-There are also a number of different kinds of quantum Monte Carlo (QMC) techniques that
-are used extensively in condensed matter physics. These are , however, generally less
-computationally efficient than DFT, and are not presented in this work. Classical
-Monte Carlo (CMC) using simple pair potentials $V_{ij}=V({\bf r}_i,{\bf r}_j)$ did
-play an important role in our implementation of the thermodynamic integration
-technique outlined in the subsequent section.
+There are also a number of different kinds of quantum Monte Carlo (QMC) techniques,
+which provide an alternative to DFT for solving the many-body Schr\"{o}dinger
+equation and are used extensively in condensed matter physics. These are ,however,
+generally less computationally efficient than DFT, and are not presented in this
+work. Classical Monte Carlo (CMC) describes a simpler model system with interactions
+defined by pair potentials $V_{ij}=V({\bf r}_i,{\bf r}_j)$. These efficient CMC
+simulations play an important role in our implementation of the thermodynamic
+integration technique outlined in the subsequent section.
 
 \section{Thermodynamic Integration}
 
@@ -474,9 +482,13 @@ instance transforming some subset of atoms from one element to another
 
  \begin{figure}[h!] %  figure placement: here, top, bottom, or page
    \centering
-   \includegraphics[width=30pc]{figs/TD_integration.eps} 
+   \includegraphics[width=30pc]{figs/TD_integration2.eps} 
 \caption{Schematic illustration of a thermodynamic integration between a simulation 
-    with DFT interactions and one with classical interactions. \label{tdi}}
+    with DFT interactions and one with classical interactions. The technique involves
+    performing simulations where two different interaction potentials are calculated
+    for a given configuration, and updated with a fractional mixture of both
+    interactions. The difference in free energy between two systems is the integrated 
+    over a number of different values of that mixing parameter $\lambda$.\label{tdi}}
 \end{figure}
 
 \subsection{Computation of Gibbs Free Energies}
@@ -533,14 +545,14 @@ most cases, with an increase to 9 lambda points changing our results by $<0.003$
 per formula unit in the FeMgO study. In some cases as few as 3 lambda points are
 sufficient for the transformation from DFT to pair potentials. 
 
-\section{Equations of State}
-
+%\section{Equations of State}
 
 \section{Tests of the Thermodynamic Integration Method}
 
 Here we present to tests validating the TDI method for use in multi component systems
 using different types of pair potentials. These were performed in conjunction with
-the Fe/MgO solubility study presented in Chapter 4.
+the Fe/MgO solubility study presented in Chapter 4. Simulations in the following section were
+performed by Burkhard Militzer and presented in a join publication.
 
 \subsection{Comparison of thermodynamic integration with different classical potentials}
 
@@ -607,7 +619,7 @@ using that fraction of DFT forces, along with the complementary fraction of
 classical forces. The integral of this function give the Helmholtz free
 energy $F_{\rm cl \to DFT}$. In the first case , the function $\left<
 V_{DFT}-V_{\rm cl}\right>$ in figure~\ref{fig:integrate_dft} depends weakly
-on $\lambda$. The function is almost linear and the differnce between
+on $\lambda$. The function is almost linear and the difference between
 values at $\lambda=0$ and 1 is small. When both criteria are satisfied,
 very few $\lambda$ points are needed to evaluate the integral. The
 simulations with non-bonding potentials experience larger fluctuations  due
@@ -616,18 +628,18 @@ uncertainty.  As a result, these simulations required longer simulation
 times to match the results found with bonding potentials.
 
 Figure~\ref{fig:integrate_cmc} shows $\left< V_{\rm cl} \right>$ as a function
-of $\lambda$ from classical monte carlo simulations. The integration of
-$F_{an \to cl}$function becomes strongly non-linear as $\lambda$
+of $\lambda$ from classical Monte Carlo simulations. The integration of
+$F_{an \to cl}$ function becomes strongly non-linear as $\lambda$
 approaches zero, the non-interacting case. Since classical simulations are
 approximately 10$^5$ times more efficient, it is possible to obtain very
-close sampling of the a cusp in the integrated function. 
+close sampling of the cusp in the integrated function. 
 
 \begin{figure}[h!]  
   \centering
     \includegraphics[width=22pc]{figs/dV_dft_both.pdf}
 \caption{The integration path to find $F_{cl \to DFT}$ potentials for MgO
 at 50 GPa 6000 K, using the regular, bonding pair potentials (upper) and
-the non-bonding pair potentials (lower). }
+the non-bonding pair potentials (lower). Figure credit to Burkhard Militzer. }
 \label{fig:integrate_dft}
 \end{figure}
 
@@ -637,7 +649,8 @@ the non-bonding pair potentials (lower). }
 \caption{The integration path to find $F_{an \to cl}$ potentials for MgO at 50 GPa 6000
 K, using the regular, bonding pair potentials (left) and
 the non-bonding pair potentials (right). These are plotted against the
-integration parameter, $\lambda$, to the $1/4$ power.}
+integration parameter, $\lambda$, to the $1/4$ power. Figure credit to Burkhard
+Militzer. }
 \label{fig:integrate_cmc}
 \end{figure}
 
@@ -659,7 +672,7 @@ we find the following expression as $\lambda \to 0$
  {  \int \! d{\bf r} \, 1} \nonumber \\
  &=& \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \label{eqn:limit}
 \end{eqnarray}
-Then from the deriviative of $\left< V_{\rm cl} \right>_{\lambda}$ in
+Then from the derivative of $\left< V_{\rm cl} \right>_{\lambda}$ in
 equation \ref{eqn:average} and \ref{eqn:limit}
 \begin{eqnarray}
   \frac{d \left< V_{\rm cl} \right>}{d \lambda}
@@ -675,10 +688,11 @@ equation \ref{eqn:average} and \ref{eqn:limit}
    &=& (-\beta) \left[  \frac{1}{V}  \int \! dr \, r^2 V^2_{\rm cl}(r) -
      \left\{ \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \right\}^2 \right]
   \end{eqnarray}
-This give us the slope and intercept for the integration at $\lambda=0$,
-necessary to correctly integrate the cusp.  Becauase of the extreme
-difference in computational efficiency, it is always best to adjust the
-classical potential to match the DFT forces.
+This give us the slope and intercept for the integration at $\lambda=0$, necessary to
+correctly integrate the cusp. The CMC calculations lower the cost of the simulation
+by a factor of over $10^4$ compared to the DFT simulations. Becauase of the extreme
+difference in computational efficiency, it is always best to adjust the classical
+potential to match the DFT forces to minimize the number of $\lambda$ points needed.
 
 
 \subsection{Verification of thermodynamic integration in multicomponent systems}
@@ -738,18 +752,17 @@ Regular     & $-$427.151 & $F_{000 \to 101}$ = ~~182.820(16)      & $-$399.123(3
 \end{tabular}
 \end{table}
 
-In line 2 of table~\ref{tab:compare_int_path}, we turn on the Mg-O
-potential in the first integration step ($F_{000 \to 010}$) and then switch
-on the Mg-Mg and O-O potentials in the second and final integration step
-($F_{101 \to 111}$). The indices refer to the three $\lambda$ values for
-Mg-Mg, Mg-O, and O-O potentials, respectively. In line 3 of
-table~\ref{tab:compare_int_path}, we interchange both integration steps. In
-line 4, we performed three integration steps turning on the one potential
-after the other. In the last column we compare the classical free energies
-after adding the results from every integration step to $F_{\rm an}$. The
-results agree within the statistical uncertainties demonstrating that the
-same classical free energies can be obtained for four different integration
-paths using non-bonding potentials.
+This table was created by Burkhard Militzer. In line 2 of
+table~\ref{tab:compare_int_path}, we turn on the Mg-O potential in the first
+integration step ($F_{000 \to 010}$) and then switch on the Mg-Mg and O-O potentials
+in the second and final integration step ($F_{101 \to 111}$). The indices refer to
+the three $\lambda$ values for Mg-Mg, Mg-O, and O-O potentials, respectively. In line
+3 of table~\ref{tab:compare_int_path}, we interchange both integration steps. In line
+4, we performed three integration steps turning on the one potential after the other.
+In the last column we compare the classical free energies after adding the results
+from every integration step to $F_{\rm an}$. The results agree within the statistical
+uncertainties demonstrating that the same classical free energies can be obtained for
+four different integration paths using non-bonding potentials.
 
 In table~\ref{tab:compare_int_path}, we also show the results for two
 integration paths using regular, bonding potentials. We find consistent
