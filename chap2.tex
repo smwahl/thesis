@@ -293,7 +293,7 @@ All DFT simulations presented here were performed using the implementation of th
 formalism the Vienna {\it ab initio} simulation package (VASP) \citep{Kresse1996}.
 VASP uses projector augmented wave pseudopotentials \citep{Blochl1994} 
 
-\section{Finite Temperature Calculations}
+\section{Finite temperature calculations}
 
 Real materials exist at finite temperatures. This imposes a number of additional
 problems for first-principles simulations that are not directly addressed by the 
@@ -315,7 +315,7 @@ planets, but is generally insufficient for materials near or above their melting
 temperature. For this reason the work presented here focuses on using
 first-principles molecular dynamics (FPMD or DFT-MD).
 
-\subsection{Molecular Dynamics}
+\subsection{Molecular dynamics}
 
 Molecular dynamics (MD) is a means of sampling different configurations that are
 generated through tracking the realistic motions of nuclei, tracking their changing
@@ -428,7 +428,7 @@ defined by pair potentials $V_{ij}=V({\bf r}_i,{\bf r}_j)$. These efficient CMC
 simulations play an important role in our implementation of the thermodynamic
 integration technique outlined in the subsequent section.
 
-\section{Thermodynamic Integration}
+\section{Thermodynamic integration}
 
 One of the major shortcomings of standard DFT-MD calculations from the viewpoint of
 many planetary science problems is the inability to calculate the entropy $S$ of a
@@ -491,7 +491,7 @@ instance transforming some subset of atoms from one element to another
     over a number of different values of that mixing parameter $\lambda$.\label{tdi}}
 \end{figure}
 
-\subsection{Computation of Gibbs Free Energies}
+\subsection{Computation of Gibbs free energies}
 
 %%%% Discussion from FeMgO paper
 
@@ -547,7 +547,7 @@ sufficient for the transformation from DFT to pair potentials.
 
 %\section{Equations of State}
 
-\section{Tests of the Thermodynamic Integration Method}
+\section{Tests of the thermodynamic integration method}
 
 Here we present to tests validating the TDI method for use in multi component systems
 using different types of pair potentials. These were performed in conjunction with
