@@ -1,12 +1,12 @@
 \chapter{Introduction}\label{chap1}
 
-The materials composing Earth's are $\sim$99\% composed of only 8 elements (Fe,
+The materials composing Earth's interior are $\sim$99\% composed of only 8 elements (Fe,
 O, Si, Mg, S, Ni, Ca and Al). In Jupiter at least 90\% of the planet is composed
-of just hydrogen and helium.  Nonetheless these materials are the subject of
+of just hydrogen and helium.  Nonetheless, these materials are the subject of
 constant study by experiment and simulation. The extreme high pressures and
 temperatures under which these materials exist make them difficult to study.
-For the Earth these conditions extend to $\sim$300 GPa and $\sim$6000 of Kelvin
-\citep{alfe2009} (the temperature value remains contentious); inside Jupiter
+For the Earth, these conditions extend to $\sim$300 GPa and $\sim$6000 of Kelvin
+\citep{alfe2009} (the temperature value remains contentious); inside Jupiter,
 the pressures reach in excess of 4 TPa, while the maximum temperatures in the
 aftermath of the moon-forming impact would  have been in the tens of thousands
 Kelvin. Under such extreme conditions materials can behave in ways that would
@@ -16,7 +16,7 @@ nominally excluded can become readily soluble in a material.
 
 An accurate understanding of the properties of planetary materials is essential
 in determining their present structure and their evolution over time. Their
-properties our inextricably tied to the methods we use to probe the insides of
+properties are inextricably tied to the methods we use to probe the insides of
 planets, whether that be through seismology, geodesy, or measurement of their
 gravitational or magnetic fields. But understanding their properties alone is
 not sufficient. Planetary Science depends on physical models to take these
@@ -25,11 +25,11 @@ behaviour on planetary length- and time-scales. The results of such models are
 often non-unique, due to the relatively small number of direct measurements
 that can be made from a planet's surface, and due to the nature of key material
 properties such a density  being compatible with a large range of different
-compositions. A complete planetary model therefore draws on information from a
+compositions. A complete planetary model, therefore, draws on information from a
 variety of sources, including cosmochemical inferences and, on Earth, the
 record of rock sample exhumed from the planet's interior.
 
-In this thesis I present a variety of work using computational techniques to
+In this thesis, I present a variety of work using computational techniques to
 address questions about planetary interiors and evolution, focused on: 1)
 determining properties of planetary materials from first-principles physics
 simulations, and 2) applying of these derived properties to models of
@@ -37,7 +37,7 @@ large-scale planetary structure and processes. In Chapter~\ref{chap2} I discuss
 the physics numerical techniques I have used and developed to simulate
 planetary materials at high temperatures. Chapters~\ref{chap3} and \ref{chap4}
 summarize the results of two studies using these first-principles techniques to
-study the dissolution of a rock-ice cores in gas giant planets, and the
+study the dissolution of rock-ice cores in gas giant planets, and the
 high-temperature solubility of terrestrial cores and mantles.
 Chapter~\ref{chap5} introduces work to build a thermochemical model of iron 
 alloys for understanding the generation of magnetic fields in the cores of
@@ -52,14 +52,14 @@ at Jupiter.
 \section{Interior structure and formation of the Earth and other planets}
 
 The interior of the Earth, and presumably most other rocky planets and moons,
-are differentiated into into a number of layers, as is demonstrated
+are differentiated into into a number of layers, as is demonstrated by
 seismological and geodynamic studies. It mainly consists of the mantle, which
 is likely dominantly of magnesium silicates and oxides, and the core, which is
 presumably Fe-Ni alloys with some light elements
 \cite{Birch1952,Mcdonough1995}.  The Earth's upper mantle (less than $\sim$7
 GPa) and the entire mantles of smaller terrestrial bodies are composed of the
 rock peridotite, consisting of the minerals olivine, garnet, and pyroxene. With
-increasing pressure at the these minerals undergo a number of phase transitions
+increasing pressure these minerals undergo a number of phase transitions
 through the transition zone (410-660 km), eventually transforming into the
 lower mantle (669-2891 km) composition of bridgemanite (formally Mg-perovskite)
 and ferropericlase \cite{Tronnes2010}.  Down to a few hundred kilometers above
@@ -75,7 +75,7 @@ significant freezing point depression of Fe-S alloys.
 The structure of giant-planet interiors is much more limited, but data from
 telescope observations and spacecraft missions, as well as cosmochemical
 studies based on meteorites and the solar photosphere have aided in
-constructing models interiors of Jovian planets \cite{Guillot2004}. Jupiter and
+constructing model interiors of Jovian planets \cite{Guillot2004}. Jupiter and
 Saturn are composed primarily of hydrogen and helium, but must contain tens of
 Earth-masses of heavy elements. The hydrogen-helium mixture transitions from an
 insulator to a metal at $\sim$100 GPa. It is not known for sure whether these
@@ -92,23 +92,23 @@ temperatures.
 Even less is known about the interiors and compositions of exoplanets, the
 confirmed number of which has reached 3,586 as of March 2017 \cite{Schneider2011}.
 The known exoplanets span a large range of masses from smaller than Earth to
-greater than Jupiter.  There detection methods do have a selection bias towards
-larger planets that are closer in to their stars, thus many fall into to
+greater than Jupiter.  These detection methods have a selection bias towards
+larger planets that are closer in to their stars, thus, many fall into to
 category of ``hot Jupiters''. Statistical analyses of the Kepler catalogue,
 however, suggest that the most numerous category of planets is that in a
 ``super-Earth'' or ``sub-Neptune''  mass range. Comparing the planets'
 mass-radius data with the equation of state (EOS) of typical planet-forming
-materials enables estimating these planets' composition \cite{Seager2007} give
+materials enables estimating these planets' composition \cite{Seager2007} and gives
 some idea of the composition of these planets, although the determination is
 non-unique without additional information. The results of the studies in
 Chapters~\ref{chap3} and \ref{chap4} have some relevance to exoplanets, as does
 Chapter~\ref{chap8} in so far as, many exoplanets are expected to have
 analogous interior structures to Jupiter.
 
-The final stages of terrestrial planet formation are expected to be include 
+The final stages of terrestrial planet formation are expected to include 
 a number of energetic collisions between planetesimals and proto-planets. 
 These giant impacts have been invoked to explain a number of features of and
-difference between planets in the inner solar system. One of the more extreme
+differences between planets in the inner solar system. One of the more extreme
 examples is the hypothesized moon-forming impact. Recent studies have suggested
 even more energetic, high-angular momentum collisions \citep{Cuk2012,Canup2012} than the 
 canonical, Mars-sized impactor scenario \citep{canup2004}. A consequence of 
@@ -117,9 +117,9 @@ molten in the aftermath, and may have been heated to temperatures
 much higher than those typically considered in studies of Earth materials. 
 We pose this question in Chapter~\ref{chap4}.
 
-For the giant planets there is an ongoing debate regarding the nature of their 
+For the giant planets, there is an ongoing debate regarding the nature of their 
 formation: whether a terrestrial-like core must form first for the gas to accrete 
-on to, or if they formed directly from collapse of an instability in the gas. 
+on to, or if they formed directly from the collapse of an instability in the gas. 
 The concentration of heavy elements towards the center of the planet is 
 indicative of the first scenario, although a comprehensive theory for the 
 early evolution of the gas giants is not settled. The work presented in 
@@ -145,8 +145,8 @@ laser\footnote{E.g., National Ignition Facility at Lawrence Livermore National
 Laboratory.}, or strong magnetic fields\footnote{E.g., Z Machine at  Sandia
 National Laboratories.} \cite{Asimow2015}.
 
-Static compression has the advantage of flexibility in reaching a large range
-desired temperatures and pressures. Large volume press allow for larger,
+Static compression has the advantage of flexibility in reaching a large range in
+desired temperatures and pressures. Large volume presses allow for larger,
 centimeter-sized samples, which is helpful for studying equilibrium phase
 relations thorough analysis of the recovered samples . Diamond anvil cells are
 frequently used for studying isolated materials up to very high pressures,
@@ -159,7 +159,7 @@ Dynamic compression utilizes shock waves to generate high pressures, which are
 necessarily accompanied by simultaneous high temperatures. This technique is
 particularly useful for constraining equations of state and detecting phase
 transitions under the extreme conditions. During propagation of the shock wave,
-the courses of the states of a target mineral is usually along specific paths
+the courses of the states of a target mineral are usually along specific paths
 that are governed by the EOS. Techniques such as pre-compression and
 multi-shock allows reaching states off the principle Hugoniots, and ramp
 compression enables high pressure measurements at low temperatures, which can
@@ -176,7 +176,7 @@ typical planetary barotropes. Laser heating of diamond anvil cells also has its
 limits when it comes to reaching very high temperatures. Thus, there is a range
 of conditions in deep planetary interiors, particularly for the giant planets,
 that are inaccessible to experiments. There are certain material properties
-that very difficult to measure in situ, and only some questions can be
+that are very difficult to measure in situ, and only some questions can be
 adequately addressed with recovered samples. In some cases, accuracy of
 experimentally determined pressures and densities are insufficient to constrain
 equations of state satisfactorily (as is the case for experimental
