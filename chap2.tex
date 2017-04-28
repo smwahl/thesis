@@ -2,23 +2,22 @@
 
 
 In quantum chemistry and condensed matter physics, first-principles methods (often
-referred \textit{ab initio} methods) refer to calculations of material properties
+referred to as \textit{ab initio} methods) refer to calculations of material properties
 using physical models that do not rely on any specific experiment or measured
 material property. These calculations, therefore are built up from physical constants
 including Planck's constant $h$, as well as the mass  and charge of constituent
 electrons ($m$ and $e$) and nuclei ($M_i$ and $Z_i$). Nonetheless, approximations
-must be made in order to make solution to the many-body Schr\"odinger equation
-tractable.
+must be made in order to find a tractable solution to the many-body Schr\"odinger equation.
 
 These methods are of particular use in the study of materials in the deep interiors
 of Earth and other planets, because the inherent high pressures and temperatures
 pose difficulties for the design and interpretation of experiments. In the case of the
 Jovian planets, Jupiter and Saturn, these conditions are so extreme that modern
 experimental techniques are unable to recreate the conditions through a large portion
-of the planet's interior. In the following chapters I will be addressing questions of
+of the planet's interior. In the following chapters, I will be addressing questions of
 materials in some of these extreme pressure-temperature ranges.
 
-In studies of materials, the most prevalent classes of first-principles methods based
+In studies of materials, the most prevalent classes of first-principles methods are based
 on density functional theory (DFT) or quantum Monte Carlo (QMC)
 \citep{Allen1987,Newman1999,martin-esbook}. Most of these
 techniques are fundamentally zero temperature theories. In this work, as in most
@@ -27,15 +26,15 @@ is due largely to the advantage of its better computational efficiency. This
 computational efficiency means that DFT can currently be extended to larger atomic
 systems and to consider finite temperature more easily than with Monte Carlo based
 techniques. The higher precision QMC techniques do have an important place in
-determining stability between phases in which energy differences are very small.
+determining stability between phases, in which energy differences are very small.
 Since the focus of the work presented here is on systems involving the exchange of
-atoms between phases the energy differences are expected to be large enough for DFT
+atoms between phases, the energy differences are expected to be large enough for DFT
 predictions to be sufficiently accurate.
 
 This chapter introduces the theoretical and computational backgrounds of the density
 functional theory molecular dynamics (DFT-MD) technique, which is our workhorse
 method for first-principles studies in planetary science. We also describe in depth
-the thermodynamic integration method, allows for a calculation of entropy of the
+the thermodynamic integration method, which provides a calculation of entropy of the
 simulated system.
 
 
@@ -109,7 +108,7 @@ $n(\textbf{\textit r})=n_0(\textbf{\textit r})$. The first theorem is of great
 practical importance because it reduces the dimensionality of the problem from $3N$
 to 3 dimensions, rendering the problem far more tractable for computational methods.
 These theorems are formally exact and general, and were soon made soluble in practice
-and by the Kohn-Sham approach \cite{Kohn1965} making use of the following ansatz:
+by the Kohn-Sham approach \cite{Kohn1965} making use of the following ansatzes:
 %
 \begin{itemize}
 \item The exact ground-state density of electrons can be represented by that of an auxiliary system of non-interacting particles.
@@ -121,17 +120,10 @@ This allows solving the many-electron Eq. \ref{generaleeq} by converting it into
 \hat{H}_\text{KS}^\sigma\psi_i^\sigma(\textbf{\textit r})=\varepsilon_i^\sigma\psi_i^\sigma(\textbf{\textit r}), 
 \end{aligned}
 \end{equation}
-where $\hat{H}_\text{KS}^\sigma=\hat{T}+V_\text{eff}^\sigma(\textbf r)$ is the spin-dependent single-particle Hamiltonian.
+where $\hat{H}_\text{KS}^\sigma=\hat{T}+V_\text{eff}^\sigma(\textbf r)$ is the
+spin-dependent single-particle Hamiltonian, where $\sigma$ denotes spin.
 
-Comparing with the Hohenberg-Kohn energy functional 
-\begin{equation}\label{hkeq}
-\begin{aligned}
-E_\text{HK}
-&=T[n]+E_\text{int}[n]+\int{d\textbf{\textit r}}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II} \\
-&=F_\text{HK}[n]+\int{d\textbf{\textit r}}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II},
-\end{aligned}
-\end{equation}
-in the method of Kohn-Sham the ground-state energy
+The Kohn-Sham formulation for the ground-state energy functional is 
 \begin{equation}\label{kse}
 \begin{aligned}
 E_\text{KS}&=T_s[n]+E_\text{Hartree}[n]+\int d\textbf{\textit r}V_\text{ext}(\textbf{\textit r})n(\textbf{\textit r})+E_{II}+E_\text{xc}[n],
@@ -168,7 +160,7 @@ can be obtained by solving Eqs. \ref{kseq} and \ref{numberdensity} in a
 self-consistent iterative way.
 
 The Kohn-Sham approach provides a feasible way of determining the exact ground-state
-properties of many-electron systems: given a known $E_\text{xc}[n]$. In principle the
+properties of many-electron systems: given a known $E_\text{xc}[n]$. In principle, the
 functional form of the exchange-correlation is not known. This leads to the main
 assumption of the DFT method. The success of the DFT method relies on the fact that
 it is often reasonable to approximate $E_\text{xc}[n]$ as a local or nearly local
@@ -179,9 +171,9 @@ functional of the density.
 
 \subsubsection{Exchange correlation}
 
-There have been continuing efforts in the aim of exploring practical ways to improve
+There have been extensive efforts in exploring practical ways to improve
 the approximate the exchange-correlation functional to better match. The simplest
-choice is the local density approximation (LSDA, or simply LDA) is derived from the
+choice, the local density approximation (LSDA, or simply LDA), is derived from the
 homogeneous electron gas. It continues to be a popular choice due to it's simplicity,
 freedom from required fit parameters, and its relative success in describing many
 real materials.
@@ -233,7 +225,7 @@ The success of LDA has also prompted extensive work on designing new functionals
 example, by considering the non-uniform nature of electron distribution, several
 schemes of generalized gradient approximation (GGA), in which the
 exchange-correlation functional is a function of both the density of electrons $n$
-and its gradient $\nabla n$, have been developed. In recent years one of the most
+and its gradient $\nabla n$, have been developed. In recent years, one of the most
 popular exchange-correlation functionals is a GGA-class functional developed by
 Perdew, Burke and Ernzerhof \citep{Perdew1996} (PBE). Most of the DFT simulations
 presented in this work were performed using the PBE exchange correlation functional .
@@ -245,6 +237,9 @@ have also been more targeted attempts to solve material specific problems, for
 example the introduction of long-range Van der Waals forces using the VdW potentials
 \citep{Raymond2015}.
 
+In all cases the choice of energy functional is a fundamental approximation, and
+results must be compared to a physical system to truly quantify the uncertainty 
+arising from the choice.
 
 \subsubsection{Self consistent iteration}
 Numerically solving the Kohn-Sham equation includes an initial guess of the density,
@@ -274,16 +269,16 @@ There are different methods for solving the Kohn-Sham equations. Typically one
 chooses a basis set to expand the orbitals, according to the nature of the system.
 Plane wave basis, Gaussian basis, and Slater-type orbital basis are often used.  For
 electronic structures condensed systems with periodic boundary conditions, such as
-those presented here, plane waves is the  natural choice.  They make form a complete,
+those presented here, plane waves is the  natural choice.  They form a complete,
 general basis that allows for easy convergence.
 
 Another noteworthy concept in DFT is the pseudopotential, which is  used in most
 materials simulations considering elements with Z$>$2. The idea of pseudopotentials
 is to use an effective ionic potential to replace the combined Coulomb potential of
-the nucleus and electrons on the valence electrons, whose effect is assumed to be
+the nucleus and core electrons on the valence electrons, whose effect is assumed to be
 nearly identical regardless of ionic configuration. The use of pseudopotentials
 greatly reduces the size of the basis, which otherwise has to be large to describe
-the non-smooth electronic states near the nucleus. Particular attentions has to be
+the non-smooth electronic states near the nucleus. Particular attention must  be
 paid to the pseudopotential in studies at extremely high pressures, because a
 pseudopotential can be invalidated by overlapping of the core states of nearby atoms.
 
@@ -301,8 +296,8 @@ standard DFT methods. One of the most fundamental consequences is that the time
 averaged properties of the material do not correspond to a single, fixed ionic
 configuration. Rather, they must be obtained from an ensemble of different
 configurations, which must be weighted using principles from statistical mechanics.
-In most experimental and ``real world'' applications the ensemble of interest is a
-$NPT$ ensemble (one with number of atoms, pressure and temperature). For
+In most experimental and ``real world'' applications, the ensemble of interest is a
+$NPT$ ensemble (in which the number of atoms, pressure and temperature is concserved). For
 first-principles calculations, however, it is typically much easier to consider a
 $NVE$ or Microcononical ensemble (with fixed volume and total energy).
 
@@ -323,7 +318,7 @@ positions and velocities over time on pico-second timescales. Since these simula
 mimic real processes it allows one to directly observe some properties, such as
 diffusion.
 
-At it's heart an MD simulation is just an extension of Newton's law. Considering the
+At it's heart, a MD simulation is simply an extension of Newton's laws of motion. Considering the
 simple case of pair potentials, 
 %
 \begin{equation}
@@ -352,8 +347,8 @@ and the change in position as
 Molecular dynamics implementations typically use the Verlet algorithm
 \citep{Verlet1967} which provides good numerical stability, as well as desirable
 physical properties such as time-reversibility. Because the primary goal of MD is in
-generating sample configurations higher order integrators are typically not
-necessary. The positions new position of an atom  ${\bf r}_{n+1}$ is updated based on it's
+generating sample configurations, higher order integrators are typically not
+necessary. The new position of an atom  ${\bf r}_{n+1}$ is updated based on it's
 previous two positions
 %
 \begin{equation}
@@ -368,8 +363,8 @@ and the velocity
 \end{equation}
 %
 The time averaged material properties can then be determined from an
-average of the those calculated for each configuration. In the Microcanonical
-ensemble the total energy of simulation is constant, but the kinetic and potential
+average of those calculated for each configuration. In the Microcanonical
+ensemble, the total energy of simulation is constant, but the kinetic and potential
 energy, $K$ and $V$ where $E=K+V$ fluctuate over time. The time averaged kinetic
 energy is found as 
 %
@@ -421,7 +416,7 @@ as their simple average over all the configurations.
 
 There are also a number of different kinds of quantum Monte Carlo (QMC) techniques,
 which provide an alternative to DFT for solving the many-body Schr\"{o}dinger
-equation and are used extensively in condensed matter physics. These are ,however,
+equation and are used extensively in condensed matter physics. These are, however,
 generally less computationally efficient than DFT, and are not presented in this
 work. Classical Monte Carlo (CMC) describes a simpler model system with interactions
 defined by pair potentials $V_{ij}=V({\bf r}_i,{\bf r}_j)$. These efficient CMC
@@ -445,7 +440,7 @@ entropy is a good approximation
 
 In addition to phase transitions within a
 composition, a determination of the entropy also allows us to begin addressing
-questions of simple chemical and compositional problems. For instance in Chapter 4 I
+questions of simple chemical and compositional problems. For instance, in Chapter 4 I
 present results on the high pressure solubility of iron and MgO, following the
 reaction $\rm{MgO}_{\rm sol/liq} + \rm{Fe}_{\rm liq} \Rightarrow \rm{FeMgO}_{\rm
 liq}$. This is achieved by running simulations of three separate phases and comparing
@@ -473,11 +468,11 @@ Fig.~\ref{femgosnap}.
 Thermodynamic integration (TDI) is a technique that considers a fictitious
 transformation of one atomic system into another. For instance, one can consider a
 system where you slowly change the interaction between atoms, running separate
-simulations for each step in the transformation. In our case we calculate an absolute
+simulations for each step in the transformation. In our case, we calculate an absolute
 $S$ by considering the transformation of the DFT system into an
 analogous classical system with the same number of atoms, having an analytic
 expression for $S$. Fig~\ref{tdi} shows a schematic representation of this
-transition. In principle this can also be done between two DFT systems, for
+transition. In principle, this can also be done between two DFT systems, for
 instance transforming some subset of atoms from one element to another 
 
  \begin{figure}[h!] %  figure placement: here, top, bottom, or page
@@ -497,7 +492,7 @@ instance transforming some subset of atoms from one element to another
 
 The Gibbs free energy of a material includes a contribution from entropy of the system.
 Since entropy is not determined in the standard DFT-MD formalism, we adopt a two step
-thermodynamic integration method, used in previous studies
+thermodynamic integration method used in previous studies
 \citep{Wilson2010,Wilson2012a,Wahl2013,Gonzalez2014}.  The thermodynamic integration technique
 considers the change in Helmholtz free energy for a transformation between two systems
 with governing potentials $U_a\left(\mathbf{r_i}\right)$ and
@@ -519,7 +514,7 @@ In practice, it is more computationally efficient to perform the calculation $\D
 F_{\rm an\to DFT}$ in two steps, each involving an integral of the form of Eqn.
 \ref{eqn:td_int}. We introduce an intermediate system governed by classical pair
 potentials, $U_{\rm cl}$, found by fitting forces to the DFT trajectories
-\citep{Wilson2010,Izvekov2004}. For each pair of elements, find the average force in bins
+\citep{Wilson2010,Izvekov2004}. For each pair of elements, we find the average force in bins
 of radial separation and fit the shape of a potential using a cubic spline function. We
 constrain the potential to smoothly approach zero at large radii and use a linear
 extrapolation at small radii, where the molecular dynamics simulations provide
@@ -535,14 +530,14 @@ simulations, and $\Delta F_{\mathrm{an} \to \mathrm{cl}}$ numerous, but inexpens
 classical Monte Carlo (CMC) simulations. The method depends on a smooth integration
 of $\Delta F_{\mathrm{cl}\to \mathrm{DFT}}$ and avoiding any first order phase
 transitions with $\lambda$.  We use five $\lambda$ points, for all $\Delta
-F_{\mathrm{cl}\to \mathrm{DFT}}$ integrations. For solids we use a combination of
+F_{\mathrm{cl}\to \mathrm{DFT}}$ integrations. For Liquids, we use a combination of
 classical pair and one-body harmonic oscillator potentials for $U_{\rm cl}$
-\citep{Wilson2012a,Wahl2013}.  Liquids we use only pair potentials. For solids the
+\citep{Wilson2012a,Wahl2013}.  Liquids we use only pair potentials. For solids, the
 analytical reference system is an Einstein solid with atoms in harmonic potentials
 centered on a perfect lattice, while a gas of non-interacting particles is used for
 liquids. We found integrating over 5 lambda points to be sufficiently accurate in
 most cases, with an increase to 9 lambda points changing our results by $<0.003$ eV
-per formula unit in the FeMgO study. In some cases as few as 3 lambda points are
+per formula unit in the FeMgO study. In some cases, as few as 3 lambda points are
 sufficient for the transformation from DFT to pair potentials. 
 
 %\section{Equations of State}
@@ -552,7 +547,7 @@ sufficient for the transformation from DFT to pair potentials.
 Here we present to tests validating the TDI method for use in multi component systems
 using different types of pair potentials. These were performed in conjunction with
 the Fe/MgO solubility study presented in Chapter 4. Simulations in the following section were
-performed by Burkhard Militzer and presented in a join publication.
+performed by Burkhard Militzer and presented in a joint publication.
 
 \subsection{Comparison of thermodynamic integration with different classical potentials}
 
@@ -563,7 +558,7 @@ where the trajectories provide no information, linear extrapolation is
 used, which means our pair potentials are finite at the origin. All of the
 results presented in the paper used this fitting procedure.
 Figure~\ref{fig:potentials} shows an example for the pair potentials for
-liquid MgO and 50~GPa and 6000~K.  While the Mg-Mg and O-O potentials are
+liquid MgO at 50~GPa and 6000~K.  While the Mg-Mg and O-O potentials are
 purely repulsive, the deep minimum in the Mg-O potential represents the
 attractive forces between ions of opposite charge.
 
@@ -586,13 +581,14 @@ Table~\ref{tab:compare_pots} provide all terms of the thermodynamic integration
 procedure. In order to test how robust our approach is, we constructed a different
 set of pair potential where we eliminated all bonding forces. The values of these
 non-bonding potentials are constrained to be positive, and asymptote to zero without
-a minimum. Obviously they are a poor representation of the DFT forces in the system
-and therefore the free energy differences between the DFT and the classical system,
-$F_{\rm cl \to DFT}$, given in table \ref{tab:compare_pots}, is much larger than for
+a minimum. Obviously, they are a poor representation of the DFT forces in the
+system,
+and therefore, the free energy differences between the DFT and the classical system,
+$F_{\rm cl \to DFT}$, given in table \ref{tab:compare_pots}, are much larger than for
 our regular potentials.  However, when the values for $F_{an}$, $F_{an \to cl}$, and
 $F_{\rm cl \to DFT}$ are added, we recover the results for $F_{DFT}$ within the
-1$\sigma$ error bars. This demonstrates that out free energy calculations are not
-sensitive to the details how we construct our classical potentials.
+1$\sigma$ error bars. This demonstrates that our free energy calculations are not
+sensitive to the details of how we construct our classical potentials.
 
 \begin{figure}[h!]  
     \centering
@@ -614,9 +610,9 @@ when the classical forces best match the DFT forces.
 Figure~\ref{fig:integrate_dft} shows the calculated values of $\left<
 V_{DFT} - V_{\rm cl} \right>$ as a function of $\lambda$ using the regular
 ``bonding'' potential, and for the ``non-bonding potential''. Here each
-plotted value of lambda represents and independent DFT-MD simulation with
+plotted value of lambda represents an independent DFT-MD simulation 
 using that fraction of DFT forces, along with the complementary fraction of
-classical forces. The integral of this function give the Helmholtz free
+classical forces. The integral of this function yields the Helmholtz free
 energy $F_{\rm cl \to DFT}$. In the first case , the function $\left<
 V_{DFT}-V_{\rm cl}\right>$ in figure~\ref{fig:integrate_dft} depends weakly
 on $\lambda$. The function is almost linear and the difference between
@@ -665,15 +661,18 @@ where $Z$ is the partition function
 \begin{eqnarray}
 Z =  \int \! d{\bf r} \, e^{ -\beta \lambda V_{\rm cl}({\bf r}) },
 \end{eqnarray}
+%
 we find the following expression as $\lambda \to 0$
+%
 \begin{eqnarray}
  \left< V_{\rm cl} \right>_{\lambda \to 0} &=& \frac{ \int \! d{\bf r} \, V_{\rm
  cl}}
  {  \int \! d{\bf r} \, 1} \nonumber \\
- &=& \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \label{eqn:limit}
+ &=& \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r). \label{eqn:limit}
 \end{eqnarray}
-Then from the derivative of $\left< V_{\rm cl} \right>_{\lambda}$ in
-equation \ref{eqn:average} and \ref{eqn:limit}
+%
+Then, from the derivative of $\left< V_{\rm cl} \right>_{\lambda}$ in
+equation \ref{eqn:average} and \ref{eqn:limit},
 \begin{eqnarray}
   \frac{d \left< V_{\rm cl} \right>}{d \lambda}
    &=& \frac{1}{Z^2} 
@@ -688,9 +687,9 @@ equation \ref{eqn:average} and \ref{eqn:limit}
    &=& (-\beta) \left[  \frac{1}{V}  \int \! dr \, r^2 V^2_{\rm cl}(r) -
      \left\{ \frac{1}{V}  \int \! dr \, r^2 V_{\rm cl}(r) \right\}^2 \right]
   \end{eqnarray}
-This give us the slope and intercept for the integration at $\lambda=0$, necessary to
+This gives us the slope and intercept for the integration at $\lambda=0$, necessary to
 correctly integrate the cusp. The CMC calculations lower the cost of the simulation
-by a factor of over $10^4$ compared to the DFT simulations. Becauase of the extreme
+by a factor of over $10^4$ compared to the DFT simulations. Because of the extreme
 difference in computational efficiency, it is always best to adjust the classical
 potential to match the DFT forces to minimize the number of $\lambda$ points needed.
 
@@ -700,7 +699,7 @@ potential to match the DFT forces to minimize the number of $\lambda$ points nee
 The second test is to verify that, in a multi-component system, the
 integration path does not effect the results. An integration path needs to
 be constructed that connects a system with Mg-Mg, Mg-O, and O-O pair
-potentials with an non-interacting system. In our standard procedure we
+potentials with an non-interacting system. In our standard procedure, we
 turn on all pair potentials simultaneously by changing
 $\lambda_1=\lambda_2=\lambda_3$ from 0 to 1.
 %
@@ -712,7 +711,7 @@ $\lambda_1=\lambda_2=\lambda_3$ from 0 to 1.
  However, as we will now demonstrate, alternative integration paths will give the
  same results. We compare different integration paths to calculate the free energy of
  the classical system, $F_{\rm cl}$, for both the regular and non-bonding potentials.
- This is comparison can not be made directly for $F_{\rm cl \to DFT}$ because
+ This is comparison cannot be made directly for $F_{\rm cl \to DFT}$, because
  tracking the interaction of different species separately is not possible in a
  Kohn-Sham formulation.
 
@@ -759,20 +758,20 @@ in the second and final integration step ($F_{101 \to 111}$). The indices refer 
 the three $\lambda$ values for Mg-Mg, Mg-O, and O-O potentials, respectively. In line
 3 of table~\ref{tab:compare_int_path}, we interchange both integration steps. In line
 4, we performed three integration steps turning on the one potential after the other.
-In the last column we compare the classical free energies after adding the results
+In the last column, we compare the classical free energies after adding the results
 from every integration step to $F_{\rm an}$. The results agree within the statistical
 uncertainties demonstrating that the same classical free energies can be obtained for
 four different integration paths using non-bonding potentials.
 
 In table~\ref{tab:compare_int_path}, we also show the results for two
 integration paths using regular, bonding potentials. We find consistent
-results when we either turn on all potentials simultaneously and when we
+results when we either turn on all potentials simultaneously, and when we
 switch on the Mg-Mg and O-O potentials in the first step and the Mg-O
 potential in the second. We were not able, however, to turn on the
-attractive Mg-O alone because the system becomes unstable due to the
+attractive Mg-O alone, because the system becomes unstable due to the
 imbalance between attractive and missing repulsive forces. This is similar
-to what happens in the case of a first-order phase transition, which over
+to what happens in the case of a first-order phase transition, over
 which thermodynamic integrations are also invalid. Nevertheless, this test
-demonstrates that different integration paths give consistent results also
+demonstrates that different integration paths give consistent results 
 for the systems with attractive forces when care is taken to taken to avoid
 instabilities.
