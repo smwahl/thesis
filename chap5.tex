@@ -1,4 +1,4 @@
-\chapter{Thermodynamics of Convection with a Phase Transition}\label{chap3}
+\chapter{Thermodynamics of Convection with a Phase Transition}\label{chap5}
 
 
 \section{Motivation}
@@ -52,7 +52,7 @@ using a parcel method, and to evaluate the effect calculated adiabatic profiles
 have on global budgets of energy and entropy. This work was never published and
 is presented here in an incomplete state.
 
-A part of this work was integrated and added upon as part of a CIDER project with the
+A part of this work was integrated with and added upon as part of a CIDER project with the
 author in collaboration with Brent Delbridge, and Ian Rose, of UC Berkeley, and Grace
 Cox of the University of Leeds, under the advisorship of Jessica Irving (Princeton),
 Bill McDonough and Laurent Montesi (Maryland), and  the last two Sections of this
@@ -192,7 +192,7 @@ relatively small for conditions during which a separate `iron snow' region
 exists. One can consider the influence of this process through use of a
 perturbed adiabat with standard models for convection and dynamo generation.
 
-\section{Core energy and entropy budgets}
+\section{Core energy and entropy budgets} \label{budget}
 
 To determine the energy and entropy budgets, I make use of standard iterative
 methods for determining a mean core state, constrained by a planet mass, core
@@ -239,7 +239,8 @@ equation from latent heat release.
 
 
 
-\section{Coupling with mantle convection}
+
+\section{Mercury interior structure model}
 
 We have a working prototype for a code designed to calculate self-consistent
 internal structures. The code uses an efficient iterative procedure to
@@ -253,6 +254,30 @@ will be the systematic inclusion of uncertainty in the experimentally
 determined thermodynamic properties, which will be an important step in
 establishing the ability of any given set of constraints to determine the state
 of Mercury's core. 
+
+We have developed a 3-layer interior structure model with a growing inner core.
+Material properties are calculated using a Mie-Gr\"{u}neisen-Debye EOS, using the BurnMan
+code. It finds adiabatic temperature profiles consistent with the pressure of the 
+inner core boundary and the composition of the liquid. The interior planet model is
+given a list of different layers of a given mass and homogeneous composition. 
+
+The BurnMan code is then called upon to calculate a $P-T$ barotrope for a given
+mantle mineralogy and composition. We adapted the {\verb burnman.Mineral }
+class to describe an equation of state for solid and liquid iron alloys.
+For the solids we used experimental data for pure gamma iron and a 17 wt. \% Si solid
+solution \citep{Tsujino2013,Gleason2013,Lin2003}. For the liquid we
+used the results of experiments of pure iron \citep{Anderson1994,Desai1986}, as well
+as solutions with sulfur and silicon \citep{Balog2003,Kaiura1979,Yu}. For the liquids
+the Gr\"{u}neisen is not well defined, although we choose to use find an
+approximation for to utilize existing BurnMan code for the core materials.
+
+Included in the interior model was a simple treatment of the partitioning of light
+elements between the solid inner and liquid outer cores. As the inner core grows
+light elements become concentrated in the outer core according to their initial
+abundance, partitioning coefficient, and mass fraction in the solid and liquid
+reserves. In these models we assume that sulfur partitions entirely into the liquid
+(distribution coefficient, $D=0$), whereas silicon partitions nearly equally between
+the solid and liquid.
 
  \begin{figure}[h] %  figure placement: here, top, bottom, or page
    \centering
@@ -272,18 +297,40 @@ of Mercury's core.
   \label{fig:thermal}
 \end{figure}
 
-We have developed a 3-layer interior structure model with a growing inner core.
-Material properties are calculated using a Mie-Gr\"{u}neisen-Debye EOS, using the BurnMan
-code. It finds adiabatic temperature profiles consistent with the pressure of the 
-inner core boundary and the composition of the liquid. 
-
 Also shown in Fig.~\ref{fig:interior_model} is a model liquidus, fit to experimental
-phase diagrams. The melting curve of the Fe-S system has enigmatic features, which
-may not be captured by a  linear interpolation. The onset of ``snow''
-regions in the core is extremely sensitive to this interpolation.
+phase diagrams. This particular liquidus model was modified from one compiled by June
+Wicks and Nick Knezek (pers. comm., CIDER 2014). This model is an interpolation, very
+similar to the one presented earlier in the chapter, but with additional experimental
+sources included in the model. The melting curve of the Fe-S system has enigmatic
+features, which may not be captured by a  linear interpolation. The onset of ``snow''
+regions in the core is extremely sensitive to this interpolation. 
+
+Comparing the slope of the interpolated melting temperature to the slope of the
+adiabatic profile determines the crystallization behavior of the core, with a
+steeper melting temperature corresponding to  ``Earth-like'' conditions. For higher
+values of the thermal expansivity, $\alpha$, the core will be ``snowing'' at all
+times. For lower $\alpha$, the onset of snowing occurs with increasing S-content.
+
+Once the layer masses and compositions are defined the interior structure model. We
+use an iterative method to compute consistent boundary radii for each of the layers,
+along with consistent profiles of gravity and pressure as a function of radius from
+the center of the planet. The pressures are then fed back to the description of the
+adiabatic barotropes to update the pressures and densities as a function of radius of
+the planet. This description also naturally leads to the moments of inertia for each
+of these layers, for which there are indirect measurements from Mercury's orbital librations
+\citep{Margot}.
 
 
- \begin{figure}[h] %  figurVVe placement: here, top, bottom, or page
+\section{Coupling with mantle convection}
+
+
+Between any two interior structure models with incremental changes in the
+solidification of the core, there is a change in the energy of the system. The change
+in density profile, from contraction and light element partitioning in the core can
+be translated into a change in the gravitational energy of the system. Likewise, the
+change in temperature profile can be used to approximate a change in thermal energy
+in combinations with a heat capacity, $C_P$. The solidification of the inner core
+also has an accompanying latent heat release.  \begin{figure}[h] %  figurVVe placement: here, top, bottom, or page
    \centering
 \begin{tabular}{c}
  \includegraphics[width=30pc]{figs/CMB_flux.pdf} 
@@ -294,28 +341,27 @@ and peak-to-peak variations are about 20\%. Figure Credit: Ian Rose.}
 \label{fig:flux}
 \end{figure}
 
-
-Comparing the slope of the interpolated melting temperature to the slope of the
-adiabatic profile determines the crystallization behavior of the core, with a
-steeper melting temperature corresponding to  ``Earth-like'' conditions. For higher
-values of the thermal expansivity, $\alpha$, the core will be ``snowing'' at all
-times. For lower $\alpha$, the onset of snowing occurs with increasing S-content.
-
-
-
-The interior structure model is coupled to a parameterized convection model for
+In order to relate these global
+changes in energy to a predicted timescale, one must consider the rate of heat loss
+through the mantle and lithosphere of the planet.
+The interior structure model is coupled to a parameterized convection model
+\citep{Stevenson1986} for
 the thermal evolution of the planet. Shown on the right in Fig.~\ref{fig:core_energy}
 are the changes in latent heat, gravitational and thermal energy in the core per
-change in core mantle boundary temperature for bulk composition of 6 wt.\% S. 
-
-
+change in core mantle boundary temperature for bulk composition of 6 wt.\% S. Over a
+large number of steps, we can thus track the energy and entropy fluxes through
+different portions of the planet.
 
 Mercury's unusual 3:2 spin-orbit resonance causes persistent temperature variations
 at the surface.  This boundary condition may create significant heat-flux variations
 at the CMB, especially if the mantle is not convecting.  Here we solve a simple
 conduction equation in the Mercurian mantle to calculate an estimate of heat flux at
-the CMB.  This heat-flux variation is then used to inform the boundary conditions of
-a dynamo simulation using the \texttt{Calypso} code.
+the CMB.  This heat-flux variation can then used to inform the boundary conditions of
+a dynamo simulation using the \texttt{Calypso} code, and entropy-budget models for
+geodynamos such as that introduced in Section~\ref{budget}. Results from an example
+calculation of such a geodynamo entropy budget calculation are s
+
+
 
  \begin{figure}[h] %  figurVVe placement: here, top, bottom, or page
    \centering
