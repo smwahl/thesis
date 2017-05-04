@@ -148,7 +148,7 @@ Section \ref{sec:results}.
 
 \section{Results} \label{sec:results}
 
-The online supplementary material includes a table with the results of the calculations
+Table~\ref{tab:results} shows the results of the calculations
 for each composition and $P$-$T$ condition. It includes the density along with the
 calculated pressure, internal energy, entropy and Gibbs free energy. The stable phase at
 each condition is determined using Eqn. \ref{eqn:gibbs}.  The point at which the trend in
@@ -709,7 +709,7 @@ convection is analogous to the exclusion of light elements from the growing inne
 Fig. \ref{fig:concentrations} shows an extrapolation of our results to predict the
 saturation of MgO in Fe at 50 GPa as a function of temperature.  This is done using a
 function for $G$ in terms of the cell volumes derived in the low-concentration limit
-\citep{Wilson2012a,Wahl2013}, and details are presented in the supplemental material. From
+\citep{Wilson2012a,Wahl2013}. From
 this we predict a $>$1\% MgO saturation limit down to 4200 K, with concentrations steeply
 decreasing to be below detection limits in high-pressure experiments by $\sim$3000 K
 \citep{Knittle1991,Ozawa2008a}. In principle, high-temperature equilibration could also
@@ -742,4 +742,84 @@ and the role of miscibility between the most abundant rocky and metallic materia
 be considered to adequately assess their early evolution.
 
 
+\subsection{Simple model of super-Earth formation.}
 
+
+\begin{figure}[h]  
+  \centering
+    \includegraphics[width=22pc]{figs/1_Me_dulong.eps}  
+\caption{Comparison of the thermal state of a 1 Earth mass homogeneous planet with
+gravitational binding energy converted with efficiency $\eta$ = 0.05, 0.1, 0.15 and
+0.2 (blue lines). For $\eta$ = 0.15 and 0.2, the isentrope crosses our calculated
+Fe-MgO solvus, and at least part of the planet is predicted to be fully mixed.
+Isentropes are calculated by extrapolation of FeMgO calculations at 100 and 400 GPa
+(blue circles).}
+\label{fig:superearth1}
+\end{figure}
+
+\begin{figure}[h]  
+  \centering
+    \includegraphics[width=22pc]{figs/6_Me_dulong.eps}  
+\caption{Comparison of the thermal state of a 6 Earth mass homogeneous planet with
+gravitational binding energy converted with efficiency $\eta$ = 0.05, and
+0.1 (blue lines). 
+Isentropes are calculated by extrapolation of FeMgO calculations at 100 and 400 GPa
+(blue circles).}
+\label{fig:superearth6}
+\end{figure}
+
+Linear extrapolation of $\rho$ and $S$ at constant $P$ = 100 and 400 GPa. For a
+constant entropy, fit $log_{10}(\rho)$ and  $log_{10}(T)$ as a function of
+$log_{10}(P)$.
+
+Set up a grid of integrated mass $m$ from the center of the planet with constant
+spacing, from 0 to the total mass of the planet. Iteratively
+calculate the interior profiles until quantity of interest is sufficiently converged.
+
+Compute the radius as a function of $m$.
+
+\begin{equation} \label{eqn:radius}
+    r(m) = \left( \frac{3\pi}{4} \int^m_0 dm' \frac{1}{\rho(m')} \right)^{1/3}
+\end{equation}
+    
+Compute the gravity as a function of $r$ using Poisson's equation.
+
+
+\begin{equation} \label{eqn:gravity}
+    g(r) = 4 G \pi \int^r_0 dr' \rho(r') r'^2
+\end{equation}
+
+where $G$ is the universal gravitational constant. Then converting to a depth $z=R-r$
+the hydrostatic pressure is found as 
+
+
+\begin{equation} \label{eqn:pressure}
+    P(z) = \int_0^z dz' g(z') \rho(z').
+\end{equation}
+
+For the converged profile, the total gravitational binding energy of the model planet
+is
+
+
+\begin{equation} \label{eqn:Eg}
+    E_{G} = - \frac{16}{3} G \pi^2 \int_0^R dr \rho(r) r^4.
+\end{equation}
+
+This can then be compared to an integral of the thermal energy consistent with the
+isentropic barotrope
+
+
+\begin{equation} \label{eqn:Eth}
+    E_{T} = 4 \pi C_V \int^R_0 dr \rho(r') T(r') r'^2,
+\end{equation}
+
+where $C_V$ is the isochoric specific heat capacity. For simplicity, we assume the
+$C_V$ is constant with the high-temperature Dulong-Petite limit. We thus define an
+accretion efficiency
+
+\begin{equation} \label{eqn:eta}
+    \eta \equiv \frac{E_T}{E_G}
+\end{equation}
+
+From this point we can determine how high $\eta$ must be in order for an accreting
+planet with mass $M$ to have a temperature profile that crosses the solvus.
