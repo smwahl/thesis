@@ -742,8 +742,86 @@ and the role of miscibility between the most abundant rocky and metallic materia
 be considered to adequately assess their early evolution.
 
 
-\subsection{Simple model of super-Earth formation.}
+\subsection{Simple model of super-Earth formation} \label{superearth}
 
+For the Earth, or similarly sized planets, a thermodynamically mixed iron-silicate
+may have existed in the aftermath of a giant impact, but such a state would only be
+relevant to small portion of the planet for a time period that is short compared with
+geological timescales. For more massive, super-Earth exoplanets, however, it is
+possible that a fully-mixed region of the planet may be long-lived. Given the large
+amount of gravitational energy released during in their formation, such a mixed
+region may be ubiquitous for sufficiently large rocky exoplanets.
+
+To address this question we look at a simple model for the interior state of a
+homogeneous rocky planet. This model is not meant to provide a precise determination
+of the interior structure of a planet, but instead give a quick order of magnitude
+estimate for how large a rocky planet would need to be to have a sustainable mixed
+region.
+
+For simplicity, we consider consider the planet to be composed of a 50-50 mixture of
+iron and MgO, using the thermodynamic parameters of our simulated mixture presented
+in Table~\ref{tab:results}. We perform a linear extrapolation of $\rho$ and $S$ at
+constant $P$ = 100 and 400 GPa. For a constant entropy $S$, $log_{10}(\rho)$ and
+$log_{10}(T)$ are then fit as a function of $log_{10}(P)$ to provide a simple
+interpolated equation of state for $T(P)$ and $\rho(P)$.
+
+To find the profiles of these quantities through the interior of the planet we
+consider grid of integrated mass $m$  with constant spacing, extending from 0 at the
+center of the planet to the total mass of the planet. Iteratively calculate the
+interior profiles until quantity of interest is sufficiently converged.
+
+We then compute the radius as a function of $m$
+%
+\begin{equation} \label{eqn:radius}
+    r(m) = \left( \frac{3\pi}{4} \int^m_0 dm' \frac{1}{\rho(m')} \right)^{1/3}.
+\end{equation}
+% 
+Next we compute the gravity as a function of $r$ using Poisson's equation
+%
+\begin{equation} \label{eqn:gravity}
+    g(r) = 4 G \pi \int^r_0 dr' \rho(r') r'^2,
+\end{equation}
+%
+where $G$ is the universal gravitational constant. The gravitational energy would be
+greater in the case of a body where the iron core and rocky mantle are
+differentiated. The gravitational energy might also be supplemented through the
+release of orbital kinetic energy, which can be significant in the case of energetic
+giant impacts \citep{Canup2012,Cuk2012}. We next convert the radius to a depth $z=R-r$
+from the planet's surface, and using this, the hydrostatic pressure is found as 
+%
+\begin{equation} \label{eqn:pressure}
+    P(z) = \int_0^z dz' g(z') \rho(z').
+\end{equation}
+%
+This new set of the pressures are then fed back to the interpolated equation of state
+in order to update the profiles of $T$ and $\rho$. This same iterative process is
+then repeated until all the profiles are converged to within a chosen tolerance.
+
+For the converged interior structure, the total gravitational binding energy of the
+model planet is given by the integral
+%
+\begin{equation} \label{eqn:Eg}
+    E_{G} = - \frac{16}{3} G \pi^2 \int_0^R dr \rho(r) r^4.
+\end{equation}
+%
+This can then be compared to an integral of the thermal energy consistent with the
+isentropic barotrope
+%
+\begin{equation} \label{eqn:Eth}
+    E_{T} = 4 \pi C_V \int^R_0 dr \rho(r') T(r') r'^2,
+\end{equation}
+%
+where $C_V$ is the isochoric specific heat capacity. For simplicity, we assume the
+$C_V$ is constant with the high-temperature Dulong-Petite limit. We thus define an
+accretion efficiency
+%
+\begin{equation} \label{eqn:eta}
+    \eta \equiv \frac{E_T}{E_G}.
+\end{equation}
+%
+The Dulong-Petite limit is expected to be a reasonable approximation at high
+temperatures, and thus for large values of $M$ and $S$, but may
+overestimate by up to as material is added for a smaller, cooler planet.
 
 \begin{figure}[h]  
   \centering
@@ -757,6 +835,35 @@ Isentropes are calculated by extrapolation of FeMgO calculations at 100 and 400 
 \label{fig:superearth1}
 \end{figure}
 
+From this point we can determine how high $\eta$ must be in order for an accreting
+planet with mass $M$ to have a temperature profile that crosses the solvus. After the
+main period of planet growth $\eta$ will naturally decrease over the lifetime of the
+planet. For a real planet, the maximum $\eta$ will depend on numerous factors at play
+during its formation, such as the timescale of accretion and rate of heat-loss
+through a planet. If the outer silicate portions of a planet are molten this heat
+loss can be quite rapid, although the formation of an insulating silicate atmosphere
+may temper it \citep{Elkins-Tanton2012}. 
+
+Figure~\ref{fig:superearth1} shows the predicted temperature profiles for a 1
+Earth-mass planet with $\eta$ = 0.05, 0.1, 0.15 and 0.2, compared to our computed
+Fe-MgO solvus. For a very high, 20\% conversion efficiency of $E_G$, most of the
+planet's interior is heated to sufficiently high temperatures to allow full
+miscibility of rock and iron. For 15\% efficiency we would predict this miscibility
+of the materials in the deep interior of the planet, with separation in the outer
+portion of the planet. In the case of 5 or 10 \% efficiency
+
+As the mass of the planet increases the minimum value of $\eta$ needed to cross the
+solvus decreases. For a 2 Earth-mass planet, a 10\% $E_G$ conversion efficiency would
+permit a miscible region in the deep interior. For a yet larger 6 Earth-mass planet,
+shown in Figure~\ref{fig:superearth6}, a miscible region is predicted for $\eta$ as
+low as 0.05. In 6 Earth-mass case the adiabat through the low pressure part of the planet is
+also below a typical mantle solidus, meaning that a single planet might contain an
+outer rocky mantle, a deep magma ocean, followed by a deeper silicate-iron mixed
+region. This is in contrast to the 1 Earth-mass case, where $\eta=0.15$ would require
+most of the planet to be molten. For this reason, the mixed region on a 6
+Earth-mass rocky planet may be long-lived, whereas such conditions could have only
+existed for the earliest part of the Earth's evolution.
+
 \begin{figure}[h]  
   \centering
     \includegraphics[width=22pc]{figs/6_Me_dulong.eps}  
@@ -768,58 +875,12 @@ Isentropes are calculated by extrapolation of FeMgO calculations at 100 and 400 
 \label{fig:superearth6}
 \end{figure}
 
-Linear extrapolation of $\rho$ and $S$ at constant $P$ = 100 and 400 GPa. For a
-constant entropy, fit $log_{10}(\rho)$ and  $log_{10}(T)$ as a function of
-$log_{10}(P)$.
-
-Set up a grid of integrated mass $m$ from the center of the planet with constant
-spacing, from 0 to the total mass of the planet. Iteratively
-calculate the interior profiles until quantity of interest is sufficiently converged.
-
-Compute the radius as a function of $m$.
-
-\begin{equation} \label{eqn:radius}
-    r(m) = \left( \frac{3\pi}{4} \int^m_0 dm' \frac{1}{\rho(m')} \right)^{1/3}
-\end{equation}
-    
-Compute the gravity as a function of $r$ using Poisson's equation.
-
-
-\begin{equation} \label{eqn:gravity}
-    g(r) = 4 G \pi \int^r_0 dr' \rho(r') r'^2
-\end{equation}
-
-where $G$ is the universal gravitational constant. Then converting to a depth $z=R-r$
-the hydrostatic pressure is found as 
-
-
-\begin{equation} \label{eqn:pressure}
-    P(z) = \int_0^z dz' g(z') \rho(z').
-\end{equation}
-
-For the converged profile, the total gravitational binding energy of the model planet
-is
-
-
-\begin{equation} \label{eqn:Eg}
-    E_{G} = - \frac{16}{3} G \pi^2 \int_0^R dr \rho(r) r^4.
-\end{equation}
-
-This can then be compared to an integral of the thermal energy consistent with the
-isentropic barotrope
-
-
-\begin{equation} \label{eqn:Eth}
-    E_{T} = 4 \pi C_V \int^R_0 dr \rho(r') T(r') r'^2,
-\end{equation}
-
-where $C_V$ is the isochoric specific heat capacity. For simplicity, we assume the
-$C_V$ is constant with the high-temperature Dulong-Petite limit. We thus define an
-accretion efficiency
-
-\begin{equation} \label{eqn:eta}
-    \eta \equiv \frac{E_T}{E_G}
-\end{equation}
-
-From this point we can determine how high $\eta$ must be in order for an accreting
-planet with mass $M$ to have a temperature profile that crosses the solvus.
+The existence of a long-lived mixed iron-rock region would undoubtedly have
+consequences for both the thermal evolution of these rock super-Earths, as well
+effecting the generation of a magnetic field. There are confirmed examples of rocky
+bodies up to several Earth-masses in the exoplanet population, for which these simple
+models would predict conditions of miscibility between rock an iron in the interior.
+In reality the story may be more complicated than this, because large rocky bodies
+are still expected to form from the collision and merging of already-differentiated
+bodies, and the mechanical mixing of the denser iron upwards through the planet may be
+inefficient, even at temperatures where it will readily mix with the rocky mantle.
