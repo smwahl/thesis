@@ -761,8 +761,8 @@ region.
 For simplicity, we consider consider the planet to be composed of a 50-50 mixture of
 iron and MgO, using the thermodynamic parameters of our simulated mixture presented
 in Table~\ref{tab:results}. We perform a linear extrapolation of $\rho$ and $S$ at
-constant $P$ = 100 and 400 GPa. For a constant entropy $S$, $log_{10}(\rho)$ and
-$log_{10}(T)$ are then fit as a function of $log_{10}(P)$ to provide a simple
+constant $P$ = 100 and 400 GPa. For a constant entropy $S$, $log_{10}\rho$ and
+$log_{10}T$ are then fit as a function of $log_{10}P$ to provide a simple
 interpolated equation of state for $T(P)$ and $\rho(P)$.
 
 To find the profiles of these quantities through the interior of the planet we
@@ -852,18 +852,6 @@ miscibility of rock and iron. For 15\% efficiency we would predict this miscibil
 of the materials in the deep interior of the planet, with separation in the outer
 portion of the planet. In the case of 5 or 10 \% efficiency
 
-As the mass of the planet increases the minimum value of $\eta$ needed to cross the
-solvus decreases. For a 2 Earth-mass planet, a 10\% $E_G$ conversion efficiency would
-permit a miscible region in the deep interior. For a yet larger 6 Earth-mass planet,
-shown in Figure~\ref{fig:superearth6}, a miscible region is predicted for $\eta$ as
-low as 0.05. In 6 Earth-mass case the adiabat through the low pressure part of the planet is
-also below a typical mantle solidus, meaning that a single planet might contain an
-outer rocky mantle, a deep magma ocean, followed by a deeper silicate-iron mixed
-region. This is in contrast to the 1 Earth-mass case, where $\eta=0.15$ would require
-most of the planet to be molten. For this reason, the mixed region on a 6
-Earth-mass rocky planet may be long-lived, whereas such conditions could have only
-existed for the earliest part of the Earth's evolution.
-
 \begin{figure}[h]  
   \centering
     \includegraphics[width=22pc]{figs/6_Me_dulong.eps}  
@@ -875,6 +863,21 @@ Isentropes are calculated by extrapolation of FeMgO calculations at 100 and 400 
 \label{fig:superearth6}
 \end{figure}
 
+As the mass of the planet increases the minimum value of $\eta$ needed to cross the
+solvus decreases. For a 2 Earth-mass planet, a 10\% $E_G$ conversion efficiency would
+permit a miscible region in the deep interior. For a yet larger 6 Earth-mass planet,
+shown in Figure~\ref{fig:superearth6}, a miscible region is predicted for $\eta$ as
+low as 0.05. In 6 Earth-mass case the adiabat through the low pressure part of the
+planet is also below a typical mantle solidus, meaning that a single planet might
+contain an outer rocky mantle, a deep magma ocean, followed by a deeper silicate-iron
+mixed region. This is in contrast to the 1 Earth-mass case, where $\eta=0.15$ would
+require most of the planet to be molten. For this reason, the mixed region on a 6
+Earth-mass rocky planet may be long-lived, whereas such conditions could have only
+existed for the earliest part of the Earth's evolution. The minimum $\eta$ for a
+planet of a given $M$ to intersect the solvus is shown in Fig.~\ref{fig:etapower}.
+The blue curve corresponds to the power law fit: $\log_{10}\eta = -0.610 \times
+\log_{10}(M/M_E) - 0.868$.
+
 The existence of a long-lived mixed iron-rock region would undoubtedly have
 consequences for both the thermal evolution of these rock super-Earths, as well
 effecting the generation of a magnetic field. There are confirmed examples of rocky
@@ -884,3 +887,12 @@ In reality the story may be more complicated than this, because large rocky bodi
 are still expected to form from the collision and merging of already-differentiated
 bodies, and the mechanical mixing of the denser iron upwards through the planet may be
 inefficient, even at temperatures where it will readily mix with the rocky mantle.
+
+\begin{figure}[h]  
+  \centering
+    \includegraphics[width=22pc]{figs/eta_power.png}  
+\caption{Minimum efficiency $\eta$ for conversion of gravitational to thermal energy
+as a function of planet mass for the homogeneous accreting planet to intersect the
+computed Fe-MgO solvus at the center of the planet.  }
+\label{fig:etapower}
+\end{figure}
